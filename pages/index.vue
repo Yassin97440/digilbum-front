@@ -10,4 +10,9 @@
 import { useAlbumStore } from "~/stores/AlbumStore"
 
 useAlbumStore()
+
+definePageMeta({
+    middleware: ["auth"]
+    // or middleware: 'auth'
+})
 </script>

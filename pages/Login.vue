@@ -1,3 +1,9 @@
+<script setup>
+definePageMeta({
+    middleware: ["auth"]
+    // or middleware: 'auth'
+})
+</script >
 <template>
     <v-container>
         <v-form>
@@ -30,20 +36,20 @@ import { mapActions } from "pinia";
 export default {
 
     data: () => ({
-            email: "",
-            password: "",
-            show1: false,
-            rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => v.length >= 8 || "Min 8 characters",
-      emailMatch: () => `The email and password you entered don't match`,
-    },
-    }),          
+        email: "",
+        password: "",
+        show1: false,
+        rules: {
+            required: (value) => !!value || "Required.",
+            min: (v) => v.length >= 8 || "Min 8 characters",
+            emailMatch: () => `The email and password you entered don't match`,
+        },
+    }),
     methods: {
-         ...mapActions(useAuthStore, ["login"]),
-         login(){
-            this.login ({email,password})
-         }
+        ...mapActions(useAuthStore, ["login"]),
+        login() {
+            this.login({ email, password })
+        }
     }
 }
 </script>

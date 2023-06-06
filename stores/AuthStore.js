@@ -9,7 +9,6 @@ export const useAuthStore = defineStore("authStore", {
   },
   actions: {
     async register(user) {
-      console.log("PUUUTES");
       const { token } = await $fetch(
         "http://localhost:8080/api/v1/auth/register",
         {
@@ -20,12 +19,10 @@ export const useAuthStore = defineStore("authStore", {
       );
 
       console.log(token);
+      const tokenCookie = useCookie('authToken');
+      tokenCookie.value = "Bearer " + token;
       this.token = token;
-      // console.log("bite ", response.PromiseResult);
-      //data : firsname, lastname, email, password
-      //encrypter password
-      //call api register
-      //stocker user data et jwt
+
     },
     async login(data) {
       console.log("bouyachaka")

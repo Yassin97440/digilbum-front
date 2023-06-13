@@ -12,9 +12,12 @@ export const useAlbumStore = defineStore("AlbumStore", {
         async postNewAlbums(data) {
             console.log(data.album);
             const newAlbumResponse = await $fetch(
-                "http://159.89.0.150:8080/album/new",
+                "http://localhost:8080/album/new",
                 {
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': useCookie('authToken').value
+                    },
                     method: "POST",
                     body: data.album,
                 }
@@ -30,8 +33,12 @@ export const useAlbumStore = defineStore("AlbumStore", {
             formdata.append("albumName", data.album.name);
 
             const newPicResponse = await $fetch(
-                "http://159.89.0.150:8080/pictures/writeAndSavePictures",
+                "http://localhost:8080/pictures/writeAndSavePictures",
                 {
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': useCookie('authToken').value
+                    },
                     method: "POST",
                     body: formdata,
                 }
@@ -41,8 +48,17 @@ export const useAlbumStore = defineStore("AlbumStore", {
         },
         async getAllAlbums() {
             console.log("zimpoouett")
-            const { data } = await useFetch(
-                `http://159.89.0.150:8080/album/albumsWithPictures`
+            const { data } = await $fetch(
+                `http://localhost:8080/album/albumsWithPictures`,
+                {
+                    headers: {
+
+                        "Content-Type": "application/json",
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
+                        'Authorization': useCookie('authToken').value
+                    },
+                    method: "GET",
+                }
             );
             console.log("🚀 ~ file: AlbumStore.js:45 ~ getAllAlbums ~ data:", data)
             console.log("🚀 ~ file: AlbumStore.js:50 ~ getAllAlbums ~ data._rawValue:", data._rawValue)

@@ -47,23 +47,23 @@ export const useAlbumStore = defineStore("AlbumStore", {
             console.log("response new pic", newPicResponse);
         },
         async getAllAlbums() {
-            console.log("zimpoouett")
-            const { data } = await $fetch(
+            console.log("zimpoouett", useCookie('authToken').value)
+            const data = await $fetch(
                 `http://localhost:8080/album/albumsWithPictures`,
                 {
                     headers: {
 
-                        "Content-Type": "application/json",
+                        // "Content-Type": "application/json",
                         'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Authorization': useCookie('authToken').value
+                        'Authorization': "Bearer " + useCookie('authToken').value
                     },
                     method: "GET",
                 }
             );
             console.log("🚀 ~ file: AlbumStore.js:45 ~ getAllAlbums ~ data:", data)
-            console.log("🚀 ~ file: AlbumStore.js:50 ~ getAllAlbums ~ data._rawValue:", data._rawValue)
+            // console.log("🚀 ~ file: AlbumStore.js:50 ~ getAllAlbums ~ data._rawValue:", data)
 
-            this.albums = data._rawValue;
+            this.albums = data;
         },
         setSelectedAlbum(data) {
             console.log(data)

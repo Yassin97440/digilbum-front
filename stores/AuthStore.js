@@ -13,6 +13,7 @@ export const useAuthStore = defineStore("authStore", {
         "http://localhost:8080/api/v1/auth/register",
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
+          mode: "cors",
           method: "POST",
           body: user,
         }
@@ -20,7 +21,7 @@ export const useAuthStore = defineStore("authStore", {
 
       console.log(token);
       const tokenCookie = useCookie('authToken');
-      tokenCookie.value = "Bearer " + token;
+      tokenCookie.value = token;
       this.token = token;
 
     },
@@ -28,17 +29,17 @@ export const useAuthStore = defineStore("authStore", {
       console.log("bouyachaka")
       const { token } = await $fetch(
         "http://localhost:8080/api/v1/auth/login",
-        {
-          headers: { "Content-Type": "application/json" },
+        { //'Access-Control-Allow-Credentials': true, 'Origin': 'http://localhost:8080/'
+          headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           method: "POST",
           body: data,
         }
       );
       const tokenCookie = useCookie('authToken');
-      tokenCookie.value = "Bearer " + token;
+      tokenCookie.value = token;
 
       this.token = token;
-
+      navigateTo('/')
     },
     async logout() {
       const { res } = await $fetch("http://localhost:8080/api/v1/auth/logout",

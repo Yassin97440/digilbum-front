@@ -1,3 +1,9 @@
+<script setup>
+definePageMeta({
+  middleware: ["auth"]
+  // or middleware: 'auth'
+})
+</script >
 <template>
   <v-col class="text-center">
     <!-- <v-row>

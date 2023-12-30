@@ -26,7 +26,6 @@ export const useAuthStore = defineStore("authStore", {
       navigateTo('/')
     },
     async login(data) {
-      console.log("bouyachaka", data)
       const { token } = await $fetch(
         "http://localhost:8080/api/v1/auth/login",
         { //'Access-Control-Allow-Credentials': true, 'Origin': 'http://localhost:8080/'

@@ -15,6 +15,7 @@
   "dependencies": {
     "@invictus.codes/nuxt-vuetify": "latest",
     "@pinia/nuxt": "^0.4.9",
+    "jsonwebtoken": "^9.0.2",
     "pinia": "^2.0.35",
     "sass": "^1.51.0"
   }

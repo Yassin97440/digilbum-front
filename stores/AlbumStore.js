@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-
+import decodeToken from "~/tools/token/decodeToken";
 export const useAlbumStore = defineStore("AlbumStore", {
     state: () => {
         return {
@@ -12,44 +12,43 @@ export const useAlbumStore = defineStore("AlbumStore", {
         async postNewAlbums(data) {
             console.log(data.album);
             const newAlbumResponse = await $fetch(
-                "http://localhost:8080/album/new",
+                "http://localhost:8080/api/v2/album/new",
                 {
                     headers: {
-                        "Content-Type": "application/json",
-                        'Authorization': useCookie('authToken').value
+                        // "Content-Type": "multipart/form-data",
+                        'Authorization': "Bearer " + useCookie('authToken').value
                     },
                     method: "POST",
                     body: data.album,
                 }
-            );
+            ).then(async (responseNewAlbum) => {
 
-            console.log("responseNewAlbum : ", newAlbumResponse);
-            const formdata = new FormData();
-            console.log("formdata created");
-            data.pictures.forEach(async (pic) => {
-                formdata.append("pictures", pic);
+                const formdata = new FormData();
+                data.pictures.forEach(async (pic) => {
+                    formdata.append("pictures", pic);
+                });
+
+                formdata.append("albumName", data.album.name);
+
+                const newPicResponse = await $fetch(
+                    "http://localhost:8080/api/v2/pictures/writeAndSavePictures",
+                    {
+                        headers: {
+                            // "Content-Type": "application/json",
+                            'Authorization': "Bearer " + useCookie('authToken').value
+                        },
+                        method: "POST",
+                        body: formdata,
+                    }
+                );
             });
 
-            formdata.append("albumName", data.album.name);
 
-            const newPicResponse = await $fetch(
-                "http://localhost:8080/pictures/writeAndSavePictures",
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        'Authorization': useCookie('authToken').value
-                    },
-                    method: "POST",
-                    body: formdata,
-                }
-            );
-
-            console.log("response new pic", newPicResponse);
+            // console.log("response new pic", newPicResponse);
         },
         async getAllAlbums() {
-            console.log("zimpoouett", useCookie('authToken').value)
             const data = await $fetch(
-                `http://localhost:8080/album/albumsWithPictures`,
+                `http://localhost:8080/api/v2/album/albumsWithPictures`,
                 {
                     headers: {
 

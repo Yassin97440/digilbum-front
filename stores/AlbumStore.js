@@ -12,7 +12,7 @@ export const useAlbumStore = defineStore("AlbumStore", {
         async postNewAlbums(data) {
             console.log(data.album);
             const newAlbumResponse = await $fetch(
-                "http://localhost:8080/api/v2/album/new",
+                "http://159.89.0.150:8080/api/v2/album/new",
                 {
                     headers: {
                         // "Content-Type": "multipart/form-data",
@@ -22,23 +22,24 @@ export const useAlbumStore = defineStore("AlbumStore", {
                     body: data.album,
                 }
             ).then(async (responseNewAlbum) => {
+                console.log("🚀 ~ file: AlbumStore.js:25 ~ ).then ~ responseNewAlbum:", responseNewAlbum.id)
 
                 const formdata = new FormData();
                 data.pictures.forEach(async (pic) => {
                     formdata.append("pictures", pic);
                 });
 
-                formdata.append("albumName", data.album.name);
+                // formdata.append("albumId", responseNewAlbum.id);
 
                 const newPicResponse = await $fetch(
-                    "http://localhost:8080/api/v2/pictures/writeAndSavePictures",
+                    `http://159.89.0.150:8080/api/v2/pictures/writeAndSavePictures?albumId=${responseNewAlbum.id}`,
                     {
                         headers: {
-                            // "Content-Type": "application/json",
+                            // "Content-Type": "multipart/form-data",
                             'Authorization': "Bearer " + useCookie('authToken').value
                         },
                         method: "POST",
-                        body: formdata,
+                        body: formdata
                     }
                 );
             });
@@ -48,7 +49,7 @@ export const useAlbumStore = defineStore("AlbumStore", {
         },
         async getAllAlbums() {
             const data = await $fetch(
-                `http://localhost:8080/api/v2/album/albumsWithPictures`,
+                `http://159.89.0.150:8080/api/v2/album/albumsWithPictures`,
                 {
                     headers: {
 

@@ -1,45 +1,51 @@
 <template>
-  <v-container>
-    <v-form>
+  <div class="mx-auto pa-12 pb-8" style="height: 100vh; display: flex;
+    justify-content: center;
+    align-items: center;">
 
-      <v-row>
-        <v-col>
-          <v-text-field v-model="firstName" label="Prénom" rounded outlined clearable required></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field v-model="lastName" label="Nom" rounded outlined clearable required></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field v-model="email" label="email" rounded outlined clearable required></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1"
-            label="Entrez votre mot de passe" hint="👮 Il faut moins 8 caractères 👮" counter
-            @click:append="show1 = !show1"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field v-model="passwordCheck" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1"
-            label="Entrez votre mot de passe" hint="valideDoublePasswordAt: 'least 8 characters'? ''" counter
-            @click:append="show1 = !show1"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-btn rounded color="primary" dark @click="test" :disabled="!valideDoublePassword"> Enregister </v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
-  </v-container>
+    <v-container>
+      <v-form>
+
+        <v-row>
+          <v-col>
+            <v-text-field v-model="firstName" label="Prénom" rounded outlined clearable required></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="lastName" label="Nom" rounded outlined clearable required></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="email" label="Adresse email" rounded outlined clearable required></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1"
+              label="Entrez votre mot de passe" hint="👮 Il faut moins 8 caractères 👮" counter
+              @click:append="show1 = !show1"></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="passwordCheck" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1"
+              label="Confirmez votre mot de passe" hint="valideDoublePasswordAt: 'least 8 characters'? ''" counter
+              @click:append="show1 = !show1"></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn rounded color="primary" dark @click="test" :disabled="!valideDoublePassword"> Enregister
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-form>
+    </v-container>
+  </div>
 </template>
 <style></style>
 <script>

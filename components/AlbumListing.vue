@@ -3,7 +3,8 @@
     <v-card class="mx-auto my-12" max-width="374" v-for="(album, i) in albums" :key="i">
       <v-card-title> {{ album.name }}</v-card-title>
       <v-card-actions>
-        <v-btn color="deep-purple lighten-2" @click="setSelectedAlbum(album)" text> Regarder l'album </v-btn>
+        <v-btn color="deep-purple lighten-2" @click="$emit('selectedAlbum', album)" text> Regarder l'album via emit
+        </v-btn>
       </v-card-actions>
     </v-card>
     <!-- <v-card v-for="(item, i) in items" :key="i" elevation="24" loading shaped></v-card> -->

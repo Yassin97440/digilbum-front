@@ -9,7 +9,9 @@ WORKDIR /src
 # Build
 FROM base as build
 
-COPY --link package.json package-lock.json ./
+# COPY --link package.json package-lock.json ./
+COPY package.son /src/package.json
+COPY package-lock.json /src/package-lock.json
 RUN npm install
 
 # Run

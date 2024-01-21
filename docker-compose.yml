@@ -1,15 +1,13 @@
-version: "3"
+version: '3'
 
-volumes:
-  node_modules:
 services:
-  my-app-dev:
+  frontend:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile # Remplacez par le nom réel de votre Dockerfile Nuxt.js
     ports:
-      - "3000:3000"
-      - "24678:24678"
+      - "3000:3000" # Assurez-vous que le port exposé correspond à celui de votre application Nuxt.js
     volumes:
-      - .:/src
-      - node_modules:/src/node_modules
+      - .:/app # Montez le répertoire local dans le répertoire de travail du conteneur
+    environment:
+      - NODE_ENV=development # Définissez l'environnement Node.js (par exemple, development)

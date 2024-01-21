@@ -12,7 +12,7 @@ COPY package-lock.json .
 RUN npm install
 
 # Copier le reste des fichiers du projet
-COPY . .
+COPY ./ .
 
 # Build de l'application Nuxt.js
 # RUN npm run build

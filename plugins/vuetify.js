@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createVuetify } from 'vuetify'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
-// import colors from 'vuetify/util/colors'
 const myCustomLightTheme = {
     dark: false,
     colors: {

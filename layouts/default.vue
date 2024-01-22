@@ -2,7 +2,7 @@
     <v-theme-provider theme="myCustomLightTheme" class="">
 
         <v-app>
-            <v-navigation-drawer expand-on-hover rail>
+            <v-navigation-drawer expand-on-hover rail absolute="true">
                 <v-list>
                     <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" :prepend-icon="item.icon"
                         :title="item.title" router exact>
@@ -10,8 +10,8 @@
                 </v-list>
                 <div class="px-2 absolute inset-x-0 bottom-3">
                     <v-list>
-                        <v-list-item class="hover:bg-stone-400" prepend-icon="mdi-logout" title="Déconnexion" rounded="xl"
-                            @click="logout"></v-list-item>
+                        <v-list-item class="hover:bg-stone-400" to="/Login" prepend-icon="mdi-logout" title="Déconnexion"
+                            rounded="xl" @click="logout" router exact></v-list-item>
                     </v-list>
                     <!-- <v-btn block>
                       Logout

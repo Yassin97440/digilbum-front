@@ -1,34 +1,36 @@
 <template>
-    <v-app dark>
-        <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
-            <v-list>
-                <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-                    <v-list-item-action>
-                        <v-icon>{{ item.icon }}</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-            </v-list>
-            <v-btn rounded="xl" class="bottom" @click="logout"> Déconnexion</v-btn>
-        </v-navigation-drawer>
-        <v-app-bar :clipped-left="clipped" fixed app>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-            <v-btn icon @click.stop="miniVariant = !miniVariant">
-                <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
-            </v-btn>
-            <v-toolbar-title>{{ title }}</v-toolbar-title>
-            <v-spacer />
-        </v-app-bar>
-        <v-main>
-            <v-container>
-                <slot />
-            </v-container>
-        </v-main>
+    <v-theme-provider theme="myCustomLightTheme" class="">
 
-        <v-footer :absolute="!fixed" app>
-            <span>&copy; {{ new Date().getFullYear() }}</span>
-        </v-footer>
-    </v-app>
+        <v-app>
+            <v-navigation-drawer expand-on-hover rail>
+                <v-list>
+                    <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" :prepend-icon="item.icon"
+                        :title="item.title" router exact>
+                    </v-list-item>
+                </v-list>
+                <div class="px-2 absolute inset-x-0 bottom-3">
+                    <v-list>
+                        <v-list-item class="hover:bg-stone-400" prepend-icon="mdi-logout" title="Déconnexion" rounded="xl"
+                            @click="logout"></v-list-item>
+                    </v-list>
+                    <!-- <v-btn block>
+                      Logout
+                    </v-btn> -->
+                </div>
+
+            </v-navigation-drawer>
+
+            <v-main>
+                <v-container>
+                    <slot />
+                </v-container>
+            </v-main>
+
+            <v-footer :absolute="!fixed" app>
+                <span>&copy; {{ new Date().getFullYear() }}</span>
+            </v-footer>
+        </v-app>
+    </v-theme-provider>
 </template>
 
 <script>
@@ -40,14 +42,14 @@ export default {
     data() {
         return {
             clipped: false,
-            drawer: false,
+            drawer: true,
             fixed: false,
             items: [
 
                 {
                     icon: "mdi-home",
                     title: "Acceuil",
-                    to: "/showAlbums",
+                    to: "/",
                 },
                 {
                     icon: "mdi-plus",

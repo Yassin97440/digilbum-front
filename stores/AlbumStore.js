@@ -5,7 +5,8 @@ export const useAlbumStore = defineStore("AlbumStore", {
         return {
             image: {},
             albums: [],
-            selectedAlbumPictures: [],
+            selectedAlbumPictures: [
+                { id: null, pathFile: '', albumId: null }],
         }
     },
     actions: {

@@ -7,12 +7,7 @@ definePageMeta({
 
 <template>
     <v-container>
-        <AlbumListing :albums="albums" @selected-album="(n) => logEmitedAlbum(n)" />
-        <v-carousel show-arrows="hover" hide-delimiters>
-            <v-carousel-item v-for="(picture, i) in selectedAlbumPictures" :key="i" :src="picture.pathFile"
-                height="500px"></v-carousel-item>
-
-        </v-carousel>
+        <AlbumListing :albums="albums" :pictures="selectedAlbumPictures" />
     </v-container>
 </template>
 

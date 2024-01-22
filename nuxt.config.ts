@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     ssr: false,
-    css: ['vuetify/lib/styles/main.sass'],
+    css: ['vuetify/lib/styles/main.sass', '~/assets/css/main.css'],
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    },
     build: {
         transpile: ['vuetify'],
     },

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-icon icon="mdi-home" />
-        <AlbumListing></AlbumListing>
+        <Home></Home>
         <!-- <NuxtWelcome /> -->
     </div>
 </template>

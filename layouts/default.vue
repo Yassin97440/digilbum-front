@@ -1,7 +1,7 @@
 <template>
     <v-theme-provider theme="myCustomLightTheme">
         <v-app>
-            <v-navigation-drawer expand-on-hover rail>
+            <v-navigation-drawer expand-on-hover rail permanent="true">
                 <v-list>
                     <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" :prepend-icon="item.icon"
                         :title="item.title" router exact>

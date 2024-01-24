@@ -4,13 +4,13 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 const myCustomLightTheme = {
     dark: false,
     colors: {
-        background: '#d0d0b4',
-        surface: '#ddddb4',
+        background: '#cec9ad',
+        surface: '#ddd3b4',
         'surface-bright': '#FFFFFF',
         'surface-light': '#EEEEEE',
         'surface-variant': '#ef0000',
         'on-surface-variant': '#EEEEEE',
-        primary: '#f3e7bd',
+        primary: '#d6a30b',
         'primary-darken-1': '#1F5592',
         secondary: '#57a948',
         'secondary-darken-1': '#018786',

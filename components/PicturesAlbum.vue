@@ -6,11 +6,9 @@
 </script >
 
 <template>
-    <v-container>
-        <v-carousel show-arrows="hover" hide-delimiters>
-            <v-carousel-item v-for="(picture, i) in pictures" :key="i" :src="picture.pathFile"
-                height="500px"></v-carousel-item>
-
+    <v-container class="max-h-full inline-block">
+        <v-carousel class="max-h-full" style="height: 100%;" show-arrows="hover" hide-delimiters>
+            <v-carousel-item class="" v-for="(picture, i) in pictures" :key="i" :src="picture.pathFile"></v-carousel-item>
         </v-carousel>
     </v-container>
 </template>

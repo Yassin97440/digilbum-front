@@ -1,23 +1,21 @@
 <template>
     <v-theme-provider theme="myCustomLightTheme">
         <v-app>
-            <v-navigation-drawer expand-on-hover rail permanent="true">
-                <v-list>
-                    <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" :prepend-icon="item.icon"
-                        :title="item.title" router exact>
-                    </v-list-item>
-                </v-list>
-                <div class="px-2 absolute inset-x-0 bottom-3">
-                    <v-list>
-                        <v-list-item class="hover:bg-stone-400" to="/Login" prepend-icon="mdi-logout" title="Déconnexion"
-                            rounded="xl" @click="logout" router exact></v-list-item>
-                    </v-list>
-                    <!-- <v-btn block>
-                      Logout
-                    </v-btn> -->
-                </div>
+            <v-app-bar color="primary" prominent>
+                <v-toolbar-title>Digilbum </v-toolbar-title>
+                <v-btn v-for="item in items" :icon="item.icon" :to="item.to"></v-btn>
+                <v-btn>
+                    <v-icon>mdi-account</v-icon>
+                    <v-menu activator="parent">
+                        <v-list>
+                            <v-list-item @click="logout()">
+                                <v-list-item-title>Déconnexion</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </v-btn>
 
-            </v-navigation-drawer>
+            </v-app-bar>
 
             <v-main>
                 <v-container>
@@ -60,11 +58,7 @@ export default {
                     title: "Visionner un album",
                     to: "/showAlbums",
                 },
-                // {
-                //   icon: "fa-regular fa-images",
-                //   title: "Création de compe",
-                //   to: "/Inscription",
-                // },
+
             ],
             miniVariant: false,
             right: true,

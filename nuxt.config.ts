@@ -14,11 +14,17 @@ export default defineNuxtConfig({
     modules: [
         '@invictus.codes/nuxt-vuetify',
         '@pinia/nuxt',
+        'nuxt-primevue',
     ],
     vuetify: {
         moduleOptions: {
             styles: true,
             autoImport: true,
         }
-    }
+    },
+    primevue: {
+        options: {
+            unstyled: true
+        },
+    },
 })

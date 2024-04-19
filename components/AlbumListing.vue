@@ -1,26 +1,21 @@
 <template>
   <v-row>
-    <v-card class="mx-auto my-12" max-width="374" v-for="(album, i) in albums" :key="i">
+    <v-card class="mx-auto my-12 " max-width="374" v-for="(album, i) in albums" :key="i">
       <v-card-title> {{ album.name }}</v-card-title>
       <v-card-actions>
-        <v-btn color="deep-purple lighten-2" @click="openPicturesForAlbum(album)" text>
+        <v-btn color="secondary" @click="openPicturesForAlbum(album)" text>
           Regarder l'album
-
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-dialog v-model="dialog" fullscreen :scrim="true">
+    <v-dialog v-model="dialog" fullscreen :scrim="true" class="static">
       <v-toolbar>
         <v-btn icon @click="dialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>Settings</v-toolbar-title>
+        <v-toolbar-title>{{ albumSelectedName }}</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items>
-          <v-btn variant="text" @click="dialog = false">
-            Save
-          </v-btn>
-        </v-toolbar-items>
+
       </v-toolbar>
       <PicturesAlbum :pictures="selectedAlbumPictures"></PicturesAlbum>
     </v-dialog>
@@ -34,6 +29,7 @@ export default {
   props: { albums: Array, pictures: Array },
   data: () => ({
     dialog: false,
+    albumSelectedName: "",
   }),
   computed: {
     ...mapState(useAlbumStore, ["selectedAlbumPictures"])
@@ -44,6 +40,9 @@ export default {
     openPicturesForAlbum(album) {
       this.getPicturesForAlbum(album);
       this.dialog = true;
+      this.albumSelectedName = album.name
+      // console.log("🚀 ~ openPicturesForAlbum ~ album.name:", this.albumSelectedName)
+      // console.log("🚀 ~ openPicturesForAlbum ~ album:", album)
     }
   },
 };

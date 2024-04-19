@@ -23,7 +23,7 @@ export const useAuthStore = defineStore("authStore", {
       const tokenCookie = useCookie('authToken');
       tokenCookie.value = token;
       this.token = token;
-      navigateTo('/')
+      return navigateTo('/')
     },
     async login(data) {
       const { token } = await $fetch(
@@ -38,7 +38,7 @@ export const useAuthStore = defineStore("authStore", {
       tokenCookie.value = token;
 
       this.token = token;
-      navigateTo('/')
+      return navigateTo('/')
     },
     async logout() {
       const { res } = await $fetch("http://159.89.0.150:8080/api/v1/auth/logout",
@@ -48,6 +48,8 @@ export const useAuthStore = defineStore("authStore", {
         })
       const tokenCookie = useCookie('authToken');
       tokenCookie.value = undefined;
+      return navigateTo('/Login')
+
     },
   },
 });

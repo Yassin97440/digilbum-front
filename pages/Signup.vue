@@ -1,17 +1,14 @@
 <script setup>
 definePageMeta({
   middleware: ["register"],
-  layout: false,
+  layout: "signup",
   // or middleware: 'auth'
 })
-</script >
+</script>
 
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <NewUserFormulaire></NewUserFormulaire>
-    </v-col>
-  </v-row>
+  <NewUserFormulaire></NewUserFormulaire>
+
 </template>
 
 <script>

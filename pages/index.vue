@@ -1,6 +1,5 @@
 <template>
     <div>
-        <v-icon icon="mdi-home" />
         <Home></Home>
         <!-- <NuxtWelcome /> -->
     </div>

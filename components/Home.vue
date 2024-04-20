@@ -1,6 +1,10 @@
 <template>
     <v-container>
-        <v-btn variant="tonal">AJOUTER UN ALBUM</v-btn>
+        <v-card>
+
+            <v-btn variant="tonal">AJOUTER UN ALBUM</v-btn>
+        </v-card>
+
     </v-container>
 </template>
 <script>

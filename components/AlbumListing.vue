@@ -8,11 +8,14 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-dialog v-model="dialog" fullscreen :scrim="true" class="static">
-      <v-toolbar>
-        <v-btn icon @click="dialog = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+    <v-dialog v-model="dialog" fullscreen :scrim="true" class="relative ">
+      <v-toolbar collapse class="absolute  top-0 right-0">
+        <v-toolbar-item>
+
+          <v-btn icon @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-toolbar-item>
         <v-toolbar-title>{{ albumSelectedName }}</v-toolbar-title>
         <v-spacer></v-spacer>
 

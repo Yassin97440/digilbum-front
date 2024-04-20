@@ -1,29 +1,27 @@
 <template>
     <v-theme-provider theme="myCustomLightTheme">
         <v-app>
-            <v-app-bar color="primary" prominent>
+
+            <v-app-bar color="primary" class="flex justify-center" prominent>
                 <v-toolbar-title>Digilbum </v-toolbar-title>
-                <v-btn v-for="item in items" :icon="item.icon" :to="item.to"></v-btn>
-                <v-btn>
-                    <v-icon>mdi-account</v-icon>
-                    <v-menu activator="parent">
-                        <v-list>
-                            <v-list-item @click="logout()">
-                                <v-list-item-title>Déconnexion</v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
+
+                <v-btn icon to="/Login">
+                    <v-icon>mdi-login</v-icon>
                 </v-btn>
 
+                <v-btn icon to="/Signup">
+                    <v-icon>mdi-account-plus</v-icon>
+                </v-btn>
             </v-app-bar>
 
             <v-main>
                 <div class="relative w-full h-full ">
                     <div class="absolute inset-0 z-0">
-                        <img class="w-full h-full object-cover blur-lg" src="~/assets/bg-tree.jpg" alt="Background" />
+                        <img class="w-full h-full object-cover blur-lg" src="~/assets/bg-sunshine2000.jpg"
+                            alt="Background" />
                     </div>
 
-                    <div class="relative z-10 h-full">
+                    <div class="relative z-10 h-screen">
                         <slot />
 
                     </div>

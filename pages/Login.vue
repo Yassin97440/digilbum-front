@@ -1,11 +1,11 @@
 <script setup>
 definePageMeta({
     middleware: ["auth"],
-    layout: false,
+    layout: "signup",
+    // or middleware: 'auth'
 })
-
-</script >
-<template  >
+</script>
+<template>
     <div class="flex justify-center items-center mx-auto h-screen ">
         <v-card class="mx-auto pa-12 pb-8 w-4/5 sm:w-3/5 md:w-3/5 lg:w-2/5 xl:w-1/3" elevation="8" rounded="lg">
             <div class="text-subtitle-1 text-medium-emphasis">Identifiant</div>

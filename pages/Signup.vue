@@ -7,14 +7,12 @@ definePageMeta({
 </script>
 
 <template>
-  <NewUserFormulaire></NewUserFormulaire>
-
+  <v-card></v-card>
+  <LoginStepper></LoginStepper>
 </template>
 
 <script>
-import NewUserFormulaire from "~/components/NewUserFormulaire.vue";
 export default {
-  components: { NewUserFormulaire },
   name: "IndexPage",
 };
 </script>

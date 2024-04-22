@@ -3,12 +3,10 @@ definePageMeta({
     middleware: ["auth"]
     // or middleware: 'auth'
 })
-</script >
+</script>
 
 <template>
-    <v-container>
-        <AlbumListing :albums="albums" :pictures="selectedAlbumPictures" />
-    </v-container>
+    <GlobalListing :albums="albums"></GlobalListing>
 </template>
 
 <script>
@@ -26,10 +24,6 @@ export default {
     },
     methods: {
         ...mapActions(useAlbumStore, ["getAllAlbums", "getPicturesForAlbum"]),
-        logEmitedAlbum(album) {
-            this.getPicturesForAlbum(album)
-            console.log("getLog", album)
-        },
 
     },
     created() {

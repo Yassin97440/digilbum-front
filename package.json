@@ -19,7 +19,7 @@
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {
-    "@invictus.codes/nuxt-vuetify": "latest",
+    "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@pinia/nuxt": "^0.4.9",
     "jose": "^5.2.2",
     "jsonwebtoken": "^9.0.2",

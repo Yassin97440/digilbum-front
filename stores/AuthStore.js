@@ -4,6 +4,7 @@ export const useAuthStore = defineStore("authStore", {
   state: () => {
     return {
       user: {},
+      newGroup: {},
       token: "",
     }
   },
@@ -51,5 +52,20 @@ export const useAuthStore = defineStore("authStore", {
       return navigateTo('/Login')
 
     },
+
+    async updateNewFirstName(newFirstName) {
+      console.log("🚀 ~ updateNewFirstName ~ newFirstName:", newFirstName)
+      this.user.firstName = newFirstName
+    },
+    updateNewLastName(newLastName) {
+      this.user.lastName = newLastName
+    },
+    updateNewLastName(newPassword) {
+      this.user.password = newPassword
+    },
+    updatenewEmail(newEmail) {
+      this.user.email = newEmail
+    },
+
   },
 });

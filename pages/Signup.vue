@@ -8,10 +8,11 @@ definePageMeta({
 
 <template>
   <v-card></v-card>
-  <LoginStepper></LoginStepper>
+  <SignupStepper></SignupStepper>
 </template>
 
 <script>
+
 export default {
   name: "IndexPage",
 };

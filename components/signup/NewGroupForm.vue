@@ -11,7 +11,7 @@
                         clearable required></v-text-field>
                 </v-row>
                 <v-row class="p-0">
-                    <v-combobox clearable label="Quelle type de groupe voulez-vous créer?"
+                    <v-combobox label="Quelle type de groupe voulez-vous créer?"
                         :items="['Famille', 'Amis', 'Entreprise',]" variant="solo-filled"></v-combobox>
                 </v-row>
 

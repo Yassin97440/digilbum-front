@@ -7,11 +7,11 @@
 
             <v-container>
                 <v-row class=" p-0">
-                    <v-text-field variant="solo-filled" v-model="firstName" label="Nom de votre Groupe" rounded outlined
-                        clearable required></v-text-field>
+                    <v-text-field :v-model="groupName" variant="solo-filled" label="Nom de votre Groupe" rounded
+                        outlined clearable required></v-text-field>
                 </v-row>
                 <v-row class="p-0">
-                    <v-combobox label="Quelle type de groupe voulez-vous créer?"
+                    <v-combobox v-model="groupType" label="Quelle type de groupe voulez-vous créer?"
                         :items="['Famille', 'Amis', 'Entreprise',]" variant="solo-filled"></v-combobox>
                 </v-row>
 
@@ -22,4 +22,28 @@
 
 </template>
 
-<script></script>
+<script>
+import { useAuthStore } from "~~/stores/AuthStore";
+
+import { mapActions } from "pinia";
+
+export default {
+    data: () => ({
+        groupName: "",
+        groupType: ""
+    }),
+    computed: {
+
+    },
+    watch: {
+
+    },
+    methods: {
+        ...mapActions(useAuthStore, ["register"]),
+        valideDoublePassword() {
+            return this.passwording
+        },
+
+    },
+};
+</script>

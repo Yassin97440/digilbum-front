@@ -38,8 +38,6 @@
 
 <style></style>
 <script setup>
-// const authStore = useAuthStore()
-// const { updateNewFirstName } = authStore
 
 </script>
 <script>
@@ -71,18 +69,15 @@ export default {
   watch: {
     'newUser.firstName': function (newFirstName) {
       console.log(`First name changed to ${newFirstName}`);
-      // this.updateNewFirstName(newFirstName)
       this.test()
-      // console.log(this.user);
     },
   },
   methods: {
-    ...mapActions(useAuthStore, ["register, updateNewFirstName"]),
+    ...mapActions(useAuthStore, ["register"]),
     valideDoublePassword() {
       return this.passwording
     },
     test(newfield) {
-      // this.updateNewFirstName(newfield)
       this.register({
         firstName: this.firstName,
         lastName: this.lastName,

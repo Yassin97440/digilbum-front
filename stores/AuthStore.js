@@ -9,14 +9,23 @@ export const useAuthStore = defineStore("authStore", {
     }
   },
   actions: {
-    async register(user) {
+    async register(user, dataGroup) {
+      if (dataGroup.type === "Famille") {
+        dataGroup.type = "Familly"
+      }
+      if (dataGroup.type === "Amis") {
+        dataGroup.type = "Friends"
+      }
+      if (dataGroup.type === "Entreprise") {
+        dataGroup.type = "Company"
+      }
       const { token } = await $fetch(
         "http://159.89.0.150:8080/api/v1/auth/register",
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           mode: "cors",
           method: "POST",
-          body: user,
+          body: { user, group: dataGroup },
         }
       );
 
@@ -53,19 +62,6 @@ export const useAuthStore = defineStore("authStore", {
 
     },
 
-    async updateNewFirstName(newFirstName) {
-      console.log("🚀 ~ updateNewFirstName ~ newFirstName:", newFirstName)
-      this.user.firstName = newFirstName
-    },
-    updateNewLastName(newLastName) {
-      this.user.lastName = newLastName
-    },
-    updateNewLastName(newPassword) {
-      this.user.password = newPassword
-    },
-    updatenewEmail(newEmail) {
-      this.user.email = newEmail
-    },
 
   },
 });

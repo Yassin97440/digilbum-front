@@ -6,31 +6,63 @@ definePageMeta({
 })
 </script>
 <template>
-    <div class="flex justify-center items-center mx-auto h-screen ">
-        <v-card class="mx-auto pa-12 pb-8 w-4/5 sm:w-3/5 md:w-3/5 lg:w-2/5 xl:w-1/3" elevation="8" rounded="lg">
-            <div class="text-subtitle-1 text-medium-emphasis">Identifiant</div>
+    <div
+        class="min-h-screen w-full flex items-center justify-center px-4 py-6 bg-gradient-to-br from-orange-400/10 to-blue-600/10 backdrop-blur-lg">
+        <v-card class="w-full max-w-md bg-white/10 backdrop-blur-md border-white/20 shadow-xl overflow-hidden ">
+            <v-card-item class="p-8">
+                <div class="text-center mb-8">
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-orange-400 to-blue-600 bg-clip-text text-transparent">
+                        Digilbum
+                    </h1>
+                    <p class=" /70 mt-2">
+                        Partagez vos moments précieux
+                    </p>
+                </div>
 
-            <v-text-field v-model="email" density="compact" placeholder="Adresse email"
-                prepend-inner-icon="mdi-email-outline" variant="outlined"></v-text-field>
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium  /90 block">
+                            Identifiant
+                        </label>
+                        <div class="relative">
+                            <v-icon class="absolute left-3 top-1/2 transform -translate-y-1/2  /50"
+                                icon="mdi-email-outline"></v-icon>
+                            <v-text-field v-model="email" placeholder="Adresse email" variant="outlined"
+                                density="compact" class="pl-10 bg-white/5 border-white/10  "
+                                :class="{ 'input-focused': focused }"></v-text-field>
+                        </div>
+                    </div>
 
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-                Mot de passe
-            </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium  /90 block">
+                            Mot de passe
+                        </label>
+                        <div class="relative">
+                            <v-icon class="absolute left-3 top-1/2 transform -translate-y-1/2  /50"
+                                icon="mdi-lock-outline"></v-icon>
+                            <v-text-field v-model="password" :type="visible ? 'text' : 'password'"
+                                placeholder="Mot de passe" variant="outlined" density="compact"
+                                class="pl-10 bg-white/5 border-white/10  "
+                                :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                                @click:append-inner="visible = !visible"></v-text-field>
+                        </div>
+                    </div>
 
-            <v-text-field v-model="password" :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                :type="visible ? 'text' : 'password'" density="compact" placeholder="Mot de passe"
-                prepend-inner-icon="mdi-lock-outline" variant="outlined"
-                @click:append-inner="visible = !visible"></v-text-field>
+                    <v-btn block class="bg-gradient-to-r !important  from-orange-400 to-blue-600 font-medium py-2.5"
+                        elevation="2" @click="logine">
+                        Connexion
+                    </v-btn>
 
-            <v-btn block class="mb-8" color="blue" size="large" variant="tonal" @click="logine">
-                Connexion
-            </v-btn>
+                    <div class="text-center">
 
-            <v-card-text class="text-center">
-                <a class="text-blue text-decoration-none" href="/Signup" rel="noopener noreferrer" target="_blank">
-                    Créer un compte <v-icon icon="mdi-chevron-right"></v-icon>
-                </a>
-            </v-card-text>
+                        <a href="/Signup" class="inline-flex items-center text-sm  /70 hover:  transition-colors">
+                            Créer un compte
+                            <v-icon icon="mdi-chevron-right" class="ml-1"></v-icon>
+                        </a>
+                    </div>
+                </div>
+            </v-card-item>
         </v-card>
     </div>
 </template>

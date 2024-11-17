@@ -9,7 +9,10 @@
           <v-btn color="secondary" @click="openPicturesForAlbum(album)" text>
             Regarder l'album
           </v-btn>
+          <v-btn color="medium-emphasis" icon="mdi-trash-can" size="small" @click="this.delete(album)"></v-btn>
         </v-card-actions>
+
+
       </v-card>
     </div>
 
@@ -43,7 +46,7 @@ export default {
 
   },
   methods: {
-    ...mapActions(useAlbumStore, ["setSelectedAlbum", "getPicturesForAlbum"]),
+    ...mapActions(useAlbumStore, ["setSelectedAlbum", "getPicturesForAlbum", "delete"]),
     openPicturesForAlbum(album) {
       this.getPicturesForAlbum(album);
       this.dialog = true;

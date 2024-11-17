@@ -23,7 +23,7 @@ export default {
         ...mapState(useAlbumStore, ["albums", "selectedAlbumPictures"])
     },
     methods: {
-        ...mapActions(useAlbumStore, ["getAllAlbums", "getPicturesForAlbum"]),
+        ...mapActions(useAlbumStore, ["getAllAlbums",]),
 
     },
     created() {

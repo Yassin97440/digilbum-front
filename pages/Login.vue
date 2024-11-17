@@ -12,7 +12,7 @@ definePageMeta({
             <v-card-item class="p-8">
                 <div class="text-center mb-8">
                     <h1
-                        class="text-3xl font-bold bg-gradient-to-r from-orange-400 to-blue-600 bg-clip-text text-transparent">
+                        class=" pb-2 text-5xl font-bold bg-gradient-to-r from-orange-400 to-blue-600 bg-clip-text text-transparent">
                         Digilbum
                     </h1>
                     <p class=" /70 mt-2">
@@ -26,11 +26,9 @@ definePageMeta({
                             Identifiant
                         </label>
                         <div class="relative">
-                            <v-icon class="absolute left-3 top-1/2 transform -translate-y-1/2  /50"
-                                icon="mdi-email-outline"></v-icon>
                             <v-text-field v-model="email" placeholder="Adresse email" variant="outlined"
-                                density="compact" class="pl-10 bg-white/5 border-white/10  "
-                                :class="{ 'input-focused': focused }"></v-text-field>
+                                density="compact" class="pl-3 bg-white/5 border-white/10  "
+                                :class="{ 'input-focused': focused }" prepend-icon="mdi-email-outline"></v-text-field>
                         </div>
                     </div>
 
@@ -39,11 +37,9 @@ definePageMeta({
                             Mot de passe
                         </label>
                         <div class="relative">
-                            <v-icon class="absolute left-3 top-1/2 transform -translate-y-1/2  /50"
-                                icon="mdi-lock-outline"></v-icon>
                             <v-text-field v-model="password" :type="visible ? 'text' : 'password'"
-                                placeholder="Mot de passe" variant="outlined" density="compact"
-                                class="pl-10 bg-white/5 border-white/10  "
+                                prepend-icon="mdi-lock-outline" placeholder="Mot de passe" variant="outlined"
+                                density="compact" class="pl-3 bg-white/5 border-white/10  "
                                 :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                                 @click:append-inner="visible = !visible"></v-text-field>
                         </div>

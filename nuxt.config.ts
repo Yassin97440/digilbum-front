@@ -1,39 +1,34 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
-  css: ['~/assets/css/main.css'],
+    ssr: false,
+    css: ['~/assets/css/main.css'],
 
-  postcss: {
-      plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-      },
-  },
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+            'postcss-nesting': {},
 
-  build: {
-      transpile: ['vuetify'],
-  },
+        },
+    },
 
-  modules: [
-      '@invictus.codes/nuxt-vuetify',
-      '@pinia/nuxt',
-      'nuxt-primevue',
-  ],
+    build: {
+        transpile: ['vuetify'],
+    },
 
-  vuetify: {
-      moduleOptions: {
-          styles: true,
-          autoImport: true,
-      }
-  },
+    modules: [
+        '@invictus.codes/nuxt-vuetify',
+        '@pinia/nuxt',
+    ],
 
-  primevue: {
-      options: {
-          unstyled: true
-      },
-  },
+    vuetify: {
+        moduleOptions: {
+            styles: true,
+            autoImport: true,
+        }
+    },
 
-  devtools: {
-    enabled: true,
-  },
+    devtools: {
+        enabled: true,
+    },
 })

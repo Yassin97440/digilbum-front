@@ -7,7 +7,8 @@ export const useAuthFetch = (url, method, body) => {
             headers: {
 
                 "Content-Type": "application/json",
-                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Authorization': "Bearer " + useCookie('authToken').value
             },
             method: method,
             body: body

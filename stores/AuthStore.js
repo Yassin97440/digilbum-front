@@ -20,7 +20,7 @@ export const useAuthStore = defineStore("authStore", {
         dataGroup.type = "Company"
       }
       const { token } = await $fetch(
-        "http://159.89.0.150:8080/api/v1/auth/register",
+        "http://localhost:8080/api/v1/auth/register",
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           mode: "cors",
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore("authStore", {
     },
     async login(data) {
       const { token } = await $fetch(
-        "http://159.89.0.150:8080/api/v1/auth/login",
+        "http://localhost:8080/api/v1/auth/login",
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           method: "POST",
@@ -51,7 +51,7 @@ export const useAuthStore = defineStore("authStore", {
       return navigateTo('/')
     },
     async logout() {
-      const { res } = await $fetch("http://159.89.0.150:8080/api/v1/auth/logout",
+      const { res } = await $fetch("http://localhost:8080/api/v1/auth/logout",
         {
           headers: { 'Authorization': useCookie('authToken').value },
           method: "GET",

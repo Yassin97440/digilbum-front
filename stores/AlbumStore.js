@@ -13,7 +13,7 @@ export const useAlbumStore = defineStore("AlbumStore", {
         async postNewAlbums(data) {
             console.log(data.album);
             const newAlbumResponse = await $fetch(
-                "http://159.89.0.150:8080/api/v2/album/new",
+                "http://localhost:8080/api/v2/album/new",
                 {
                     headers: {
                         // "Content-Type": "multipart/form-data",
@@ -33,7 +33,7 @@ export const useAlbumStore = defineStore("AlbumStore", {
                 // formdata.append("albumId", responseNewAlbum.id);
 
                 const newPicResponse = await $fetch(
-                    `http://159.89.0.150:8080/api/v2/pictures/writeAndSavePictures?albumId=${responseNewAlbum.id}`,
+                    `http://localhost:8080/api/v2/pictures/writeAndSavePictures?albumId=${responseNewAlbum.id}`,
                     {
                         headers: {
                             // "Content-Type": "multipart/form-data",
@@ -46,11 +46,11 @@ export const useAlbumStore = defineStore("AlbumStore", {
             });
 
 
-            // console.log("response new pic", newPicResponse);
+            console.log("response new pic", newPicResponse);
         },
         async getAllAlbums() {
             const data = await $fetch(
-                `http://159.89.0.150:8080/api/v2/album/getAll`,
+                `http://localhost:8080/api/v2/album/getAll`,
                 {
                     headers: {
 
@@ -71,7 +71,7 @@ export const useAlbumStore = defineStore("AlbumStore", {
         },
         async getPicturesForAlbum(album) {
             const newPicResponse = await $fetch(
-                `http://159.89.0.150:8080/api/v2/pictures/findForAlbum?albumId=${album.id}`,
+                `http://localhost:8080/api/v2/pictures/findForAlbum?albumId=${album.id}`,
                 {
                     headers: {
                         // "Content-Type": "multipart/form-data",
@@ -83,6 +83,10 @@ export const useAlbumStore = defineStore("AlbumStore", {
             this.selectedAlbumPictures = newPicResponse
             console.log("🚀 ~ file: AlbumStore.js:83 ~ getPicturesForAlbum ~ newPicResponse:", newPicResponse)
 
+        },
+
+        async delete(album) {
+            const res = await useAuthFetch(`album/deleteOne?albumId=${album.id}`, "POST",)
         }
     }
 

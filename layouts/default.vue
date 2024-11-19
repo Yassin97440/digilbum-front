@@ -1,6 +1,6 @@
 <template>
     <v-theme-provider theme="myCustomLightTheme">
-        <v-app>
+        <v-app class="">
             <!-- App Bar avec effet glassmorphism -->
             <v-app-bar color="transparent" class="border-b border-white/10 backdrop-blur-md bg-white/5" elevation="0"
                 prominent>

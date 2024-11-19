@@ -1,33 +1,57 @@
 <template>
   <v-row>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full px-4">
+      <v-card v-for="(album, i) in albums" :key="i" class="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 
+                 shadow-2xl rounded-2xl transform transition-all duration-500 hover:scale-105
+                 hover:shadow-lg hover:border-white/30 group" elevation="0">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-500/10 
+                      group-hover:opacity-75 transition-opacity duration-500"></div>
 
-    <div class="flex flex-wrap justify-evenly">
+        <div class="relative">
+          <!-- Image de couverture de l'album -->
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img :src="album.coverImage || '/default-album-cover.jpg'" class="w-full h-full object-cover transform transition-transform duration-700
+                       group-hover:scale-110" :alt="album.name + ' cover'" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
 
-      <v-card class="mx-auto my-12 " max-width="374" v-for="(album, i) in albums" :key="i">
-        <v-card-title> {{ album.name }}</v-card-title>
-        <v-card-actions>
-          <v-btn color="secondary" @click="openPicturesForAlbum(album)" text>
-            Regarder l'album
-          </v-btn>
-          <v-btn color="medium-emphasis" icon="mdi-trash-can" size="small" @click="this.delete(album)"></v-btn>
-        </v-card-actions>
+          <!-- Contenu de la carte -->
+          <div class="p-6 relative z-10">
+            <h2 class="text-2xl font-semibold text-white/90 mb-4">{{ album.name }}</h2>
 
+            <div class="flex justify-between items-center">
+              <v-btn @click="openPicturesForAlbum(album)" class="bg-white/10 hover:bg-white/20 text-white/90">
+                Voir l'album
+              </v-btn>
 
+              <v-btn icon @click="deleteAlbum(album)" class="text-red-400/70 hover:text-red-400 transition-colors">
+                <v-icon>mdi-trash-can</v-icon>
+              </v-btn>
+            </div>
+          </div>
+        </div>
       </v-card>
     </div>
 
-    <v-dialog v-model="dialog" fullscreen :scrim="true" class="flex flex-col">
-      <v-toolbar collapse class="absolute  top-0 right-0">
-        <v-toolbar-item>
-
+    <!-- Dialog pour afficher les images de l'album -->
+    <v-dialog v-model="dialog" fullscreen>
+      <v-card class="bg-black/90 backdrop-blur-md">
+        <v-toolbar color="transparent" class="backdrop-blur-md bg-white/5 border-b border-white/10">
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-        </v-toolbar-item>
-        <v-toolbar-title>{{ albumSelectedName }}</v-toolbar-title>
 
-      </v-toolbar>
-      <PicturesAlbum :pictures="selectedAlbumPictures"></PicturesAlbum>
+          <v-toolbar-title class="text-white/90">
+            {{ albumSelectedName }}
+          </v-toolbar-title>
+
+          <v-spacer></v-spacer>
+        </v-toolbar>
+
+        <v-container fluid>
+          <PicturesAlbum :pictures="selectedAlbumPictures" />
+        </v-container>
+      </v-card>
     </v-dialog>
   </v-row>
 </template>
@@ -49,10 +73,8 @@ export default {
     ...mapActions(useAlbumStore, ["setSelectedAlbum", "getPicturesForAlbum", "delete"]),
     openPicturesForAlbum(album) {
       this.getPicturesForAlbum(album);
-      this.dialog = true;
       this.albumSelectedName = album.name
-      // console.log("🚀 ~ openPicturesForAlbum ~ album.name:", this.albumSelectedName)
-      // console.log("🚀 ~ openPicturesForAlbum ~ album:", album)
+      this.dialog = true;
     }
   },
 };

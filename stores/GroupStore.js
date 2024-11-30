@@ -17,7 +17,7 @@ export const useGroupStore = defineStore({
       this.groups.push(res)
     },
     async findByJoinCode(joinCode) {
-      const res = await useAuthFetch(`group/byJoinCode?joinCode=${joinCode}`, "GET",)
+      const res = await useAuthFetch(`group/byJoinCode?joinCode=${joinCode}`, "GET")
       console.log("res for findByJoinCode : ", res)
       return res
     }

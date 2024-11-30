@@ -30,7 +30,7 @@
                                 <v-list class="bg-white/10 backdrop-blur-md border border-white/20">
                                     <v-list-item @click="logout()"
                                         class="hover:bg-white/10 transition-colors duration-300">
-                                        <v-list-item-title class="text-white/90">
+                                        <v-list-item-title class="">
                                             Déconnexion
                                         </v-list-item-title>
                                     </v-list-item>
@@ -120,6 +120,9 @@ export default {
     },
     methods: {
         ...mapActions(useAuthStore, ["logout"]),
+        logout() {
+            this.logout()
+        },
     }
 };
 </script>

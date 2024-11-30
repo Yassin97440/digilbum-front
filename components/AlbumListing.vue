@@ -41,7 +41,7 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
 
-          <v-toolbar-title class="text-white/90">
+          <v-toolbar-title class="">
             {{ albumSelectedName }}
           </v-toolbar-title>
 

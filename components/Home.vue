@@ -9,7 +9,7 @@
             <!-- Carte Créer un événement -->
             <v-card class="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 
                        shadow-2xl rounded-2xl transform transition-all duration-500 hover:scale-102
-                       hover:shadow-lg hover:border-white/30 group" elevation="0" to="/NewAlbum.vue">
+                       hover:shadow-lg hover:border-white/30 group" elevation="0" to="/NewAlbum">
                 <div class="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-pink-500/10 
                           group-hover:opacity-75 transition-opacity duration-500"></div>
 

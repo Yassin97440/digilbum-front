@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
     ssr: false,
     css: ['~/assets/css/main.css'],
@@ -17,14 +19,16 @@ export default defineNuxtConfig({
     },
 
     modules: [
-        '@invictus.codes/nuxt-vuetify',
         '@pinia/nuxt',
+        'vuetify-nuxt-module',
     ],
 
     vuetify: {
         moduleOptions: {
             styles: true,
-            autoImport: true,
+        },
+        vuetifyOptions: {
+            /* vuetify options */
         }
     },
 

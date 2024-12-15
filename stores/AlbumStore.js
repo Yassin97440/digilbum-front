@@ -1,37 +1,25 @@
 import { defineStore } from "pinia"
+import { AlbumService } from '~/services/AlbumService'
+
 export const useAlbumStore = defineStore("AlbumStore", {
     state: () => {
         return {
             image: {},
             albums: [],
             selectedAlbumPictures: [
-                { id: null, pathFile: '', albumId: null }],
+                { id: null, pathFile: '', albumId: null },
+            ],
         }
     },
     actions: {
         async postNewAlbums(data) {
-            console.log(data.album);
-            const newAlbumResponse = await useAuthFetch(
-                "album/new",
-                'POST',
-                data.album
-            )
-                .then(async (responseNewAlbum) => {
-                    console.log("🚀 ~ file: AlbumStore.js:25 ~ ).then ~ responseNewAlbum:", responseNewAlbum.id)
-
-                    const formdata = new FormData();
-                    data.pictures.forEach(async (pic) => {
-                        formdata.append("pictures", pic);
-                    });
-
-                    // formdata.append("albumId", responseNewAlbum.id);
-                    const newPicResponse = await useAuthFetch(
-                        `pictures/writeAndSavePictures?albumId=${responseNewAlbum.id}`,
-                        'POST',
-                        formdata
-                    );
-                    console.log("response new pic", newPicResponse);
-                });
+            try {
+                const result = await AlbumService.createAlbumWithPictures(data)
+                console.log('Album créé avec succès:', result)
+            } catch (error) {
+                console.error('Erreur dans postNewAlbums:', error)
+                throw error
+            }
         },
         async getAllAlbums() {
             const data = await useAuthFetch(

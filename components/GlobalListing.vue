@@ -27,24 +27,27 @@
                     </v-window-item>
 
                     <v-window-item value="two">
-                        <v-container fluid class="text-center text-white/70">
-                            <div class="flex flex-col items-center justify-center h-64">
-                                <v-icon size="large" class="mb-4 text-white/50">mdi-clock-time-four-outline</v-icon>
+                        <v-container fluid class="text-center ">
+                            <<v-card>
+                                <<v-btn @click="eventStore.fetchForUser()" color="info">test get event </v-btn>
+        </v-card>
+        <!-- <div class="flex flex-col items-center justify-center h-64">
+                                <v-icon size="large" class="mb-4 ">mdi-clock-time-four-outline</v-icon>
                                 <p class="text-xl">Albums ajoutés récemment - Bientôt disponible</p>
-                            </div>
-                        </v-container>
-                    </v-window-item>
+                            </div> -->
+        </v-container>
+        </v-window-item>
 
-                    <v-window-item value="three">
-                        <v-container fluid class="text-center text-white/70">
-                            <div class="flex flex-col items-center justify-center h-64">
-                                <v-icon size="large" class="mb-4 text-white/50">mdi-heart-outline</v-icon>
-                                <p class="text-xl">Vos albums favoris - Bientôt disponible</p>
-                            </div>
-                        </v-container>
-                    </v-window-item>
-                </v-window>
-            </v-card-text>
+        <v-window-item value="three">
+            <v-container fluid class="text-center">
+                <div class="flex flex-col items-center justify-center h-64">
+                    <v-icon size="large" class="mb-4">mdi-heart-outline</v-icon>
+                    <p class="text-xl">Vos albums favoris - Bientôt disponible</p>
+                </div>
+            </v-container>
+        </v-window-item>
+        </v-window>
+        </v-card-text>
         </v-card>
     </div>
 </template>
@@ -59,6 +62,11 @@ export default {
 </script>
 <script setup>
 import { ref } from 'vue'
+import { useEventStore } from '~/stores/EventStore';
+
+const eventStore = useEventStore();
+
+eventStore.fetchForUser();
 
 // State
 const tab = ref('one')

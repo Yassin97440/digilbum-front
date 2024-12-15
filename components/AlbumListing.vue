@@ -17,7 +17,7 @@
 
           <!-- Contenu de la carte -->
           <div class="p-6 relative z-10">
-            <h2 class="text-2xl font-semibold text-white/90 mb-4">{{ album.name }}</h2>
+            <h2 class="text-2xl font-semibold  mb-4">{{ album.name }}</h2>
 
             <div class="flex justify-between items-center">
               <v-btn @click="openPicturesForAlbum(album)" class="bg-white/10 hover:bg-white/20 text-white/90">
@@ -75,6 +75,9 @@ export default {
       this.getPicturesForAlbum(album);
       this.albumSelectedName = album.name
       this.dialog = true;
+    },
+    deleteAlbum(album) {
+      this.delete(album);
     }
   },
 };

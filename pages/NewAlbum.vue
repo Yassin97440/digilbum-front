@@ -1,19 +1,11 @@
-<script setup>
-definePageMeta({
-  middleware: ["auth"]
-  // or middleware: 'auth'
-})
-</script>
 <template>
-  <NewAlbumFormulaire class="size-full" />
-
+  <div class="min-h-screen bg-gradient-to-br from-orange-400/10 to-blue-600/10">
+    <AlbumStepper></AlbumStepper>
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: "NewAlbum",
-  data: () => ({
-  }),
-};
+  name: 'NewAlbum'
+}
 </script>

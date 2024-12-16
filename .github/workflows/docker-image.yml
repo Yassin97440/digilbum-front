@@ -17,7 +17,7 @@ jobs:
     # Build de l'image Docker
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        docker build . --file Dockerfile --tag my-image-name:${{ github.run_number }}
       env:
         TAG: ${{ github.run_number }}
 

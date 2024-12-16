@@ -20,7 +20,7 @@ FROM node:18-alpine as prod-env
 WORKDIR /app
 COPY package*.json ./
 COPY .env .env
-RUN npm install --production
+RUN npm install --omit=dev
 COPY --from=build-env /app/.nuxt /app/.nuxt
 COPY --from=build-env /app/.output /app/.output
 COPY --from=build-env /app/.env /app/.env

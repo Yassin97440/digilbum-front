@@ -28,6 +28,11 @@
                             <v-icon>mdi-account</v-icon>
                             <v-menu activator="parent">
                                 <v-list class="bg-white/10 backdrop-blur-md border border-white/20">
+                                    <v-list-item @click="" class="hover:bg-white/10 transition-colors duration-300">
+                                        <v-list-item-title class="">
+                                            {{ userData.firstname }} {{ userData.lastname }}
+                                        </v-list-item-title>
+                                    </v-list-item>
                                     <v-list-item @click="logout()"
                                         class="hover:bg-white/10 transition-colors duration-300">
                                         <v-list-item-title class="">
@@ -83,6 +88,7 @@
 }
 </style>
 <script>
+import decodeToken from "../tools/token/decodeToken";
 import { useAuthStore } from "../stores/AuthStore";
 import { mapActions } from "pinia";
 export default {
@@ -111,17 +117,28 @@ export default {
                 },
 
             ],
-            miniVariant: false,
-            right: true,
-            rightDrawer: false,
             title: "Album digital by Abdulla",
+            userData: {},
         };
     },
     methods: {
-        ...mapActions(useAuthStore, ["logout"]),
         logout() {
-            this.logout()
+            const authStore = useAuthStore();
+            authStore.logout();
         },
+        async getUserData() {
+            const payload = await decodeToken();
+            if (payload) {
+                this.userData = {
+                    firstname: payload.firstname,
+                    lastname: payload.lastname,
+                    email: payload.email,
+                };
+            }
+        }
+    },
+    async mounted() {
+        await this.getUserData();
     }
 };
 </script>

@@ -15,7 +15,7 @@ RUN npm run build
 
 FROM node:18-alpine as prod-env
 WORKDIR /app
-ADD package.json .
+COPY package*.json ./
 # ADD ../.env .
 ADD nuxt.config.ts .
 COPY --from=build-env /app/.nuxt /app/.nuxt

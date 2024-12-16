@@ -10,7 +10,7 @@
         <div class="relative">
           <!-- Image de couverture de l'album -->
           <div class="relative aspect-[4/3] overflow-hidden">
-            <img type=file src="file:///C:/Users/yassi/pictures/realbadman1732134906665.jpg" class="w-full h-full object-cover transform transition-transform duration-700
+            <img type=file src="album.coverImagePath" class="w-full h-full object-cover transform transition-transform duration-700
                        group-hover:scale-110" :alt="album.name + ' cover'" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           </div>

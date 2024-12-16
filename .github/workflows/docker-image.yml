@@ -1,0 +1,46 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout du code source
+    - uses: actions/checkout@v4
+
+    # Build de l'image Docker
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      env:
+        TAG: ${{ github.run_number }}
+
+    # Envoi de l'image vers la VM via SSH
+    - name: Save Docker image to a file
+      run: docker save my-image-name:${{ github.run_number }} | gzip > my-image.tar.gz
+
+    - name: Transfer Docker image to VM
+      uses: appleboy/scp-action@master
+      with:
+        source: my-image.tar.gz
+        target: /home/ubuntu/
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+
+    # Chargement et lancement de l'image sur la VM
+    - name: Deploy Docker image on VM
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          docker load < /home/ubuntu/my-image.tar.gz
+          docker run -d --name my-container -p 3000:3000 my-image-name:${{ github.run_number }}

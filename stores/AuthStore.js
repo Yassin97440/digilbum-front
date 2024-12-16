@@ -19,8 +19,9 @@ export const useAuthStore = defineStore("authStore", {
       if (dataGroup.type === "Entreprise") {
         dataGroup.type = "Company"
       }
+      const SERVER_HOST = config.public.apiBaseUrl;
       const { token } = await $fetch(
-        "http://207.154.214.80:8080/api/v1/auth/register",
+        `http://${SERVER_HOST}/api/v1/auth/register`,
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           mode: "cors",

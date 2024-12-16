@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+const config = useRuntimeConfig();
 export const useAuthStore = defineStore("authStore", {
   state: () => {
     return {
@@ -36,8 +36,10 @@ export const useAuthStore = defineStore("authStore", {
       return navigateTo('/')
     },
     async login(data) {
+      const SERVER_HOST = config.public.apiBaseUrl;
+
       const { token } = await $fetch(
-        "http://207.154.214.80:8080/api/v1/auth/login",
+        `http://${SERVER_HOST}/api/v1/auth/login`,
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           method: "POST",
@@ -51,7 +53,8 @@ export const useAuthStore = defineStore("authStore", {
       return navigateTo('/')
     },
     async logout() {
-      const { res } = await $fetch("http://207.154.214.80:8080/api/v1/auth/logout",
+      const SERVER_HOST = config.public.apiBaseUrl;
+      const { res } = await $fetch(`http://${SERVER_HOST}/api/v1/auth/logout`,
         {
           headers: { 'Authorization': useCookie('authToken').value },
           method: "POST",

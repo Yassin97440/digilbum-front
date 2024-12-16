@@ -43,4 +43,11 @@ export default defineNuxtConfig({
     },
 
     compatibilityDate: '2024-12-16',
+
+    runtimeConfig: {
+        public: {
+            jwtSecretKey: process.env.JWT_SECRET_KEY,
+            apiBaseUrl: process.env.API_BASE_URL
+        }
+    }
 })

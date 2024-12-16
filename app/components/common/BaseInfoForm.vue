@@ -18,7 +18,7 @@
                             <label class="text-sm font-semibold block mb-2">
                                 Date de début
                             </label>
-                            <v-text-field v-model="formData.startDate" type="date" variant="outlined"
+                            <v-text-field v-model="formData.startedAt" type="date" variant="outlined"
                                 @input="emitChanges" />
                         </div>
 
@@ -26,7 +26,7 @@
                             <label class="text-sm font-semibold block mb-2">
                                 Date de fin
                             </label>
-                            <v-text-field v-model="formData.endDate" type="date" variant="outlined"
+                            <v-text-field v-model="formData.endedAt" type="date" variant="outlined"
                                 @input="emitChanges" />
                         </div>
                     </div>
@@ -68,8 +68,8 @@ export default {
         return {
             formData: {
                 name: '',
-                startDate: '',
-                endDate: '',
+                startedAt: '',
+                endedAt: '',
                 description: ''
             }
         }

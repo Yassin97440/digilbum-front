@@ -89,6 +89,7 @@ export default {
 
             try {
                 if (this.type === 'album') {
+                    console.log("🚀 ~ handleSubmit ~ this.albumInfo:", this.albumInfo);
                     await albumStore.postNewAlbums({
                         album: this.albumInfo,
                         pictures: this.photos

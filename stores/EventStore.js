@@ -17,8 +17,8 @@ export const useEventStore = defineStore("eventStore", {
                 console.log("🚀 ~ createEventWithAlbums ~ data:", data);
                 const newEvent = {
                     name: data.event.name,
-                    startedAt: data.event.startDate,
-                    endedAt: data.event.endDate,
+                    startedAt: data.event.startedAt,
+                    endedAt: data.event.endedAt,
                     description: data.event.description
                 };
                 // Création de l'événement
@@ -29,8 +29,8 @@ export const useEventStore = defineStore("eventStore", {
                     const albumData = {
                         album: {
                             name: data.album.name,
-                            startedAt: data.album.startDate,
-                            endedAt: data.album.endDate,
+                            startedAt: data.album.startedAt,
+                            endedAt: data.album.endedAt,
                             eventId: eventResponse.id
                         },
                         pictures: data.pictures

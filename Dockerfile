@@ -1,68 +1,24 @@
-# Utiliser une image de base Node.js
-FROM node:18.14.2-alpine
-
-# Définir le répertoire de travail dans le conteneur
+FROM node:18-alpine as dev-env
 WORKDIR /app
-
-# Copier les fichiers nécessaires pour installer les dépendances
-COPY package.json .
-COPY package-lock.json .
-
-# Installer les dépendances
+COPY package*.json /app/
 RUN npm install
-
-# Copier le reste des fichiers du projet
-COPY ./ .
-
-# Build de l'application Nuxt.js
-# RUN npm run build
-
-# Exposer le port nécessaire pour l'application (par exemple, 3000)
-EXPOSE 3000
-
-# Commande pour démarrer l'application
+COPY . /app/
+EXPOSE 3000 3010
 CMD ["npm", "run", "dev"]
 
 
-# ARG NODE_VERSION=18.14.2
+FROM node:18-alpine as build-env
+WORKDIR /app
+ADD . /app
+RUN npm install
+RUN npm run build 
 
-# FROM node:${NODE_VERSION}-slim as base
-
-# ENV NODE_ENV=development
-
-# WORKDIR /src
-
-# # Build
-# FROM base as build
-
-# COPY --link package.json package-lock.json ./
-# RUN npm install
-
-# # Run
-# FROM base
-
-# COPY --from=build /src/node_modules /src/node_modules
-
-# CMD [ "npm", "run", "dev" ]
-# Créez le répertoire de travail dans l'image
-# WORKDIR /app
-
-# # copy over package.json files
-# COPY package.json /app
-# COPY package-lock.json /app
-
-# # install all depencies
-# RUN npm install
-
-# # copy over all files to the work directory
-# ADD . /app
-
-# # build the project
-# RUN npm run build
-
-# # expose the host and port 3000 to the server
-# ENV HOST 0.0.0.0
-# EXPOSE 3000
-
-# # run the build project with node
-# ENTRYPOINT ["node", ".output/server/index.mjs"]
+FROM node:18-alpine as prod-env
+WORKDIR /app
+ADD package.json .
+ADD ../.env .
+ADD nuxt.config.ts .
+COPY --from=build-env /app/.nuxt /app/.nuxt
+COPY --from=build-env /app/.output /app/.output
+EXPOSE 3000
+CMD ["npm", "run", "start"]

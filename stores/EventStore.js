@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { AlbumService } from '~/services/AlbumService'
+import { AlbumService } from '../services/AlbumService'
 
 export const useEventStore = defineStore("eventStore", {
     state: () => ({

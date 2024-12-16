@@ -10,7 +10,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useAlbumStore } from '~/stores/AlbumStore';
+import { useAlbumStore } from '../stores/AlbumStore';
 import { mapState, mapActions } from "pinia";
 export default {
 

@@ -62,7 +62,7 @@ export default {
 </script>
 <script setup>
 import { ref } from 'vue'
-import { useEventStore } from '~/stores/EventStore';
+import { useEventStore } from '../stores/EventStore';
 
 const eventStore = useEventStore();
 

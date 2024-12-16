@@ -43,7 +43,7 @@
             </template>
 
             <template v-slot:item.3>
-                <SignupValidation :new-user="newUser"  :data-group="dataGroup"></SignupValidation>
+                <SignupValidation :new-user="newUser" :data-group="dataGroup"></SignupValidation>
             </template>
 
         </v-stepper>
@@ -54,10 +54,10 @@
 
 </script>
 <script>
-import { useAuthStore } from "~~/stores/AuthStore";
+import { useAuthStore } from "../stores/AuthStore";
 
 import { mapActions } from "pinia";
-import { useGroupStore } from "~/stores/GroupStore";
+import { useGroupStore } from "../stores/GroupStore";
 export default {
     data: () => ({
         e1: 1,

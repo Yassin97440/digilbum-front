@@ -68,7 +68,6 @@ export default {
     methods: {
         selectType(selectedType) {
             this.type = selectedType;
-            console.log("🚀 ~ selectType ~ this.type:", this.type);
         },
 
         updateAlbumInfo(info) {
@@ -89,14 +88,11 @@ export default {
 
             try {
                 if (this.type === 'album') {
-                    console.log("🚀 ~ handleSubmit ~ this.albumInfo:", this.albumInfo);
                     await albumStore.postNewAlbums({
                         album: this.albumInfo,
                         pictures: this.photos
                     });
                 } else {
-                    console.log("🚀 ~ handleSubmit ~ this.albumInfo:", this.albumInfo);
-                    console.log("🚀 ~ handleSubmit ~ this.eventInfo:", this.eventInfo);
                     await eventStore.createEventWithAlbums({
                         event: this.eventInfo,
                         album: this.albumInfo,

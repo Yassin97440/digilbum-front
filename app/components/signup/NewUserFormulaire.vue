@@ -41,7 +41,7 @@
 
 </script>
 <script>
-import { useAuthStore } from "~~/stores/AuthStore";
+import * as AuthStore from "../stores/AuthStore";
 
 import { mapActions } from "pinia";
 export default {
@@ -73,7 +73,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useAuthStore, ["register"]),
+    ...mapActions(AuthStore.AuthStore.useAuthStore, ["register"]),
     valideDoublePassword() {
       return this.passwording
     },

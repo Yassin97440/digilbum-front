@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { useAlbumStore } from "~/stores/AlbumStore"
+import { useAlbumStore } from "../stores/AlbumStore"
 
 useAlbumStore()
 

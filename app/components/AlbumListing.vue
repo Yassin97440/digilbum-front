@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { useAlbumStore } from '~~/stores/AlbumStore';
+import { useAlbumStore } from '../stores/AlbumStore';
 import { mapActions, mapState } from 'pinia';
 export default {
   props: { albums: Array },

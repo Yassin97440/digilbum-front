@@ -112,8 +112,7 @@
 }
 </style>
 <script>
-import { useAuthStore } from "~~/stores/AuthStore";
-
+import { useAuthStore } from "../stores/AuthStore";
 import { mapActions } from "pinia";
 export default {
     name: "DefaultLayout",

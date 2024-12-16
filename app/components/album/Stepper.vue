@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import { useAlbumStore } from '~/stores/AlbumStore';
-import { useEventStore } from '~/stores/EventStore';
+import { useAlbumStore } from '../stores/AlbumStore';
+import { useEventStore } from '../stores/EventStore';
 
 export default {
     data: () => ({

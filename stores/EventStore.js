@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { AlbumService } from '~/services/AlbumService'
 
 export const useEventStore = defineStore("eventStore", {
     state: () => ({
@@ -27,7 +28,9 @@ export const useEventStore = defineStore("eventStore", {
                 if (data.pictures && data.pictures.length > 0) {
                     const albumData = {
                         album: {
-                            name: data.event.name,
+                            name: data.album.name,
+                            startedAt: data.album.startDate,
+                            endedAt: data.album.endDate,
                             eventId: eventResponse.id
                         },
                         pictures: data.pictures

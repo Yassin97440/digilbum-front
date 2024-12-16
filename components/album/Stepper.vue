@@ -33,7 +33,8 @@
             <!-- Étape 2: Informations -->
             <template v-slot:item.2>
                 <AlbumInfoForm v-if="type === 'album'" @info-changed="updateAlbumInfo" />
-                <AlbumEventInfoForm v-else @info-changed="updateEventInfo" />
+                <AlbumEventInfoForm v-else @event-info-changed="updateEventInfo"
+                    @album-info-changed="updateAlbumInfo" />
             </template>
 
             <!-- Étape 3: Photos -->
@@ -93,8 +94,11 @@ export default {
                         pictures: this.photos
                     });
                 } else {
+                    console.log("🚀 ~ handleSubmit ~ this.albumInfo:", this.albumInfo);
+                    console.log("🚀 ~ handleSubmit ~ this.eventInfo:", this.eventInfo);
                     await eventStore.createEventWithAlbums({
                         event: this.eventInfo,
+                        album: this.albumInfo,
                         pictures: this.photos
                     });
                 }

@@ -1,84 +1,23 @@
 <template>
-    <div class="max-w-2xl mx-auto p-6">
-        <v-card class="bg-black/30 backdrop-blur-md">
-            <v-card-item class="p-8">
-                <div class="space-y-6">
-                    <!-- Nom de l'événement -->
-                    <div>
-                        <label class="text-sm font-semibold block mb-2">
-                            Nom de l'événement
-                        </label>
-                        <v-text-field 
-                            v-model="form.name" 
-                            placeholder="Ex: Mariage de Julie et Thomas" 
-                            variant="outlined" 
-                            density="comfortable"
-                            bg-color="rgb(0 0 0 / 0.2)" 
-                            @input="emitChanges" 
-                        />
-                    </div>
+    <CommonBaseInfoForm :labels="{ name: 'Nom de l\'événement' }" placeholder="Ex: Mariage de Julie et Thomas"
+        :withDescription="true" @info-changed="onEventInfoChanged" />
 
-                    <!-- Dates -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-sm font-semibold block mb-2">
-                                Date de début
-                            </label>
-                            <v-text-field 
-                                v-model="form.startDate" 
-                                type="date" 
-                                variant="outlined" 
-                                @input="emitChanges" 
-                            />
-                        </div>
-
-                        <div>
-                            <label class="text-sm font-semibold block mb-2">
-                                Date de fin
-                            </label>
-                            <v-text-field 
-                                v-model="form.endDate" 
-                                type="date" 
-                                variant="outlined" 
-                                @input="emitChanges" 
-                            />
-                        </div>
-                    </div>
-
-                    <!-- Description -->
-                    <div>
-                        <label class="text-sm font-semibold block mb-2">
-                            Description
-                        </label>
-                        <v-textarea 
-                            v-model="form.description"
-                            placeholder="Décrivez votre événement..."
-                            variant="outlined"
-                            rows="4"
-                            @input="emitChanges"
-                        />
-                    </div>
-                </div>
-            </v-card-item>
-        </v-card>
-    </div>
+    <CommonBaseInfoForm :labels="{ name: 'Nom de l\'album' }" placeholder="Céreminie"
+        @info-changed="onAlbumInfoChanged" />
 </template>
 
 <script>
+
 export default {
-    data: () => ({
-        form: {
-            name: '',
-            startDate: '',
-            endDate: '',
-            description: ''
-        }
-    }),
 
     methods: {
-        emitChanges() {
-            this.$emit('info-changed', { ...this.form });
+        onEventInfoChanged(formData) {
+            this.$emit('event-info-changed', formData);
+        },
+        onAlbumInfoChanged(formData) {
+            this.$emit('album-info-changed', formData);
         }
     }
-};
-</script> 
+
+}
+</script>

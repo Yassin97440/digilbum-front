@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout du code source
     - uses: actions/checkout@v4
 
     - name: 'Create env file'
@@ -21,27 +20,24 @@ jobs:
         echo JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }} >> .env
         cat .env
         
-    # Build de l'image Docker
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag digilbum-front:${{ github.run_number }}
       env:
         TAG: ${{ github.run_number }}
 
-    # Envoi de l'image vers la VM via SSH
     - name: Save Docker image to a file
       run: docker save digilbum-front:${{ github.run_number }} | gzip > digilbum-front.tar.gz
 
     - name: Transfer Docker image to VM
       uses: appleboy/scp-action@master
       with:
-        source: "digilbum-front.tar.gz, .env"
+        source: "digilbum-front.tar.gz"
         target: "~/app/front/"
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
 
-    # Chargement et lancement de l'image sur la VM
     - name: Deploy Docker image on VM
       uses: appleboy/ssh-action@master
       with:
@@ -50,6 +46,5 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           cd ~/app/front
-          cat .env
           docker load < digilbum-front.tar.gz
-          docker run -d -p 3000:3000 -p 3010:3010 --env-file .env digilbum-front:${{ github.run_number }}
+          docker run -d -p 3000:3000 -p 3010:3010 digilbum-front:${{ github.run_number }}

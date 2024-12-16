@@ -36,11 +36,11 @@ jobs:
 
     # Chargement et lancement de l'image sur la VM
     - name: Deploy Docker image on VM
-      uses: appleboy/ssh-action@v0.1.7
+      uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           docker load < ~/app/front/my-image.tar.gz
           docker run -d --name my-container -p 3000:3000 my-image-name:${{ github.run_number }}

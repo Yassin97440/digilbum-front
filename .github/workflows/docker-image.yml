@@ -26,7 +26,7 @@ jobs:
       run: docker save my-image-name:${{ github.run_number }} | gzip > my-image.tar.gz
 
     - name: Transfer Docker image to VM
-      uses: appleboy/scp-action@v0.2.6
+      uses: appleboy/scp-action@master
       with:
         source: my-image.tar.gz
         target: /home/ubuntu/

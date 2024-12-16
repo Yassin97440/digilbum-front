@@ -50,4 +50,4 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           docker load < ~/app/front/digilbum-front.tar.gz
-          docker run -d -p 3000:3000 -p 3010:3010 --env-file .env digilbum-front:${{ github.run_number }}
+          docker run -d -p 3000:3000 -p 3010:3010 --env-file ~/app/front/.env digilbum-front:${{ github.run_number }}

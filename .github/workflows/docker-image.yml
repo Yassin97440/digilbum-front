@@ -2,49 +2,78 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses:
+          actions/checkout@v4
+          # Installation et configuration de Certbot
+      - name: Install Certbot
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y certbot
 
-    - name: 'Create env file'
-      run: |
-        touch .env
-        echo API_BASE_URL=${{ vars.BACK_URL }} >> .env
-        echo JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }} >> .env
-        cat .env
-        
-    - name: Build the Docker image
-      run: |
-        docker build . --file Dockerfile --tag digilbum-front:${{ github.run_number }}
-      env:
-        TAG: ${{ github.run_number }}
+      - name: Generate SSL Certificate
+        env:
+          DOMAIN: ${{ secrets.DOMAIN_NAME }}
+        run: |
+          sudo certbot certonly --standalone \
+            --non-interactive \
+            --agree-tos \
+            --email ${{ secrets.SSL_EMAIL }} \
+            -d ${{ secrets.DOMAIN_NAME }}
 
-    - name: Save Docker image to a file
-      run: docker save digilbum-front:${{ github.run_number }} | gzip > digilbum-front.tar.gz
+      - name: Copy certificates
+        run: |
+          sudo mkdir -p ./ssl
+          sudo cp /etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/privkey.pem ./ssl/key.pem
+          sudo cp /etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem ./ssl/cert.pem
 
-    - name: Transfer Docker image to VM
-      uses: appleboy/scp-action@master
-      with:
-        source: "digilbum-front.tar.gz"
-        target: "~/app/front/"
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
+      - name: "Create env file"
+        run: |
+          touch .env
+          echo API_BASE_URL=${{ vars.BACK_URL }} >> .env
+          echo JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }} >> .env
+          cat .env
 
-    - name: Deploy Docker image on VM
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          cd ~/app/front
-          docker load < digilbum-front.tar.gz
-          docker run -d -p 3000:3000 -p 3010:3010 digilbum-front:${{ github.run_number }}
+      - name: Build the Docker image
+        run: |
+          docker build . --file Dockerfile --tag digilbum-front:${{ github.run_number }}
+        env:
+          TAG: ${{ github.run_number }}
+
+      - name: Save Docker image to a file
+        run: docker save digilbum-front:${{ github.run_number }} | gzip > digilbum-front.tar.gz
+
+      - name: Transfer Docker image to VM
+        uses: appleboy/scp-action@master
+        with:
+          source: "digilbum-front.tar.gz"
+          target: "~/app/front/"
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+
+      # Configuration des variables d'environnement SSL
+      - name: Set SSL environment variables
+        run: |
+          echo "SSL_KEY_PATH=./ssl/key.pem" >> $GITHUB_ENV
+          echo "SSL_CERT_PATH=./ssl/cert.pem" >> $GITHUB_ENV
+
+      - name: Deploy Docker image on VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ~/app/front
+            docker load < digilbum-front.tar.gz
+            docker run -d -p 3000:3000 -p 3010:3010 digilbum-front:${{ github.run_number }}

@@ -14,28 +14,7 @@ jobs:
     steps:
       - uses:
           actions/checkout@v4
-          # Installation et configuration de Certbot
-      - name: Install Certbot
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y certbot
-
-      - name: Generate SSL Certificate
-        env:
-          DOMAIN: ${{ secrets.DOMAIN_NAME }}
-        run: |
-          sudo certbot certonly --standalone \
-            --non-interactive \
-            --agree-tos \
-            --email ${{ secrets.SSL_EMAIL }} \
-            -d ${{ secrets.DOMAIN_NAME }}
-
-      - name: Copy certificates
-        run: |
-          sudo mkdir -p ./ssl
-          sudo cp /etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/privkey.pem ./ssl/key.pem
-          sudo cp /etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem ./ssl/cert.pem
-
+          
       - name: "Create env file"
         run: |
           touch .env

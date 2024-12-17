@@ -11,8 +11,8 @@ CMD ["npm", "run", "dev"]
 FROM node:18-alpine as build-env
 WORKDIR /app
 COPY package*.json ./
-RUN cat .env
 COPY .env .env
+RUN cat .env
 RUN npm install
 COPY . .
 RUN npm run build 

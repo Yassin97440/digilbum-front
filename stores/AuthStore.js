@@ -21,7 +21,7 @@ export const useAuthStore = defineStore("authStore", {
       }
       const SERVER_HOST = config.public.apiBaseUrl;
       const { token } = await $fetch(
-        `http://${SERVER_HOST}/api/v1/auth/register`,
+        `https://${SERVER_HOST}/api/v1/auth/register`,
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           mode: "cors",
@@ -40,7 +40,7 @@ export const useAuthStore = defineStore("authStore", {
       const SERVER_HOST = config.public.apiBaseUrl;
 
       const { token } = await $fetch(
-        `http://${SERVER_HOST}/api/v1/auth/login`,
+        `https://${SERVER_HOST}/api/v1/auth/login`,
         {
           headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
           method: "POST",
@@ -55,7 +55,7 @@ export const useAuthStore = defineStore("authStore", {
     },
     async logout() {
       const SERVER_HOST = config.public.apiBaseUrl;
-      const { res } = await $fetch(`http://${SERVER_HOST}/api/v1/auth/logout`,
+      const { res } = await $fetch(`https://${SERVER_HOST}/api/v1/auth/logout`,
         {
           headers: { 'Authorization': useCookie('authToken').value },
           method: "POST",

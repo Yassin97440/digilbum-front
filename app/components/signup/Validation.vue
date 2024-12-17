@@ -83,10 +83,10 @@ export default {
         },
     },
     methods: {
-        ...mapActions(useAuthStore, ['register']),
         test() {
-            this.register(this.newUser, this.dataGroup)
-            console.log("dede", this.newUser, this.dataGroup)
+            const authStore = useAuthStore();
+
+            authStore.register(this.newUser, this.dataGroup)
         }
 
     },

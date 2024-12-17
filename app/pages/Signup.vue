@@ -12,8 +12,8 @@ import { useGroupStore } from "../stores/GroupStore"
 const currentStep = ref(1)
 const dataGroup = reactive({})
 const newUser = reactive({
-  firstName: "",
-  lastName: "",
+  firstname: "",
+  lastname: "",
   email: "",
   password: "",
   passwordCheck: "",
@@ -27,8 +27,9 @@ const groupStore = useGroupStore()
 const groupDataChanged = async (newDataGroup) => {
   if (newDataGroup.haveAgroup) {
     const group = await groupStore.findByJoinCode(newDataGroup.joinCode)
-    dataGroup.groupName = group.name
-    dataGroup.groupType = group.type
+    dataGroup.groupName = group.groupName
+    dataGroup.groupType = group.groupType
+    dataGroup.id = group.id
   }
   Object.assign(dataGroup, newDataGroup)
 }

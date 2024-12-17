@@ -2,7 +2,7 @@
   <div class="space-y-6 max-w-md mx-auto">
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Prénom</label>
-      <v-text-field v-model="newUser.firstName" placeholder="Votre prénom" variant="outlined" density="comfortable"
+      <v-text-field v-model="newUser.firstname" placeholder="Votre prénom" variant="outlined" density="comfortable"
         class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
                group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-account-outline">
       </v-text-field>
@@ -10,7 +10,7 @@
 
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Nom</label>
-      <v-text-field v-model="newUser.lastName" placeholder="Votre nom" variant="outlined" density="comfortable" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
+      <v-text-field v-model="newUser.lastname" placeholder="Votre nom" variant="outlined" density="comfortable" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
                group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-account-outline">
       </v-text-field>
     </div>
@@ -53,8 +53,8 @@ import { mapActions } from "pinia";
 export default {
   data: () => ({
     newUser: {
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       email: "",
       password: "",
       passwordCheck: "",

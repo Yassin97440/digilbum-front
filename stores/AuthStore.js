@@ -10,14 +10,14 @@ export const useAuthStore = defineStore("authStore", {
   },
   actions: {
     async register(user, dataGroup) {
-      if (dataGroup.type === "Famille") {
-        dataGroup.type = "Familly"
+      if (dataGroup.groupType === "Famille") {
+        dataGroup.groupType = "Familly"
       }
-      if (dataGroup.type === "Amis") {
-        dataGroup.type = "Friends"
+      if (dataGroup.groupType === "Amis") {
+        dataGroup.groupType = "Friends"
       }
-      if (dataGroup.type === "Entreprise") {
-        dataGroup.type = "Company"
+      if (dataGroup.groupType === "Entreprise") {
+        dataGroup.groupType = "Company"
       }
       const SERVER_HOST = config.public.apiBaseUrl;
       const { token } = await $fetch(

@@ -6,7 +6,7 @@ definePageMeta({
 })
 </script>
 <template>
-    <div class="min-h-screen w-full flex items-center justify-center px-4 py-6">
+    <div class="h-screen flex items-center justify-center overflow-hidden">
         <v-card
             class="w-full max-w-md relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
             <v-card-item class="p-10">

@@ -1,7 +1,7 @@
 FROM node:18-alpine as dev-env
 WORKDIR /app
 COPY package*.json /app/
-COPY .env.example /app/.env
+COPY .env /app/.env
 RUN npm install
 COPY . /app/
 EXPOSE 3000 3010
@@ -11,6 +11,7 @@ CMD ["npm", "run", "dev"]
 FROM node:18-alpine as build-env
 WORKDIR /app
 COPY package*.json ./
+RUN cat .env
 COPY .env .env
 RUN npm install
 COPY . .

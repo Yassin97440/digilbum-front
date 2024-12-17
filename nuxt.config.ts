@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             jwtSecretKey: process.env.JWT_SECRET_KEY,
-            apiBaseUrl: process.env.API_BASE_URL
+            apiBaseUrl: process.env.API_BASE_URL || 'localhost:8080'
         }
     }
 })

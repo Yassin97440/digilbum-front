@@ -31,14 +31,14 @@
                         </div>
                     </div>
 
-                    <!-- Description (optionnelle) -->
+                    <!-- Description (optionnelle)
                     <div v-if="withDescription">
                         <label class="text-sm font-semibold block mb-2">
                             Description
                         </label>
                         <v-textarea v-model="formData.description" placeholder="Décrivez votre événement..."
                             variant="outlined" rows="4" @input="emitChanges" />
-                    </div>
+                    </div> -->
                 </div>
             </v-card-item>
         </v-card>

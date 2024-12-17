@@ -31,12 +31,12 @@
                 </div>
             </div>
 
-            <template v-if="dataGroup.haveAGroup || (!dataGroup.haveAGroup && dataGroup.name)">
+            <template v-if="(dataGroup.haveAgroup) || (!dataGroup.haveAgroup && dataGroup.groupName)">
                 <div class="border-t border-white/10 my-4"></div>
 
                 <div class="space-y-4">
                     <h3 class="text-xl font-medium text-orange-300">
-                        {{ dataGroup.haveAGroup ? 'Groupe à rejoindre' : 'Groupe à créer' }}
+                        {{ dataGroup.haveAgroup ? 'Groupe à rejoindre' : 'Groupe à créer' }}
                     </h3>
 
                     <div v-if="!dataGroup.haveAGroup" class="space-y-2">
@@ -44,14 +44,14 @@
                             <v-icon icon="mdi-account-group" class="text-blue-300"></v-icon>
                             <p class="text-sm text-white">
                                 <span class="text-white/60">Nom du groupe:</span>
-                                {{ dataGroup.name }}
+                                {{ dataGroup.groupName }}
                             </p>
                         </div>
                         <div class="flex items-center space-x-2">
                             <v-icon icon="mdi-shape" class="text-blue-300"></v-icon>
                             <p class="text-sm text-white">
                                 <span class="text-white/60">Type:</span>
-                                {{ dataGroup.type }}
+                                {{ dataGroup.groupType }}
                             </p>
                         </div>
                     </div>

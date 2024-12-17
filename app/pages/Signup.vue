@@ -24,9 +24,9 @@ const authStore = useAuthStore()
 const groupStore = useGroupStore()
 
 // Méthodes
-const groupDataChanged = (newDataGroup) => {
+const groupDataChanged = async (newDataGroup) => {
   if (newDataGroup.haveAgroup) {
-    const group = groupStore.findByJoinCode(newDataGroup.joinCode)
+    const group = await groupStore.findByJoinCode(newDataGroup.joinCode)
     dataGroup.groupName = group.name
     dataGroup.groupType = group.type
   }

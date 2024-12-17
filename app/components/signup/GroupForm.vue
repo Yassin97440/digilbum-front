@@ -77,8 +77,8 @@ export default {
             const data = {}
             if (this.haveAgroup === 2) {
                 data.haveAgroup = false,
-                    data.name = this.groupName,
-                    data.type = this.groupType
+                    data.groupName = this.groupName,
+                    data.groupType = this.groupType
 
             }
             else {

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+const config = useRuntimeConfig();
 
 export const useGroupStore = defineStore({
   id: 'myGroupStoreStore',
@@ -17,8 +18,13 @@ export const useGroupStore = defineStore({
       this.groups.push(res)
     },
     async findByJoinCode(joinCode) {
-      const res = await useAuthFetch(`group/byJoinCode?joinCode=${joinCode}`, "GET")
-      console.log("res for findByJoinCode : ", res)
+      const SERVER_HOST = config.public.apiBaseUrl;
+      console.log("joinCode : ", joinCode)
+      const res = await $fetch(`http://${SERVER_HOST}/api/v2/group/byJoinCode?joinCode=${joinCode}`,
+        {
+          method: "GET",
+        })
+      console.log("res for findByJoinCode : ", res);
       return res
     }
   }

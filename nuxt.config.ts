@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
+import fs from 'fs'
 
 export default defineNuxtConfig({
     future: {
@@ -49,5 +50,14 @@ export default defineNuxtConfig({
             jwtSecretKey: process.env.JWT_SECRET_KEY,
             apiBaseUrl: process.env.API_BASE_URL || 'localhost:8080'
         }
-    }
+    },
+
+
+    devServer: {
+        https: {
+            key: process.env.SSL_KEY_PATH ? fs.readFileSync(process.env.SSL_KEY_PATH, 'utf-8') : undefined,
+            cert: process.env.SSL_CERT_PATH ? fs.readFileSync(process.env.SSL_CERT_PATH, 'utf-8') : undefined
+        }
+    },
+
 })

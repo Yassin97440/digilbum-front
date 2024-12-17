@@ -1,46 +1,52 @@
 <template>
+    <div class="space-y-8 max-w-md mx-auto">
+        <div class="text-center space-y-4">
+            <h2
+                class="text-2xl font-semibold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                Configuration du groupe
+            </h2>
+            <p class="text-sm text-white/70">
+                Vous pouvez créer un nouveau groupe ou rejoindre un groupe existant
+            </p>
+        </div>
 
-    <div>
-        <h2 class="text-lg">Voulez-vous créer un nouveau groupe ou rejoindre un groupe à partir d'un code d'invitation?
-        </h2>
-        <p class="text-sm italic">vous pouvez passer cette étape</p>
-
-        <v-radio-group class="justify-items-center" inline v-model="haveAgroup">
-            <v-radio label="Rejoinde" :value="1"></v-radio>
-            <v-radio label="Créer un group" :value="2"></v-radio>
+        <v-radio-group v-model="haveAgroup" class="flex justify-center gap-6 py-4" inline>
+            <v-radio label="Rejoindre un groupe" :value="1" color="orange-accent-3"
+                class="transition-all duration-300 hover:opacity-80">
+            </v-radio>
+            <v-radio label="Créer un groupe" :value="2" color="orange-accent-3"
+                class="transition-all duration-300 hover:opacity-80">
+            </v-radio>
         </v-radio-group>
 
-        <div v-if="haveAgroup === 1">
-            <v-card>
-
-                <h2 class="text-lg">Rejoindre un groupe </h2>
-                <v-text-field v-model="joinCode" rounded elevated variant="solo-filled"
-                    label="Entrez de code d'invitation"></v-text-field>
+        <div v-if="haveAgroup === 1" class="space-y-6">
+            <v-card class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6">
+                <h3 class="text-xl font-medium mb-4 text-orange-400">Rejoindre un groupe</h3>
+                <v-text-field v-model="joinCode" label="Code d'invitation" placeholder="Entrez le code d'invitation"
+                    variant="outlined" density="comfortable" class="bg-white/5 border-white/20 rounded-xl transition-all duration-300
+                 hover:bg-white/10 hover:border-white/30" prepend-icon="mdi-ticket-account">
+                </v-text-field>
             </v-card>
-
         </div>
-        <div v-else-if="haveAgroup === 2">
-            <div class="flex justify-center ">
 
-                <v-card class="  rounded-lg min-w-80">
+        <div v-else-if="haveAgroup === 2" class="space-y-6">
+            <v-card class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6">
+                <h3 class="text-xl font-medium mb-4 text-orange-400">Créer un groupe</h3>
 
-                    <v-container>
-                        <v-row class=" p-0">
-                            <v-text-field v-model="groupName" variant="solo-filled" label="Nom de votre Groupe" rounded
-                                outlined clearable required></v-text-field>
-                        </v-row>
-                        <v-row class="p-0">
-                            <v-combobox v-model="groupType" label="Quelle type de groupe voulez-vous créer?"
-                                :items="['Famille', 'Amis', 'Entreprise',]" variant="solo-filled"></v-combobox>
-                        </v-row>
+                <div class="space-y-4">
+                    <v-text-field v-model="groupName" label="Nom du groupe" placeholder="Donnez un nom à votre groupe"
+                        variant="outlined" density="comfortable" class="bg-white/5 border-white/20 rounded-xl transition-all duration-300
+                   hover:bg-white/10 hover:border-white/30" prepend-icon="mdi-account-group">
+                    </v-text-field>
 
-
-                    </v-container>
-                </v-card>
-            </div>
+                    <v-combobox v-model="groupType" label="Type de groupe" :items="['Famille', 'Amis', 'Entreprise']"
+                        variant="outlined" density="comfortable" class="bg-white/5 border-white/20 rounded-xl transition-all duration-300
+                   hover:bg-white/10 hover:border-white/30" prepend-icon="mdi-shape">
+                    </v-combobox>
+                </div>
+            </v-card>
         </div>
     </div>
-
 </template>
 
 <script>

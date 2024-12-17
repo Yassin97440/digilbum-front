@@ -1,36 +1,71 @@
 <template>
+    <div class="space-y-8 max-w-md mx-auto">
+        <div class="text-center space-y-4">
+            <h2
+                class="text-2xl font-semibold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                Confirmation
+            </h2>
+            <p class="text-sm text-white/70">
+                Vérifiez vos informations avant de finaliser votre inscription
+            </p>
+        </div>
 
-    <div>
-        <h2 class="text-lg">Confirmation des informations
-        </h2>
+        <v-card class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 space-y-6">
+            <div class="space-y-4">
+                <h3 class="text-xl font-medium text-orange-400">Vos informations</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <v-icon icon="mdi-account" class="text-blue-300"></v-icon>
+                        <p class="text-sm text-white">
+                            <span class="text-white/60">Nom complet:</span>
+                            {{ newUser.firstName }} {{ newUser.lastName }}
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <v-icon icon="mdi-email" class="text-blue-300"></v-icon>
+                        <p class="text-sm text-white">
+                            <span class="text-white/60">Email:</span>
+                            {{ newUser.email }}
+                        </p>
+                    </div>
+                </div>
+            </div>
 
+            <template v-if="dataGroup.haveAGroup || (!dataGroup.haveAGroup && dataGroup.name)">
+                <div class="border-t border-white/10 my-4"></div>
 
-        <v-card>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-orange-300">
+                        {{ dataGroup.haveAGroup ? 'Groupe à rejoindre' : 'Groupe à créer' }}
+                    </h3>
 
-            <h2 class="text-lg">Vos informations </h2>
-            <p>Prénom : {{ newUser.firstName }}</p>
-            <p>Nom : {{ newUser.lastName }}</p>
-            <p>adresse mail : {{ newUser.email }}</p>
-
-            <v-card v-if="dataGroup.haveAGroup">
-
-                <h2 class="text-lg">Tu vas rejoindre ce groupe </h2>
-                <p>Prénom : {{ newUser.firstName }}</p>
-                <p>Nom : {{ newUser.lastName }}</p>
-                <p>adresse mail : {{ newUser.email }}</p>
-            </v-card>
-            <v-card v-if="!dataGroup.haveAGroup">
-                <h2 class="text-lg">Tu vas créer ce groupe </h2>
-                <p>Nom du groupe : {{ dataGroup.name }}</p>
-                <p>Type de groupe : {{ dataGroup.type }}</p>
-            </v-card>
-
+                    <div v-if="!dataGroup.haveAGroup" class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <v-icon icon="mdi-account-group" class="text-blue-300"></v-icon>
+                            <p class="text-sm text-white">
+                                <span class="text-white/60">Nom du groupe:</span>
+                                {{ dataGroup.name }}
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <v-icon icon="mdi-shape" class="text-blue-300"></v-icon>
+                            <p class="text-sm text-white">
+                                <span class="text-white/60">Type:</span>
+                                {{ dataGroup.type }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </v-card>
-        <v-card-actions>
-            <v-btn text="CONFIRMER" @click="test" </v-btn>
-        </v-card-actions>
-    </div>
 
+        <div class="flex justify-center pt-4">
+            <v-btn @click="test" class="px-8 py-2 bg-gradient-to-r from-orange-400 to-orange-600
+                text-white font-medium rounded-xl transform hover:scale-105 transition-all duration-300">
+                Confirmer l'inscription
+            </v-btn>
+        </div>
+    </div>
 </template>
 
 <script>

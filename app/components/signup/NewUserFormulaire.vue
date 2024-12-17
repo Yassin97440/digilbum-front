@@ -1,49 +1,55 @@
 <template>
+  <div class="space-y-6 max-w-md mx-auto">
+    <div class="space-y-2">
+      <label class="text-sm font-medium block pl-1">Prénom</label>
+      <v-text-field v-model="newUser.firstName" placeholder="Votre prénom" variant="outlined" density="comfortable"
+        class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
+               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-account-outline">
+      </v-text-field>
+    </div>
 
-  <div class="flex justify-center h">
+    <div class="space-y-2">
+      <label class="text-sm font-medium block pl-1">Nom</label>
+      <v-text-field v-model="newUser.lastName" placeholder="Votre nom" variant="outlined" density="comfortable" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
+               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-account-outline">
+      </v-text-field>
+    </div>
 
-    <v-card class="  rounded-lg min-w-80">
+    <div class="space-y-2">
+      <label class="text-sm font-medium block pl-1">Email</label>
+      <v-text-field v-model="newUser.email" placeholder="Votre adresse email" variant="outlined" density="comfortable"
+        class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
+               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-email-outline">
+      </v-text-field>
+    </div>
 
-      <v-container>
-        <v-row class=" p-0">
-          <v-text-field v-model="newUser.firstName" variant="solo-filled" label="Prénom" rounded outlined clearable
-            required></v-text-field>
-        </v-row>
-        <v-row class="p-0">
-          <v-text-field v-model="newUser.lastName" variant="solo-filled" label="Nom" rounded outlined clearable
-            required></v-text-field>
-        </v-row>
-        <v-row class="p-0">
-          <v-text-field v-model="newUser.email" variant="solo-filled" label="Adresse email" rounded outlined clearable
-            required></v-text-field>
-        </v-row>
-        <v-row class="p-0 ">
-          <v-text-field v-model="newUser.password" variant="solo-filled"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]"
-            :type="show1 ? 'text' : 'password'" name="input-10-1" label="Entrez votre mot de passe"
-            hint="👮 Il faut moins 8 caractères 👮" counter @click:append="show1 = !show1"></v-text-field> </v-row>
-        <v-row class="p-0">
-          <v-text-field v-model="newUser.passwordCheck" variant="solo-filled"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]"
-            :type="show1 ? 'text' : 'password'" name="input-10-1" label="Confirmez votre mot de passe"
-            hint="valideDoublePasswordAt: 'least 8 characters'? ''" counter
-            @click:append="show1 = !show1"></v-text-field>
-        </v-row>
-      </v-container>
-    </v-card>
+    <div class="space-y-2">
+      <label class="text-sm font-medium block pl-1">Mot de passe</label>
+      <v-text-field v-model="newUser.password" :type="show1 ? 'text' : 'password'" placeholder="Votre mot de passe"
+        variant="outlined" density="comfortable" :rules="[rules.required, rules.min]"
+        hint="👮 Il faut au moins 8 caractères" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
+               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-lock-outline"
+        :append-icon="show1 ? 'mdi-eye-off' : 'mdi-eye'" @click:append="show1 = !show1">
+      </v-text-field>
+    </div>
+
+    <div class="space-y-2">
+      <label class="text-sm font-medium block pl-1">Confirmation du mot de passe</label>
+      <v-text-field v-model="newUser.passwordCheck" :type="show1 ? 'text' : 'password'"
+        placeholder="Confirmez votre mot de passe" variant="outlined" density="comfortable"
+        :rules="[rules.required, rules.min]" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
+               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-lock-check-outline"
+        :append-icon="show1 ? 'mdi-eye-off' : 'mdi-eye'" @click:append="show1 = !show1">
+      </v-text-field>
+    </div>
   </div>
-
-
 </template>
 
-<style></style>
-<script setup>
-
-</script>
 <script>
-import * as AuthStore from "../stores/AuthStore";
+import { useAuthStore } from "../stores/AuthStore";
 
 import { mapActions } from "pinia";
+
 export default {
   data: () => ({
     newUser: {
@@ -54,37 +60,22 @@ export default {
       passwordCheck: "",
     },
     show1: false,
-    show2: true,
     rules: {
       required: (value) => !!value || "Required.",
       min: (v) => v.length >= 8 || "Min 8 characters",
       emailMatch: () => `The email and password you entered don't match`,
     },
   }),
-  computed: {
-    passwording() {
-      return this.password == this.passwordCheck;
-    },
-  },
   watch: {
-    'newUser.firstName': function (newFirstName) {
-      console.log(`First name changed to ${newFirstName}`);
-      this.test()
-    },
+    newUser: {
+      deep: true,
+      handler(newVal) {
+        this.$emit('update:newUser', newVal);
+      }
+    }
   },
   methods: {
-    ...mapActions(AuthStore.AuthStore.useAuthStore, ["register"]),
-    valideDoublePassword() {
-      return this.passwording
-    },
-    test(newfield) {
-      this.register({
-        firstName: this.firstName,
-        lastName: this.lastName,
-        password: this.password,
-        email: this.email,
-      });
-    },
+    ...mapActions(useAuthStore, ["register"]),
   },
 };
 </script>

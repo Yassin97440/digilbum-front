@@ -2,7 +2,7 @@ export const useAuthFetch = (url, method, body) => {
     const config = useRuntimeConfig();
     const SERVER_HOST = config.public.apiBaseUrl;
     return $fetch(
-        `https://${SERVER_HOST}/api/v2/${url}`,
+        `${SERVER_HOST}/api/v2/${url}`,
         {
             headers: {
 

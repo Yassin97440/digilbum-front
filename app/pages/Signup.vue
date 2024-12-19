@@ -27,6 +27,11 @@ const groupDataChanged = async (newDataGroup) => {
   }
   Object.assign(dataGroup, newDataGroup)
 }
+
+const userDataChanged = (newUserData) => {
+  console.log("🚀 ~ userDataChanged ~ newUserData:", newUserData)
+  Object.assign(newUser, newUserData)
+}
 </script>
 
 <template>
@@ -48,7 +53,8 @@ const groupDataChanged = async (newDataGroup) => {
           next-text="Suivant" prev-text="Précédent">
 
           <template v-slot:item.1>
-            <SignupNewUserFormulaire v-model:newUser="newUser" class="max-w-md mx-auto">
+            <SignupNewUserFormulaire @user-data-changed="userDataChanged" v-model:newUser="newUser"
+              class="max-w-md mx-auto">
             </SignupNewUserFormulaire>
           </template>
 

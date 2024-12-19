@@ -70,12 +70,15 @@ export default {
     newUser: {
       deep: true,
       handler(newVal) {
-        this.$emit('update:newUser', newVal);
+        this.dataChanged();
       }
     }
   },
   methods: {
     ...mapActions(useAuthStore, ["register"]),
+    dataChanged() {
+      this.$emit('user-data-changed', this.newUser);
+    }
   },
 };
 </script>

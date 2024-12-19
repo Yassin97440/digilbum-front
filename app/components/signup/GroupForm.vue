@@ -85,13 +85,8 @@ export default {
                 data.haveAgroup = true,
                     data.joinCode = this.joinCode
             }
-
-            console.log("🚀 ~ dataChanged ~ data:", data)
             this.$emit('group-data-changed', data)
         },
-        test() {
-            console.log("dede", this.groupType)
-        }
 
     },
 };

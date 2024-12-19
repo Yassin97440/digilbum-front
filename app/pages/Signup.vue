@@ -11,13 +11,7 @@ import { useGroupStore } from "../stores/GroupStore"
 // État réactif
 const currentStep = ref(1)
 const dataGroup = reactive({})
-const newUser = reactive({
-  firstname: "",
-  lastname: "",
-  email: "",
-  password: "",
-  passwordCheck: "",
-})
+const newUser = reactive({})
 
 // Stores
 const authStore = useAuthStore()

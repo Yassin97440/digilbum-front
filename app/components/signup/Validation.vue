@@ -18,7 +18,7 @@
                         <v-icon icon="mdi-account" class="text-blue-300"></v-icon>
                         <p class="text-sm text-white">
                             <span class="text-white/60">Nom complet:</span>
-                            {{ newUser.firstName }} {{ newUser.lastName }}
+                            {{ newUser.firstname }} {{ newUser.lastname }}
                         </p>
                     </div>
                     <div class="flex items-center space-x-2">
@@ -69,7 +69,6 @@
 </template>
 
 <script>
-import { mapActions } from "pinia";
 import { useAuthStore } from "../stores/AuthStore";
 export default {
 

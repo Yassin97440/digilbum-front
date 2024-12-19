@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 const config = useRuntimeConfig();
 
-export const useGroupStore = defineStore({
-  id: 'myGroupStoreStore',
+export const useGroupStore = defineStore('groupStore', {
+
   state: () => ({
-    groups: []
+    groups: [],
+    loading: false,
+    error: null
   }),
   actions: {
     async create(newGroupData) {
@@ -15,17 +17,30 @@ export const useGroupStore = defineStore({
     async addMember(joinCode) {
       const res = await useAuthFetch("group/addMember", "POST", joinCode)
       console.log("res for addMember : ", res)
-      this.groups.push(res)
     },
     async findByJoinCode(joinCode) {
       const SERVER_HOST = config.public.apiBaseUrl;
       console.log("joinCode : ", joinCode)
-      const res = await $fetch(`http://${SERVER_HOST}/api/v2/group/byJoinCode?joinCode=${joinCode}`,
+      const res = await $fetch(`${SERVER_HOST}/api/v2/group/byJoinCode?joinCode=${joinCode}`,
         {
           method: "GET",
         })
       console.log("res for findByJoinCode : ", res);
       return res
+    },
+
+    async fetchUserGroups() {
+      try {
+        this.loading = true
+        const response = await useAuthFetch('group/user', 'GET')
+        this.userGroups = response
+        return response
+      } catch (error) {
+        this.error = "Erreur lors du chargement des groupes"
+        console.error(error)
+      } finally {
+        this.loading = false
+      }
     }
   }
 })

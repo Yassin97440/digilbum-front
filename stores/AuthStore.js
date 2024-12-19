@@ -22,7 +22,6 @@ export const useAuthStore = defineStore("authStore", {
         const { token } = await $fetch(`${SERVER_HOST}/api/v1/auth/register`, {
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
           },
           mode: "cors",
           method: "POST",
@@ -62,7 +61,7 @@ export const useAuthStore = defineStore("authStore", {
       const { token } = await $fetch(
         `${SERVER_HOST}/api/v1/auth/login`,
         {
-          headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', },
+          headers: { "Content-Type": "application/json", },
           method: "POST",
           body: data,
         }

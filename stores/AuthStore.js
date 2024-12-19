@@ -67,7 +67,10 @@ export const useAuthStore = defineStore("authStore", {
           body: data,
         }
       );
-      const tokenCookie = useCookie('authToken');
+      const tokenCookie = useCookie("authToken", {
+        sameSite: "None", // Pour compatibilité avec requêtes cross-site
+        secure: true,     // Obligatoire si HTTPS
+      });
       tokenCookie.value = token;
 
       this.token = token;

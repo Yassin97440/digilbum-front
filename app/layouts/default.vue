@@ -1,20 +1,17 @@
 <template>
     <v-theme-provider theme="myCustomLightTheme">
-        <v-app class="h-screen">
+        <v-app class="h-screen ">
             <!-- Main Content avec fond dynamique -->
-            <v-main class="h-screen overflow-hidden p-0">
-                <div class="fixed inset-0 w-full h-full">
+            <v-main class="h-screen p-0 custom-scrollbar">
+                <div class=" inset-0 w-full h-full">
                     <!-- Background avec overlay -->
-                    <div class="absolute inset-0 w-full h-full">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-blue-600/20 mix-blend-overlay">
-                        </div>
+                    <div class=" fixed inset-0 w-full h-full">
                         <img class="w-full h-full object-cover blur-sm transform scale-105 animate-subtle-zoom"
                             src="~/assets/bg-tree.jpg" alt="Background" />
                     </div>
 
                     <!-- Déplacer l'App Bar à l'intérieur du main pour qu'il soit au-dessus du background -->
-                    <v-app-bar color="transparent" class="border-b border-white/10 backdrop-blur-md bg-white/5"
+                    <v-app-bar color="fixed transparent" class="border-b  border-white/10 backdrop-blur-md bg-white/5"
                         elevation="0" prominent>
                         <div class="w-full max-w-7xl mx-auto px-4 flex items-center">
                             <!-- Logo et titre -->
@@ -68,9 +65,8 @@
                             </div>
                         </div>
                     </v-app-bar>
-
                     <!-- Contenu principal -->
-                    <div class="relative h-full z-10 pt-[64px]">
+                    <div class="relative z-10 pt-[64px]">
                         <slot />
                     </div>
                 </div>
@@ -82,16 +78,29 @@
 <style scoped>
 /* Ajout de styles globaux */
 html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
+.custom-scrollbar {
+    scrollbar-width: thin !important;
+    scrollbar-color: #d70a0a transparent !important;
+    overflow-y: visible !important;
 }
 
-.v-application {
-    height: 100vh !important;
-    min-height: 100vh !important;
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    border: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 /* Suppression de l'animation subtle-zoom qui peut causer des problèmes d'affichage */

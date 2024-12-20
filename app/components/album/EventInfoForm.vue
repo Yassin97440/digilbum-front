@@ -2,8 +2,7 @@
     <CommonBaseInfoForm :labels="{ name: 'Nom de l\'événement' }" placeholder="Ex: Mariage de Julie et Thomas"
         :withDescription="true" @info-changed="onEventInfoChanged" />
 
-    <CommonBaseInfoForm :labels="{ name: 'Nom de l\'album' }" placeholder="Céreminie"
-        @info-changed="onAlbumInfoChanged" />
+    <AlbumInfoForm @album-info-changed="onAlbumInfoChanged" />
 </template>
 
 <script>
@@ -18,6 +17,5 @@ export default {
             this.$emit('album-info-changed', formData);
         }
     }
-
 }
 </script>

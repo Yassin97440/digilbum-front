@@ -6,7 +6,7 @@ export const useMyAlbums = () => {
     const fetchMyAlbums = async () => {
         try {
             loading.value = true
-            const response = await useAuthFetch('album/getAll', 'GET')
+            const response = await useAuthFetch('album/forOwner', 'GET')
             albums.value = response
         } catch (err) {
             error.value = "Erreur lors du chargement des albums"

@@ -32,7 +32,7 @@ export const useGroupStore = defineStore('groupStore', {
     async fetchUserGroups() {
       try {
         this.loading = true
-        const response = await useAuthFetch('group/user', 'GET')
+        const response = await useAuthFetch('group/', 'GET')
         this.userGroups = response
         return response
       } catch (error) {

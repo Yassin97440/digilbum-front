@@ -16,21 +16,49 @@
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-2">Informations</h3>
                     <div class="space-y-2">
+
+                        <!-- Event informations -->
+                        <div v-if="type !== 'album'">
+                            <p class="text-sm">
+                                <span class="font-medium">Nom:</span>
+                                {{ eventInfo.name }}
+                            </p>
+                            <p class="text-sm">
+                                <span class="font-medium">Date de début:</span>
+                                {{ formatDate(eventInfo.startedAt) }}
+                            </p>
+                            <p class="text-sm">
+                                <span class="font-medium">Date de fin:</span>
+                                {{ formatDate(eventInfo.endedAt) }}
+                            </p>
+                            <p v-if="type === 'event'" class="text-sm">
+                                <span class="font-medium">Description:</span>
+                                {{ eventInfo.description }}
+                            </p>
+                        </div>
+
+                        <!-- Album informations -->
                         <p class="text-sm">
-                            <span class="font-medium">Nom:</span> 
-                            {{ type === 'album' ? albumInfo.name : eventInfo.name }}
+                            <span class="font-medium">Nom:</span>
+                            {{ albumInfo.name }}
                         </p>
                         <p class="text-sm">
-                            <span class="font-medium">Date de début:</span> 
-                            {{ formatDate(type === 'album' ? albumInfo.startDate : eventInfo.startDate) }}
+                            <span class="font-medium">Date de début:</span>
+                            {{ formatDate(albumInfo.startedAt) }}
                         </p>
                         <p class="text-sm">
-                            <span class="font-medium">Date de fin:</span> 
-                            {{ formatDate(type === 'album' ? albumInfo.endDate : eventInfo.endDate) }}
+                            <span class="font-medium">Date de fin:</span>
+                            {{ formatDate(albumInfo.endedAt) }}
                         </p>
-                        <p v-if="type === 'event'" class="text-sm">
-                            <span class="font-medium">Description:</span> 
-                            {{ eventInfo.description }}
+
+                        <!-- Sharing informations -->
+                        <p class="text-sm">
+                            <span class="font-medium">Type de partage:</span>
+                            {{ sharingOptions.length > 0 ? 'Partagé avec des groupes' : 'Album privé' }}
+                        </p>
+                        <p v-if="sharingOptions.length > 0" class="text-sm">
+                            <span class="font-medium">Groupes partagés:</span>
+                            {{ sharingOptions.map(group => group.groupName).join(', ') }}
                         </p>
                     </div>
                 </div>
@@ -45,12 +73,7 @@
 
                 <!-- Bouton de confirmation -->
                 <div class="flex justify-center mt-8">
-                    <v-btn
-                        color="primary"
-                        size="large"
-                        @click="$emit('confirm')"
-                        :loading="loading"
-                    >
+                    <v-btn color="primary" size="large" @click="$emit('confirm')" :loading="loading">
                         Confirmer la création
                     </v-btn>
                 </div>
@@ -70,6 +93,10 @@ export default {
             type: Object,
             default: () => ({})
         },
+        sharingOptions: {
+            type: Array,
+            default: () => []
+        },
         eventInfo: {
             type: Object,
             default: () => ({})
@@ -86,9 +113,9 @@ export default {
 
     methods: {
         formatDate(dateString) {
-            if (!dateString) return '';
+            if (!dateString) return 'no data';
             return new Date(dateString).toLocaleDateString('fr-FR');
         }
     }
 };
-</script> 
+</script>

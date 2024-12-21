@@ -32,7 +32,7 @@
 
             <!-- Étape 2: Informations -->
             <template v-slot:item.2>
-                <AlbumInfoForm v-if="type === 'album'" @info-changed="updateAlbumInfo" />
+                <AlbumInfoForm v-if="type === 'album'" @album-info-changed="updateAlbumInfo" />
                 <AlbumEventInfoForm v-else @event-info-changed="updateEventInfo"
                     @album-info-changed="updateAlbumInfo" />
             </template>
@@ -45,7 +45,7 @@
             <!-- Étape 4: Validation -->
             <template v-slot:item.4>
                 <AlbumValidation :type="type" :album-info="albumInfo" :event-info="eventInfo" :photos="photos"
-                    @confirm="handleSubmit" />
+                    :sharing-options="sharingOptions" @confirm="handleSubmit" />
             </template>
 
         </v-stepper>
@@ -62,6 +62,7 @@ export default {
         type: null,
         albumInfo: {},
         eventInfo: {},
+        sharingOptions: [],
         photos: [],
     }),
 
@@ -71,7 +72,8 @@ export default {
         },
 
         updateAlbumInfo(info) {
-            this.albumInfo = info;
+            this.albumInfo = info.albumData;
+            this.sharingOptions = info.sharedGroups;
         },
 
         updateEventInfo(info) {
@@ -90,8 +92,10 @@ export default {
                 if (this.type === 'album') {
                     await albumStore.postNewAlbums({
                         album: this.albumInfo,
-                        pictures: this.photos
-                    });
+                        pictures: this.photos,
+                    },
+                        this.sharingOptions
+                    );
                 } else {
                     await eventStore.createEventWithAlbums({
                         event: this.eventInfo,

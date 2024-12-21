@@ -9,21 +9,30 @@ export const useAlbumStore = defineStore("AlbumStore", {
             selectedAlbumPictures: [
                 { id: null, pathFile: '', albumId: null },
             ],
+            loading: false,
+            error: null
         }
     },
     actions: {
-        async postNewAlbums(data) {
+        async postNewAlbums(data, sharedGroups) {
             try {
+                this.loading = true
                 const result = await AlbumService.createAlbumWithPictures(data)
-                console.log('Album créé avec succès:', result)
+                if (sharedGroups && sharedGroups.length > 0) {
+                    const shareAlbumResponse = await AlbumService.shareAlbum(result.album.id, sharedGroups)
+                }
+
+                return response
             } catch (error) {
-                console.error('Erreur dans postNewAlbums:', error)
-                throw error
+                this.error = "Erreur lors de la création de l'album"
+                console.error(error)
+            } finally {
+                this.loading = false
             }
         },
         async getAllAlbums() {
             const data = await useAuthFetch(
-                `album/getAll`,
+                `album/forUser`,
                 "GET",
             );
 

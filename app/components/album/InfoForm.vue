@@ -1,6 +1,6 @@
 <template>
     <CommonBaseInfoForm :labels="{ name: 'Nom de l\'album' }" placeholder="Ex: Vacances d'été 2024"
-        @info-changed="onInfoChanged" />
+        @info-changed="onAlbumInfoChanged" />
 
     <!-- Nouvelle section pour le partage -->
     <div class="max-w-2xl mx-auto p-6">
@@ -15,7 +15,7 @@
                     </v-radio-group>
 
                     <div v-if="shareType === 'shared'" class="space-y-4">
-                        <v-select v-model="selectedGroups" :items="availableGroups" item-title="name" item-value="id"
+                        <v-select v-model="selectedGroups" :items="availableGroups" item-title="groupName" return-object
                             label="Sélectionnez les groupes" multiple chips variant="outlined"></v-select>
                     </div>
                 </div>
@@ -31,7 +31,8 @@ export default {
     data: () => ({
         shareType: 'private',
         selectedGroups: [],
-        availableGroups: []
+        availableGroups: [],
+        albumData: {}
     }),
 
     async mounted() {
@@ -40,20 +41,28 @@ export default {
     },
 
     methods: {
-        onInfoChanged(formData) {
+        onAlbumInfoChanged(formData) {
+            this.albumData = formData
+            this.$emit('info-changed', {
+                albumData: this.albumData,
+                sharedGroups: this.shareType === 'shared' ? this.selectedGroups : []
+            })
+        },
+        onSharingOptionChanged() {
             this.$emit('album-info-changed', {
-                ...formData,
+                albumData: this.albumData,
                 sharedGroups: this.shareType === 'shared' ? this.selectedGroups : []
             })
         }
+
     },
 
     watch: {
         shareType() {
-            this.onInfoChanged()
+            this.onSharingOptionChanged()
         },
         selectedGroups() {
-            this.onInfoChanged()
+            this.onSharingOptionChanged()
         }
     }
 }

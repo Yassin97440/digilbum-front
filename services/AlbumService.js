@@ -46,5 +46,11 @@ export const AlbumService = {
             console.error('Erreur lors de la création de l\'album avec images:', error)
             throw error
         }
+    },
+
+    async shareAlbum(albumId, sharedGroups) {
+        const groupIds = sharedGroups.map(group => group.id).join(',')
+        const response = await useAuthFetch(`album-sharing/share?albumId=${albumId}&groupIds=${groupIds}`)
+        return response
     }
 }

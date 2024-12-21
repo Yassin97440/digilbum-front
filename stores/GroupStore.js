@@ -41,6 +41,13 @@ export const useGroupStore = defineStore('groupStore', {
       } finally {
         this.loading = false
       }
+    },
+
+    async fetchGroupById(groupId) {
+
+      const response = await useAuthFetch(`group/${groupId}`, 'GET')
+      console.log("response for fetchGroupById : ", response)
+      return response
     }
   }
 })

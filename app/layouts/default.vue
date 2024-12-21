@@ -53,6 +53,13 @@
                                                     Mes événements
                                                 </v-list-item-title>
                                             </v-list-item>
+                                            <v-list-item to="/MyGroups"
+                                                class="hover:bg-white/10 transition-colors duration-300">
+                                                <v-list-item-title class="flex items-center">
+                                                    <v-icon left class="mr-2">mdi-account-group</v-icon>
+                                                    Mes groupes
+                                                </v-list-item-title>
+                                            </v-list-item>
                                             <v-list-item @click="logout()"
                                                 class="hover:bg-white/10 transition-colors duration-300">
                                                 <v-list-item-title class="">

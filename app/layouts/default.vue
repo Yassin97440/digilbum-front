@@ -3,7 +3,7 @@
         <v-app class="h-screen ">
             <!-- Main Content avec fond dynamique -->
             <v-main class="h-screen p-0 custom-scrollbar">
-                <div class=" inset-0 w-full h-full">
+                <div class="inset-0 w-full h-full">
                     <!-- Background avec overlay -->
                     <div class=" fixed inset-0 w-full h-full">
                         <img class="w-full h-full object-cover blur-sm transform scale-105 animate-subtle-zoom"
@@ -11,7 +11,7 @@
                     </div>
 
                     <!-- Déplacer l'App Bar à l'intérieur du main pour qu'il soit au-dessus du background -->
-                    <v-app-bar color="fixed transparent" class="border-b  border-white/10 backdrop-blur-md bg-white/5"
+                    <v-app-bar color="transparent" class="border-b  border-white/10 backdrop-blur-md bg-white/5"
                         elevation="0" prominent>
                         <div class="w-full max-w-7xl mx-auto px-4 flex items-center">
                             <!-- Logo et titre -->

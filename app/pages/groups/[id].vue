@@ -3,6 +3,7 @@ definePageMeta({
     middleware: ["auth"]
 })
 
+const { copy } = useClipboard()
 const route = useRoute()
 const groupId = route.params.id
 const { group, loading, error } = useGroup(groupId)
@@ -36,6 +37,14 @@ const getGroupTypeLabel = (type) => {
                     class="text-4xl font-bold bg-gradient-to-r from-orange-400 via-rose-500 to-purple-600 bg-clip-text text-transparent">
                     {{ group.groupName }}
                 </h1>
+
+                <div class="flex items-center">
+                    <p class="text-sm pr-1">
+                        Code d'invitation :
+                    </p>
+                    <p class="text-sm cursor-pointer " @click="copy(group.joinCode)"> {{ group.joinCode }}</p>
+
+                </div>
                 <v-chip
                     :color="group.groupType === 'Familly' ? 'success' : group.groupType === 'Friends' ? 'info' : 'warning'"
                     class="font-medium">
@@ -46,7 +55,7 @@ const getGroupTypeLabel = (type) => {
             <!-- Members data -->
             <div class="mb-8">
                 <h2
-                    class="text-2xl font-semibold mb-4 text-white bg-black/30 backdrop-blur-sm p-4 rounded-lg inline-block">
+                    class="text-2xl font-semibold mb-1 text-white bg-black/30 backdrop-blur-sm p-4 rounded-lg inline-block">
                     Membres ({{ usersGroup.length }})
                 </h2>
                 <v-list class="bg-black/40 backdrop-blur-lg rounded-lg border border-white/10">

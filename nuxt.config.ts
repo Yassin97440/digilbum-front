@@ -24,11 +24,7 @@ export default defineNuxtConfig({
         transpile: ['vuetify'],
     },
 
-    modules: [
-        '@pinia/nuxt',
-        'vuetify-nuxt-module',
-        '@nuxtjs/tailwindcss',
-    ],
+    modules: ['@pinia/nuxt', 'vuetify-nuxt-module', '@nuxtjs/tailwindcss', '@vueuse/nuxt'],
 
     vuetify: {
         moduleOptions: {

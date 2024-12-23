@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.9",
+    "@vueuse/nuxt": "^12.2.0",
     "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.14.1592",

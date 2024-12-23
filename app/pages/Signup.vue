@@ -35,7 +35,7 @@ const userDataChanged = (newUserData) => {
 </script>
 
 <template>
-  <div class="min-h-screen w-full flex items-center justify-center px-4 py-6">
+  <div class="min-h-screen w-full flex items-center justify-center px-4 py-6 mt-5">
     <v-card
       class="w-full max-w-2xl relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
       <v-card-item class="p-10">

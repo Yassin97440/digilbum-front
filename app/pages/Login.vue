@@ -6,7 +6,7 @@ definePageMeta({
 })
 </script>
 <template>
-    <div class="h-screen flex items-center justify-center overflow-hidden">
+    <div class="h-screen flex items-center justify-center overflow-hidden px-4">
         <v-card
             class="w-full max-w-md relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
             <v-card-item class="p-10">
@@ -27,8 +27,7 @@ definePageMeta({
                         </label>
                         <div class="relative group">
                             <v-text-field v-model="email" placeholder="Adresse email" variant="outlined"
-                                density="comfortable" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-                                       group-hover:bg-white/10 group-hover:border-white/30"
+                                density="comfortable" class="pl-3 rounded-xl transition-all duration-300"
                                 prepend-icon="mdi-email-outline">
                             </v-text-field>
                         </div>
@@ -40,26 +39,26 @@ definePageMeta({
                         </label>
                         <div class="relative group">
                             <v-text-field v-model="password" :type="visible ? 'text' : 'password'"
-                                placeholder="Mot de passe" variant="outlined" density="comfortable" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-                                       group-hover:bg-white/10 group-hover:border-white/30"
-                                prepend-icon="mdi-lock-outline" :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                                placeholder="Mot de passe" variant="outlined" density="comfortable" class="pl-3
+                                     rounded-xl " prepend-icon="mdi-lock-outline"
+                                :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                                 @click:append-inner="visible = !visible">
                             </v-text-field>
                         </div>
                     </div>
 
-                    <v-btn block class="mt-6 bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 font-medium py-3 text-lg
+                    <v-btn block class="mt-6 bg-gradient-to-r from-orange-400 via-red-400 to-blue-600 font-medium py-3 text-lg
                                rounded-xl transform hover:scale-102 transition-all duration-300 hover:shadow-lg"
                         elevation="3" @click="logine">
                         Connexion
                     </v-btn>
 
                     <div class="text-center mt-6">
-                        <a href="/Signup" class="inline-flex items-center text-base text-blue-500/80 hover:text-blue-500 transition-colors
-                                   transform hover:translate-x-1 duration-300">
+                        <NuxtLink to="/Signup" class="inline-flex items-center text-base text-blue-500/80 hover:text-blue-500 transition-colors
+                   transform hover:translate-x-1 duration-300">
                             Créer un compte
                             <v-icon icon="mdi-chevron-right" class="ml-1"></v-icon>
-                        </a>
+                        </NuxtLink>
                     </div>
                 </div>
             </v-card-item>

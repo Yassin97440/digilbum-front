@@ -3,23 +3,21 @@
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Prénom</label>
       <v-text-field v-model="newUser.firstname" placeholder="Votre prénom" variant="outlined" density="comfortable"
-        class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-account-outline">
+        class="pl-3 rounded-xl" prepend-icon="mdi-account-outline">
       </v-text-field>
     </div>
 
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Nom</label>
-      <v-text-field v-model="newUser.lastname" placeholder="Votre nom" variant="outlined" density="comfortable" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-account-outline">
+      <v-text-field v-model="newUser.lastname" placeholder="Votre nom" variant="outlined" density="comfortable"
+        class="pl-3 rounded-xl" prepend-icon="mdi-account-outline">
       </v-text-field>
     </div>
 
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Email</label>
       <v-text-field v-model="newUser.email" placeholder="Votre adresse email" variant="outlined" density="comfortable"
-        class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-email-outline">
+        class="pl-3 rounded-xl" prepend-icon="mdi-email-outline">
       </v-text-field>
     </div>
 
@@ -27,8 +25,7 @@
       <label class="text-sm font-medium block pl-1">Mot de passe</label>
       <v-text-field v-model="newUser.password" :type="show1 ? 'text' : 'password'" placeholder="Votre mot de passe"
         variant="outlined" density="comfortable" :rules="[rules.required, rules.min]"
-        hint="👮 Il faut au moins 8 caractères" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-lock-outline"
+        hint="👮 Il faut au moins 8 caractères" class="pl-3 rounded-xl  " prepend-icon="mdi-lock-outline"
         :append-icon="show1 ? 'mdi-eye-off' : 'mdi-eye'" @click:append="show1 = !show1">
       </v-text-field>
     </div>
@@ -37,8 +34,7 @@
       <label class="text-sm font-medium block pl-1">Confirmation du mot de passe</label>
       <v-text-field v-model="newUser.passwordCheck" :type="show1 ? 'text' : 'password'"
         placeholder="Confirmez votre mot de passe" variant="outlined" density="comfortable"
-        :rules="[rules.required, rules.min]" class="pl-3 bg-white/5 border-white/20 rounded-xl transition-all duration-300
-               group-hover:bg-white/10 group-hover:border-white/30" prepend-icon="mdi-lock-check-outline"
+        :rules="[rules.required, rules.min]" class="pl-3 rounded-xl" prepend-icon="mdi-lock-check-outline"
         :append-icon="show1 ? 'mdi-eye-off' : 'mdi-eye'" @click:append="show1 = !show1">
       </v-text-field>
     </div>

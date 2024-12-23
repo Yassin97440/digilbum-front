@@ -19,6 +19,7 @@
             </v-radio>
         </v-radio-group>
 
+        <!-- Rejoindre un groupe -->
         <div v-if="haveAgroup === 1" class="space-y-6">
             <v-card class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6">
                 <h3 class="text-xl font-medium mb-4 text-orange-400">Rejoindre un groupe</h3>
@@ -29,18 +30,19 @@
             </v-card>
         </div>
 
+        <!-- Créer un groupe -->
         <div v-else-if="haveAgroup === 2" class="space-y-6">
             <v-card class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6">
                 <h3 class="text-xl font-medium mb-4 text-orange-400">Créer un groupe</h3>
 
                 <div class="space-y-4">
                     <v-text-field v-model="groupName" label="Nom du groupe" placeholder="Donnez un nom à votre groupe"
-                        variant="outlined" density="comfortable" class="bg-white/5 border-white/20 rounded-xl transition-all duration-300
+                        variant="outlined" density="comfortable" class=" border-white/20 rounded-xl transition-all duration-300
                    hover:bg-white/10 hover:border-white/30" prepend-icon="mdi-account-group">
                     </v-text-field>
 
                     <v-combobox v-model="groupType" label="Type de groupe" :items="['Famille', 'Amis', 'Entreprise']"
-                        variant="outlined" density="comfortable" class="bg-white/5 border-white/20 rounded-xl transition-all duration-300
+                        variant="outlined" density="comfortable" class=" border-white/20 rounded-xl transition-all duration-300
                    hover:bg-white/10 hover:border-white/30" prepend-icon="mdi-shape">
                     </v-combobox>
                 </div>

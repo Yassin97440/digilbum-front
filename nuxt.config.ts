@@ -31,7 +31,7 @@ export default defineNuxtConfig({
             styles: true,
         },
         vuetifyOptions: {
-            /* vuetify options */
+
         }
     },
 

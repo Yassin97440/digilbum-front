@@ -75,6 +75,7 @@
                     <!-- Contenu principal -->
                     <div class="relative z-10 pt-[64px]">
                         <slot />
+                        <GlobalNotification />
                     </div>
                 </div>
             </v-main>

@@ -57,12 +57,16 @@
 definePageMeta({
   middleware: ["auth"]
 })
+
+
 const joinGroupDialog = ref(false)
 const createGroupDialog = ref(false)
 const joinGroupCode = ref("")
+const toast = useToast()
 const joinGroup = () => {
+
   joinGroupDialog.value = true
-  useNotify().notify("Rejoindre un groupe", "success", 10000)
+  useNotify(toast, "success", "Rejoindre un groupe", "Rejoindre un groupe", 10000)
   console.log("joinGroup")
 }
 const createGroup = () => {

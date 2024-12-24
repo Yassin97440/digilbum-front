@@ -8,6 +8,8 @@ module.exports = {
         "~/app.vue",
         "~/error.vue",
         "./node_modules/vuetify/**/*.{js,ts,vue}", // Ajoutez cette ligne pour Vuetify
+        "presets/**/*.{js,vue,ts}"
+
 
     ],
     theme: {

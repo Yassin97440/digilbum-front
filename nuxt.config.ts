@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
+
 import fs from 'fs'
 
 export default defineNuxtConfig({
@@ -8,7 +9,7 @@ export default defineNuxtConfig({
     },
 
     ssr: false,
-    css: ['~/assets/css/main.css'],
+    css: ['~/assets/css/main.css', 'vue-toastification/dist/index.css'],
 
     postcss: {
         plugins: {
@@ -21,7 +22,7 @@ export default defineNuxtConfig({
     },
 
     build: {
-        transpile: ['vuetify'],
+        transpile: ['vuetify', 'vue-toastification', 'nuxt-primevue'],
     },
 
     modules: ['@pinia/nuxt', 'vuetify-nuxt-module', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@primevue/nuxt-module'],
@@ -35,14 +36,11 @@ export default defineNuxtConfig({
         }
     },
     primevue: {
-        usePrimeVue: true,
-        autoImport: true,
-        composables: {
-            include: '*'
+        options: {
+            unstyled: true,
         },
-        components: {
-            include: ['Toast']
-        }
+        importPT: { from: '@/presets/lara/' },
+
     },
 
     devtools: {

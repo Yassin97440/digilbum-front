@@ -48,6 +48,8 @@
     <v-dialog v-model="createGroupDialog" width="auto">
       <SignupNewGroupForm />
     </v-dialog>
+    <Toast />
+
   </div>
 </template>
 

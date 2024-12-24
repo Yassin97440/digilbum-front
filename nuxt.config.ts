@@ -24,7 +24,7 @@ export default defineNuxtConfig({
         transpile: ['vuetify'],
     },
 
-    modules: ['@pinia/nuxt', 'vuetify-nuxt-module', '@nuxtjs/tailwindcss', '@vueuse/nuxt'],
+    modules: ['@pinia/nuxt', 'vuetify-nuxt-module', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@primevue/nuxt-module'],
 
     vuetify: {
         moduleOptions: {
@@ -32,6 +32,16 @@ export default defineNuxtConfig({
         },
         vuetifyOptions: {
 
+        }
+    },
+    primevue: {
+        usePrimeVue: true,
+        autoImport: true,
+        composables: {
+            include: '*'
+        },
+        components: {
+            include: ['Toast']
         }
     },
 

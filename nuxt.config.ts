@@ -37,10 +37,8 @@ export default defineNuxtConfig({
     },
     primevue: {
         options: {
-            unstyled: true,
-        },
-        importPT: { from: '@/presets/lara/' },
-
+            theme: 'none'
+        }
     },
 
     devtools: {

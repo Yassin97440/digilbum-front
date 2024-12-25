@@ -1,42 +1,37 @@
-# Nuxt 3 Minimal Starter
+# DigilBum - Application de Partage d'Albums Photos Digitale
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[![Visiter DigilBum](https://img.shields.io/badge/Visiter-DigilBum-orange)](https://digilbum.abdulla.fr)
 
-## Setup
+## 📝 Description
 
-Make sure to install the dependencies:
+Application web moderne de partage d'albums photos digitale développée avec Nuxt 3.
 
-```bash
-# yarn
-yarn install
+## 🛠️ Technologies Utilisées
 
-# npm
-npm install
+- **Framework**: [Nuxt 3](https://nuxt.com/)
+- **UI Components**:
+  - [Vuetify](https://vuetifyjs.com/)
+  - [PrimeVue](https://primevue.org/) (pour certains composants spécifiques comme les toasts)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 
-# pnpm
-pnpm install
-```
+## 🚀 Déploiement
 
-## Development Server
+- Conteneurisation avec **Docker**
+- CI/CD via **GitHub Actions**
 
-Start the development server on `http://localhost:3000`
+## ⚙️ Configuration
 
-```bash
-npm run dev
-```
+### Tailwind CSS
 
-## Production
+## 🤖 Développement propulsé par IA
 
-Build the application for production:
+Depuis novembre 2024, j'ai intégré l'IA dans mon workflow de développement :
 
-```bash
-npm run build
-```
+- Utilisation de **ChatGPT** et **Cursor (ClaudAI)** (beaucoup de Cusor)
+- Gains significatifs en productivité, particulièrement pour :
+  - Le design d'interface
+  - La génération de modules fonctionnels
+  - Le respect des conventions de code
 
-Locally preview production build:
+*Plus de détails à venir sur mon portfolio*
 
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

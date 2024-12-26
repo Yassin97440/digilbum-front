@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout>
         <NuxtPage />
-        <NotificationGlobal />
+            <NotificationGlobal />
     </NuxtLayout>
 </template>
 <script setup lang="ts">

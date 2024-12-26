@@ -2,10 +2,11 @@ export const useNotify = (useToast, severity, summary, detail, life) => {
 
 
   useToast.add({
-    severity: 'success',
+    severity: severity,
     summary: summary,
     detail: detail,
-    life: life
+    life: life,
+    group: 'br'
   })
 
 

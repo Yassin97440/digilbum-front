@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Toast class="" />
+    <!-- <div class="!vuetify-reset">
+    </div> -->
+    <div class="card flex justify-center">
+      <Toast position="bottom-right" group="br" />
+    </div>
   </div>
 </template>
 

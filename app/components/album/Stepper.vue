@@ -44,71 +44,74 @@
 
             <!-- Étape 4: Validation -->
             <template v-slot:item.4>
-                <AlbumValidation :type="type" :album-info="albumInfo" :event-info="eventInfo" :photos="photos"
-                    :sharing-options="sharingOptions" @confirm="handleSubmit" />
+                <div class="relative">
+                    <AlbumValidation class="z-0" :type="type" :album-info="albumInfo" :event-info="eventInfo"
+                        :photos="photos" :sharing-options="sharingOptions" @confirm="handleSubmit" />
+                    <div v-if="loading" class="absolute inset-0 flex justify-center items-center bg-gray-500 z-10">
+                        <v-progress-circular indeterminate color="orange" size="64"></v-progress-circular>
+                    </div>
+                </div>
             </template>
 
         </v-stepper>
     </v-container>
 </template>
 
-<script>
+<script setup>
 import { useAlbumStore } from '../stores/AlbumStore';
 import { useEventStore } from '../stores/EventStore';
+const toast = useToast()
 
-export default {
-    data: () => ({
-        currentStep: 1,
-        type: null,
-        albumInfo: {},
-        eventInfo: {},
-        sharingOptions: [],
-        photos: [],
-    }),
+const currentStep = ref(1)
+const type = ref(null)
+const albumInfo = ref({})
+const eventInfo = ref({})
+const sharingOptions = ref([])
+const photos = ref([])
+const loading = useAlbumStore().loading
 
-    methods: {
-        selectType(selectedType) {
-            this.type = selectedType;
-        },
+const selectType = (selectedType) => {
+    type.value = selectedType;
+}
 
-        updateAlbumInfo(info) {
-            this.albumInfo = info.albumData;
-            this.sharingOptions = info.sharedGroups;
-        },
+const updateAlbumInfo = (info) => {
+    albumInfo.value = info.albumData;
+    sharingOptions.value = info.sharedGroups;
+}
 
-        updateEventInfo(info) {
-            this.eventInfo = info;
-        },
+const updateEventInfo = (info) => {
+    eventInfo.value = info;
+}
 
-        updatePhotos(selectedPhotos) {
-            this.photos = selectedPhotos;
-        },
+const updatePhotos = (selectedPhotos) => {
+    photos.value = selectedPhotos;
+}
 
-        async handleSubmit() {
-            const albumStore = useAlbumStore();
-            const eventStore = useEventStore();
-
-            try {
-                if (this.type === 'album') {
-                    await albumStore.postNewAlbums({
-                        album: this.albumInfo,
-                        pictures: this.photos,
-                    },
-                        this.sharingOptions
-                    );
-                } else {
-                    await eventStore.createEventWithAlbums({
-                        event: this.eventInfo,
-                        album: this.albumInfo,
-                        pictures: this.photos
-                    });
-                }
-                // Redirection après succès
-                navigateTo('/showAlbums');
-            } catch (error) {
-                console.error('Erreur lors de la création:', error);
-            }
+const handleSubmit = async () => {
+    const albumStore = useAlbumStore();
+    const eventStore = useEventStore();
+    try {
+        if (type.value === 'album') {
+            await albumStore.postNewAlbums({
+                album: albumInfo.value,
+                pictures: photos.value,
+            },
+                sharingOptions.value,
+                toast
+            );
+        } else {
+            await eventStore.createEventWithAlbums({
+                event: eventInfo.value,
+                album: albumInfo.value,
+                pictures: photos.value
+            },
+                toast
+            );
         }
+
+    } catch (error) {
+        console.error('Erreur lors de la création:', error);
     }
-};
+}
+
 </script>

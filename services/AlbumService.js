@@ -34,23 +34,33 @@ export const AlbumService = {
         }
     },
 
-    async createAlbumWithPictures(data) {
+    async createAlbumWithPictures(data, toast) {
         try {
             const newAlbum = await this.createNewAlbum(data.album)
+            useNotify(toast, 'success', 'Album créé', 'Album créé avec succès', 5000)
             const uploadedPictures = await this.uploadPictures(data.pictures, newAlbum.id)
+            useNotify(toast, 'success', 'Images téléchargées', 'Images téléchargées avec succès', 5000)
             return {
                 album: newAlbum,
                 pictures: uploadedPictures
             }
         } catch (error) {
+            useNotify(toast, 'error', 'Erreur', 'Erreur lors de la création de l\'album avec images:', 5000)
             console.error('Erreur lors de la création de l\'album avec images:', error)
             throw error
         }
     },
 
-    async shareAlbum(albumId, sharedGroups) {
-        const groupIds = sharedGroups.map(group => group.id).join(',')
-        const response = await useAuthFetch(`album-sharing/share?albumId=${albumId}&groupIds=${groupIds}`)
-        return response
+    async shareAlbum(albumId, sharedGroups, toast) {
+        try {
+            const groupIds = sharedGroups.map(group => group.id).join(',')
+            const response = await useAuthFetch(`album-sharing/share?albumId=${albumId}&groupIds=${groupIds}`)
+            useNotify(toast, 'success', 'Album partagé', 'Album partagé avec succès', 5000)
+            return response
+        } catch (error) {
+            useNotify(toast, 'error', 'Erreur', 'Erreur lors du partage de l\'album:', 5000)
+            console.error('Erreur lors du partage de l\'album:', error)
+            throw error
+        }
     }
 }

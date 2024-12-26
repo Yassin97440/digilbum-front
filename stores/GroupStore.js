@@ -17,16 +17,22 @@ export const useGroupStore = defineStore('groupStore', {
     async addMember(joinCode) {
       const res = await useAuthFetch("group/addMember", "POST", joinCode)
       console.log("res for addMember : ", res)
+      return res
     },
     async findByJoinCode(joinCode) {
-      const SERVER_HOST = config.public.apiBaseUrl;
-      console.log("joinCode : ", joinCode)
-      const res = await $fetch(`${SERVER_HOST}/api/v2/group/byJoinCode?joinCode=${joinCode}`,
-        {
-          method: "GET",
-        })
-      console.log("res for findByJoinCode : ", res);
-      return res
+      try {
+        const SERVER_HOST = config.public.apiBaseUrl;
+        const res = await $fetch(`${SERVER_HOST}/api/v2/group/byJoinCode?joinCode=${joinCode}`,
+          {
+            method: "GET",
+          })
+
+        return res
+      } catch (err) {
+        console.error("Erreur lors de la recherche du groupe:", err)
+        this.error = "Impossible de trouver le groupe avec ce code"
+        return this.error
+      }
     },
 
     async fetchUserGroups() {

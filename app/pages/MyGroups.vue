@@ -6,7 +6,7 @@
     </h1>
 
     <div class="flex justify-end mb-6">
-      <v-btn color="primary" class="mr-4" @click="joinGroup">
+      <v-btn color="primary" class="mr-4" @click="openJoinGroupDialog">
         <v-icon left>mdi-account-group-outline</v-icon>
         Rejoindre un groupe
       </v-btn>
@@ -38,7 +38,32 @@
             prepend-icon="mdi-account-multiple-plus"
             :rules="[v => !v || (v.length >= 8 && v.length <= 15) || 'Le code doit contenir entre 8 et 15 caractères']"
             maxlength="15"></v-text-field>
+
+          <div class="space-y-4">
+            <h3 class="text-xl font-medium text-orange-300">
+              Groupe à rejoindre
+            </h3>
+
+            <div class="flex items-center space-x-2">
+              <v-icon icon="mdi-account-group" class="text-blue-300"></v-icon>
+              <p class="text-sm ">
+                <span class="">Nom du groupe:</span>
+                {{ groupData?.groupName }}
+              </p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <v-icon icon="mdi-shape" class="text-orange-300"></v-icon>
+              <p class="text-sm ">
+                <span class="">Type:</span>
+                {{ groupData?.groupType }}
+              </p>
+            </div>
+            <div v-if="errorJoinGroup?.value" class="text-center text-red-500">
+              Erreur lors de votre ajout au groupe
+            </div>
+          </div>
         </v-card-item>
+
         <v-card-actions>
           <v-btn color="primary" @click="joinGroup">Rejoindre</v-btn>
         </v-card-actions>
@@ -47,6 +72,7 @@
 
     <v-dialog v-model="createGroupDialog" width="auto">
       <SignupNewGroupForm />
+      0
     </v-dialog>
     <Toast />
 
@@ -54,20 +80,44 @@
 </template>
 
 <script setup>
+import { useGroupStore } from '~~/stores/GroupStore';
 definePageMeta({
   middleware: ["auth"]
 })
-
+const groupStore = useGroupStore()
 
 const joinGroupDialog = ref(false)
 const createGroupDialog = ref(false)
 const joinGroupCode = ref("")
 const toast = useToast()
-const joinGroup = () => {
+const groupData = reactive({})
+const errorJoinGroup = ref(false)
 
+watch(joinGroupCode, (newJoinGroupCode, oldJoinGroupCode) => {
+  getGroupByJoinCode()
+})
+
+const openJoinGroupDialog = () => {
   joinGroupDialog.value = true
-  useNotify(toast, "success", "Rejoindre un groupe", "Rejoindre un groupe", 10000)
-  console.log("joinGroup")
+}
+
+const joinGroup = async () => {
+  try{
+    const  res =  await groupStore.addMember(joinGroupCode.value)
+    joinGroupDialog.value = false
+    useNotify(toast, "success", "Ajou té au groupe", "Tu as bien été ajouté au groupe! Tu peux visiter les albums du groupe", 5000)
+  } catch (err) {
+    errorJoinGroup.value = true
+    useNotify(toast, "error", "Erreur", "Une erreur s'est produite lors de votre ajout au groupe", 5000)
+  }
+  
+}
+
+const getGroupByJoinCode = async () => {
+  if (joinGroupCode.value.length >= 8) {
+    const group = await groupStore.findByJoinCode(joinGroupCode.value)
+    Object.assign(groupData, group)
+  }
 }
 const createGroup = () => {
   createGroupDialog.value = true

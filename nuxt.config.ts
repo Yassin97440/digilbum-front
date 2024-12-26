@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     },
 
     ssr: false,
-    css: ['~/assets/css/main.css', 'vue-toastification/dist/index.css'],
+    css: ['~/assets/css/main.css'],
 
     postcss: {
         plugins: {

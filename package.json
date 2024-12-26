@@ -25,12 +25,11 @@
     "@vueuse/nuxt": "^12.2.0",
     "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
-    "nuxt": "^3.14.1592",
+    "nuxt": "^3.15",
     "nuxt-app": "file:",
     "pinia": "^2.0.35",
     "postcss-nesting": "^13.0.1",
     "sass": "^1.51.0",
-    "tailwindcss-primeui": "^0.3.4",
-    "vue-toastification": "^2.0.0-rc.5"
+    "tailwindcss-primeui": "^0.3.4"
   }
 }

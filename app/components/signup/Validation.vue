@@ -61,7 +61,7 @@
 
         <!-- Bouton de confirmation -->
         <div class="flex justify-center py-3">
-            <v-btn @click="test" class="px-8 py-2 bg-gradient-to-r from-orange-400 to-orange-600
+            <v-btn @click="register" class="px-8 py-2 bg-gradient-to-r from-orange-400 to-orange-600
                 text-white font-medium rounded-xl transform hover:scale-105 transition-all duration-300">
                 Confirmer l'inscription
             </v-btn>
@@ -83,11 +83,7 @@ export default {
         },
     },
     methods: {
-        test() {
-            const authStore = useAuthStore();
 
-            authStore.register(this.newUser, this.dataGroup)
-        }
 
     },
 };
@@ -103,4 +99,13 @@ const props = defineProps({
         type: Object,
     }
 })
+
+const toast = useToast()
+
+const register = () => {
+    const authStore = useAuthStore();
+    authStore.register(props.newUser, props.dataGroup, toast)
+}
+
+
 </script>

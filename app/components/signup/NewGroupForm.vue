@@ -39,7 +39,6 @@ export default {
 
     },
     methods: {
-        ...mapActions(useAuthStore, ["register"]),
         valideDoublePassword() {
             return this.passwording
         },

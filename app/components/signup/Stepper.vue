@@ -90,18 +90,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(useAuthStore, ["register"]),
         ...mapActions(useGroupStore, ["findByJoinCode"]),
-        test() {
-            this.register({
-                firstName: this.firstName,
-                lastName: this.lastName,
-                password: this.password,
-                email: this.email,
-
-
-            });
-        },
         next() {
             if (this.e1 === 1) {
                 console.log("register ou koaa", this.newUser)

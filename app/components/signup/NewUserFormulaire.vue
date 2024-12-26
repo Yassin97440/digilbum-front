@@ -71,7 +71,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useAuthStore, ["register"]),
     dataChanged() {
       this.$emit('user-data-changed', this.newUser);
     }

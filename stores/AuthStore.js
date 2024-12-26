@@ -9,7 +9,7 @@ export const useAuthStore = defineStore("authStore", {
     }
   },
   actions: {
-    async register(user, dataGroup) {
+    async register(user, dataGroup, toast) {
       // Traduction des types de groupes
       if (dataGroup.groupType === "Famille") dataGroup.groupType = "Familly";
       if (dataGroup.groupType === "Amis") dataGroup.groupType = "Friends";
@@ -44,13 +44,13 @@ export const useAuthStore = defineStore("authStore", {
         });
         tokenCookie.value = token;
 
-        // Mise à jour du store avec le token
         this.token = token;
+        useNotify(toast, "success", "Succès", "Votre compte a été créé avec succès", 5000)
 
-        // Redirection après succès
         return navigateTo("/");
       } catch (error) {
         console.error("Erreur lors de la création de compte :", error.message);
+        useNotify(toast, "error", "Erreur", "Une erreur s'est produite lors de la création de compte", 5000)
         throw error;
       }
     }

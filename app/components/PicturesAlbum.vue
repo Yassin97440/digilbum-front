@@ -26,10 +26,8 @@ export default {
 <style scoped>
 .carousel-container {
     height: calc(100vh - 64px);
-    /* Hauteur totale moins la hauteur de la toolbar */
     width: 100%;
 }
-
 
 .image-container {
     height: 100%;
@@ -45,5 +43,20 @@ export default {
     max-width: 100%;
     object-fit: contain;
     object-position: center;
+}
+
+/* Style personnalisé pour les contrôles du carousel */
+:deep(.v-carousel__controls) {
+    background: transparent !important;
+}
+
+:deep(.v-btn--icon.v-btn--density-default) {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    transition: background-color 0.3s ease;
+}
+
+:deep(.v-btn--icon.v-btn--density-default:hover) {
+    background: rgba(255, 255, 255, 0.2);
 }
 </style>

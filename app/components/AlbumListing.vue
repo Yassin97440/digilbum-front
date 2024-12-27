@@ -35,7 +35,7 @@
 
     <!-- Dialog pour afficher les images de l'album -->
     <v-dialog v-model="dialog" fullscreen class="backdrop-blur-sm">
-      <v-card class="dialog-card">
+      <v-card class="dialog-card text-white">
         <v-toolbar color="transparent" class="backdrop-blur-md border-b">
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
@@ -87,6 +87,10 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: radial-gradient(circle at center,
+      rgba(52, 51, 51, 0.95) 0%,
+      rgba(10, 10, 15, 0.98) 100%);
+
 }
 
 .dialog-content {

@@ -34,23 +34,23 @@
     </div>
 
     <!-- Dialog pour afficher les images de l'album -->
-    <v-dialog v-model="dialog" fullscreen>
-      <v-card class="bg-black/90 backdrop-blur-md">
-        <v-toolbar color="transparent" class="backdrop-blur-md bg-white/5 border-b border-white/10">
+    <v-dialog v-model="dialog" fullscreen class="backdrop-blur-sm">
+      <v-card class="dialog-card">
+        <v-toolbar color="transparent" class="backdrop-blur-md border-b">
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
 
-          <v-toolbar-title class="">
+          <v-toolbar-title>
             {{ albumSelectedName }}
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
         </v-toolbar>
 
-        <v-container fluid>
+        <div class="dialog-content">
           <PicturesAlbum :pictures="selectedAlbumPictures" />
-        </v-container>
+        </div>
       </v-card>
     </v-dialog>
   </v-row>
@@ -82,9 +82,15 @@ export default {
   },
 };
 </script>
-<style>
-.dialog-bottom-transition-enter-active,
-.dialog-bottom-transition-leave-active {
-  transition: transform .2s ease-in-out;
+<style scoped>
+.dialog-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dialog-content {
+  flex: 1;
+  overflow: hidden;
 }
 </style>

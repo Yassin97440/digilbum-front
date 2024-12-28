@@ -1,18 +1,18 @@
 <template>
     <div class="space-y-8 max-w-md mx-auto">
-        <div class="text-center space-y-4">
-            <h2
-                class="text-2xl font-semibold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent contrast-100">
-                Confirmation
-            </h2>
-            <p class="text-sm ">
-                Vérifiez vos informations avant de finaliser votre inscription
-            </p>
-        </div>
+        <v-card class=" bg-transparent border border-white/20 rounded-xl p-6 space-y-6">
+            <div class="text-center space-y-4">
+                <h2
+                    class="text-2xl font-semibold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                    Confirmation
+                </h2>
+                <p class="text-sm ">
+                    Vérifiez vos informations avant de finaliser votre inscription
+                </p>
+            </div>
 
-        <!-- Informations utilisateur -->
-        <v-card class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-6">
-            <div class="space-y-4 contrast-200">
+            <!-- Informations utilisateur -->
+            <div class="space-y-4">
                 <h3 class="text-xl font-medium text-orange-400">Vos informations</h3>
                 <div class="space-y-2">
                     <div class="flex items-center space-x-2">
@@ -34,7 +34,7 @@
 
             <!-- Informations groupe -->
             <template v-if="(dataGroup.haveAgroup) || (!dataGroup.haveAgroup && dataGroup.groupName)">
-                <div class="space-y-4 contrast-200">
+                <div class="space-y-4">
                     <h3 class="text-xl font-medium text-orange-300">
                         {{ dataGroup.haveAgroup ? 'Groupe à rejoindre' : 'Groupe à créer' }}
                     </h3>
@@ -57,15 +57,15 @@
                     </div>
                 </div>
             </template>
-        </v-card>
 
-        <!-- Bouton de confirmation -->
-        <div class="flex justify-center py-3">
-            <v-btn @click="register" class="px-8 py-2 bg-gradient-to-r from-orange-400 to-orange-600
+            <!-- Bouton de confirmation -->
+            <div class="flex justify-center py-3">
+                <v-btn @click="register" class="px-8 py-2 bg-gradient-to-r from-orange-400 to-orange-600
                 text-white font-medium rounded-xl transform hover:scale-105 transition-all duration-300">
-                Confirmer l'inscription
-            </v-btn>
-        </div>
+                    Confirmer l'inscription
+                </v-btn>
+            </div>
+        </v-card>
     </div>
 </template>
 

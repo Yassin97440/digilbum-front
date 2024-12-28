@@ -8,7 +8,7 @@
 
         <!-- Tabs customisés -->
         <v-tabs v-model="tab"
-            class="mb-6 bg-white/10 backdrop-blur-md rounded-full border border-white/20 overflow-hidden">
+            class="mb-6 bg-white/10 backdrop-blur-3xl rounded-full border border-white/20 overflow-hidden">
             <v-tab v-for="(tabItem, index) in tabItems" :key="index" :value="tabItem.value"
                 class="text-white/80 hover:bg-white/10 transition-colors duration-300 rounded-full">
                 {{ tabItem.label }}
@@ -16,7 +16,7 @@
         </v-tabs>
 
         <!-- Contenu des tabs -->
-        <v-card class="w-full bg-gray-500/10 backdrop-blur-md border border-white/20 
+        <v-card class="w-full bg-gray-500/10 backdrop-blur-3xl border border-white/20 
              shadow-2xl rounded-2xl overflow-hidden" elevation="0">
             <v-card-text>
                 <v-window v-model="tab">

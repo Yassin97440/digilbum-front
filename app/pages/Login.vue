@@ -8,7 +8,7 @@ definePageMeta({
 <template>
     <div class="h-screen flex items-center justify-center overflow-hidden px-4">
         <v-card
-            class="w-full max-w-md relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
+            class="w-full max-w-md relative bg-white/10 backdrop-blur-3xl border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
             <v-card-item class="p-10">
                 <div class="text-center mb-10 relative">
                     <h1 class="pb-3 text-6xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 bg-clip-text text-transparent

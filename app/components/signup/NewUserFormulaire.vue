@@ -6,13 +6,13 @@
         class="pl-3 rounded-xl" prepend-icon="mdi-account-outline">
       </v-text-field>
     </div>
-
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Nom</label>
       <v-text-field v-model="newUser.lastname" placeholder="Votre nom" variant="outlined" density="comfortable"
         class="pl-3 rounded-xl" prepend-icon="mdi-account-outline">
       </v-text-field>
     </div>
+
 
     <div class="space-y-2">
       <label class="text-sm font-medium block pl-1">Email</label>

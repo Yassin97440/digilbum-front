@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-2xl mx-auto p-6">
-        <v-card class="bg-black/30 backdrop-blur-md">
+        <v-card class="bg-white/5 border border-stone-700 shadow-lg rounded-xl">
             <v-card-item class="p-8">
                 <div class="space-y-6">
                     <!-- Nom -->

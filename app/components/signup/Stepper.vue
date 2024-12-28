@@ -3,7 +3,7 @@
 
         <v-stepper :items="['Step 1', 'Step 2', 'Step 3']" v-model="e1" next-text="Suiivant" prev-text="Précèdent">
             <template v-slot:item.1>
-                <div class="flex justify-center h">
+                <div class="flex justify-center">
                     <v-card class="  rounded-lg min-w-80">
                         <v-container>
                             <v-row class=" p-0">

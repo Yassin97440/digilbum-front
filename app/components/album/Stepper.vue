@@ -1,27 +1,29 @@
 <template>
-    <v-container>
-        <v-stepper :items="['Type', 'Informations', 'Photos', 'Validation']" v-model="currentStep" next-text="Suivant"
+    <v-container class="">
+        <v-stepper class="bg-transparent backdrop-blur-3xl rounded-2xl"
+            :items="['Type', 'Informations', 'Photos', 'Validation']" v-model="currentStep" next-text="Suivant"
             prev-text="Précédent">
 
             <!-- Étape 1: Choix du type -->
             <template v-slot:item.1>
                 <div class="flex flex-col items-center space-y-6 p-8">
-                    <h2 class="text-2xl font-bold text-center mb-4">Que souhaitez-vous créer ?</h2>
+                    <h2 class="text-2xl font-bold text-center mb-4 ">
+                        Que souhaitez-vous créer ?</h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
-                        <v-card @click="selectType('album')" :class="{ 'border-2 border-orange-400': type === 'album' }"
-                            class="p-6 cursor-pointer hover:bg-black/40 transition-all">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl ">
+                        <v-card @click="selectType('album')" :class="{ 'border-2 border-cyan-900': type === 'album' }"
+                            class="p-6 cursor-pointer bg-yellow-600/30 hover:bg-yellow-600/80 transition-all rounded-xl">
                             <div class="text-center">
-                                <v-icon size="48" color="orange-400">mdi-image-album</v-icon>
+                                <v-icon size="48" color="">mdi-image-album</v-icon>
                                 <h3 class="text-xl mt-4">Album Simple</h3>
                                 <p class="text-sm opacity-70 mt-2">Créez un album photo unique</p>
                             </div>
                         </v-card>
 
-                        <v-card @click="selectType('event')" :class="{ 'border-2 border-blue-400': type === 'event' }"
-                            class="p-6 cursor-pointer hover:bg-black/40 transition-all">
+                        <v-card @click="selectType('event')" :class="{ 'border-2 border-cyan-900': type === 'event' }"
+                            class="p-6 cursor-pointer bg-yellow-600/30 hover:bg-yellow-600/80 transition-all rounded-xl">
                             <div class="text-center">
-                                <v-icon size="48" color="blue-400">mdi-calendar-star</v-icon>
+                                <v-icon size="48" color="">mdi-calendar-star</v-icon>
                                 <h3 class="text-xl mt-4">Événement</h3>
                                 <p class="text-sm opacity-70 mt-2">Créez un événement avec plusieurs albums</p>
                             </div>

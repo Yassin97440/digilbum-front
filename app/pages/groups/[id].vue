@@ -36,7 +36,8 @@ const getGroupTypeLabel = (type) => {
             <div class="grid grid-cols-1 md:grid-cols-3
             bg-transparent backdrop-blur-3xl rounded-2xl
              border border-zinc-400 gap-6 mb-8 p-6">
-                <h1 class="text-4xl font-bold text-neutral-300">
+                <h1 class="text-4xl font-bold  bg-gradient-to-r from-orange-400/100 via-gray-400/90 to-slate-400/90 
+                bg-clip-text text-transparent">
                     {{ group.groupName }}
                 </h1>
 
@@ -56,8 +57,8 @@ const getGroupTypeLabel = (type) => {
 
             <!-- Members data -->
             <div class="mb-8">
-                <h2 class=" bg-transparent backdrop-blur-3xl rounded-2xl text-2xl
-                     border border-zinc-400 font-semibold mb-1 text-neutral-300 p-4 inline-block">
+                <h2 class=" bg-transparent backdrop-blur-3xl rounded-2xl text-2xl text-white
+                     border border-zinc-400 font-semibold mb-1 p-4 inline-block">
                     Membres ({{ usersGroup.length }})
                 </h2>
                 <v-list class=" bg-transparent backdrop-blur-3xl rounded-2xl border border-zinc-400">

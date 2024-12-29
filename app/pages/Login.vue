@@ -8,10 +8,10 @@ definePageMeta({
 <template>
     <div class="h-screen flex items-center justify-center overflow-hidden px-4">
         <v-card
-            class="w-full max-w-md relative bg-white/10 backdrop-blur-3xl border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
-            <v-card-item class="p-10">
+            class="w-full max-w-md relative bg-transparent backdrop-blur-3xl border border-white/20 shadow-2xl overflow-hidden rounded-2xl">
+            <v-card-item class="p-10 text-white">
                 <div class="text-center mb-10 relative">
-                    <h1 class="pb-3 text-6xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 bg-clip-text text-transparent
+                    <h1 class="pb-3 text-6xl font-bold  bg-gradient-to-r from-orange-400 via-gray-400 to-slate-400 bg-clip-text text-transparent
                              transform hover:scale-105 transition-transform duration-300">
                         Digilbum
                     </h1>
@@ -47,7 +47,7 @@ definePageMeta({
                         </div>
                     </div>
 
-                    <v-btn block class="mt-6 bg-gradient-to-r from-orange-400 via-red-400 to-blue-600 font-medium py-3 text-lg
+                    <v-btn block class="mt-6 bg-gradient-to-r from-orange-400 via-gray-400 to-slate-400 font-medium py-3 text-lg
                                rounded-xl transform hover:scale-102 transition-all duration-300 hover:shadow-lg"
                         elevation="3" @click="logine">
                         Connexion

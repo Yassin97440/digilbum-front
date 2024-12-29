@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen w-full flex flex-col items-center px-6 py-8">
-        <h1
-            class="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 bg-clip-text text-transparent">
+        <h1 class="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-orange-400/100 via-gray-400/90 to-slate-400/90 
+                                bg-clip-text text-transparent pb-2">
             Bienvenue sur votre album digital
         </h1>
 

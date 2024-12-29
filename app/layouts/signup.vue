@@ -2,8 +2,6 @@
     <v-theme-provider theme="myCustomLightTheme">
         <v-app>
 
-
-
             <!-- Main Content -->
             <v-main class="h-screen p-0">
                 <!-- Background avec effet parallaxe et overlay -->
@@ -31,17 +29,7 @@
                     <v-app-bar color="transparent" class="border-b border-white/10 backdrop-blur-3xl bg-white/5"
                         elevation="0" prominent>
                         <div class="w-full max-w-7xl mx-auto px-4 flex items-center justify-between">
-                            <!-- Logo et titre -->
-                            <v-toolbar-title>
-                                <div class="relative group">
-                                    <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 bg-clip-text text-transparent
-                                     transform group-hover:scale-105 transition-all duration-300">
-                                        Digilbum
-                                    </h1>
-                                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-blue-600
-                                      group-hover:w-full transition-all duration-300"></div>
-                                </div>
-                            </v-toolbar-title>
+
 
                             <v-spacer></v-spacer>
 
@@ -53,7 +41,7 @@
                                     Connexion
                                 </v-btn>
 
-                                <v-btn to="/Signup" class="bg-gradient-to-r from-orange-400 to-blue-600 hover:opacity-90
+                                <v-btn to="/Signup" class="bg-gradient-to-r from-orange-300 via-gray-400 to-slate-400 hover:opacity-90
                                    transition-all duration-300 px-6" elevation="1">
                                     <v-icon left class="mr-2">mdi-account-plus</v-icon>
                                     Inscription

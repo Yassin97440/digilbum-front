@@ -23,8 +23,8 @@ const getGroupTypeLabel = (type) => {
         <p>Vous n'êtes membre d'aucun groupe pour le moment.</p>
     </div>
 
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <v-card v-for="group in groups" :key="group.id" class="bg-white/10 backdrop-blur-3xl rounded-xl">
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <v-card v-for="group in groups" :key="group.id" class="bg-transparent backdrop-blur-3xl text-white rounded-xl">
             <v-card-title class="text-xl font-bold">{{ group.groupName }}</v-card-title>
 
             <v-card-text>
@@ -35,7 +35,7 @@ const getGroupTypeLabel = (type) => {
             </v-card-text>
 
             <v-card-actions>
-                <v-btn :to="`/groups/${group.id}`" class="text-white/90" variant="text">
+                <v-btn :to="`/groups/${group.id}`" color="primary" variant="text">
                     Voir le groupe
                 </v-btn>
                 <v-btn v-if="group.isAdmin" :to="`/groups/${group.id}/manage`" color="secondary" variant="text">

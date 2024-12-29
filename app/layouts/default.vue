@@ -5,18 +5,20 @@
             <div class="inset-0 w-full h-full">
                 <!-- Background avec overlay -->
                 <div class=" fixed inset-0 w-full h-full">
-                    <img class="w-full h-full blur-sm object-cover transform scale-105 animate-subtle-zoom"
+                    <img class="w-full h-full  object-cover transform scale-105 animate-subtle-zoom"
                         src="~/assets/bg.webp" alt="Background" />
                 </div>
 
                 <!-- Déplacer l'App Bar à l'intérieur du main pour qu'il soit au-dessus du background -->
-                <v-app-bar color="transparent" class="border-b  border-white/10 backdrop-blur-3xl bg-white/5"
+                <v-app-bar color="transparent" class="border-b bg-transparent backdrop-blur-3xl text-white"
                     elevation="0" prominent>
                     <div class="w-full max-w-7xl mx-auto px-4 flex items-center">
                         <!-- Logo et titre -->
                         <v-toolbar-title class="flex items-center">
                             <div class="relative group">
-                                <h1 class="text-3xl font-bold text-neutral-400 pb-1">
+                                <h1 class="text-3xl font-bold bg-gradient-to-r from-orange-400/100 via-gray-400/90 to-slate-400/90 
+                                bg-clip-text text-transparent
+                                transform hover:scale-105 transition-transform duration-300 pb-1 pr-2">
                                     Digilbum
                                 </h1>
                             </div>
@@ -34,7 +36,7 @@
                             <v-btn class="bg-white/5 hover:bg-white/10 transition-colors duration-300" elevation="0">
                                 <v-icon>mdi-account</v-icon>
                                 <v-menu activator="parent">
-                                    <v-list class="bg-white/10 backdrop-blur-md border border-white/20">
+                                    <v-list class="bg-transparent backdrop-blur-3xl border border-zinc-400 text-white">
                                         <v-list-item to="/my-albums"
                                             class="hover:bg-white/10 transition-colors duration-300">
                                             <v-list-item-title class="flex items-center">
@@ -59,6 +61,7 @@
                                         <v-list-item @click="logout()"
                                             class="hover:bg-white/10 transition-colors duration-300">
                                             <v-list-item-title class="">
+                                                <v-icon left class="mr-2">mdi-logout</v-icon>
                                                 Déconnexion
                                             </v-list-item-title>
                                         </v-list-item>

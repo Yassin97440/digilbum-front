@@ -8,7 +8,8 @@ const { myEvents, loading, error } = useMyEvents()
 
 <template>
     <div class="min-h-screen w-full px-6 py-8">
-        <h1 class="text-4xl font-bold mb-6 text-center text-neutral-400">
+        <h1 class="text-4xl font-bold mb-6 text-center  bg-gradient-to-r from-orange-400/100 via-gray-400/90 to-slate-400/90 
+                                bg-clip-text text-transparent ">
             Mes Événements
         </h1>
 

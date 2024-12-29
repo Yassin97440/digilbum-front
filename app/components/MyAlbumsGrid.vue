@@ -1,6 +1,6 @@
 <template>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <v-card v-for="album in albums" :key="album.id" class="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <v-card v-for="album in albums" :key="album.id" class="relative overflow-hidden bg-transparent backdrop-blur-3xl text-white
                        shadow-2xl rounded-2xl transform transition-all duration-500 hover:scale-105
                        hover:shadow-lg hover:border-white/30 group">
 
@@ -20,7 +20,7 @@
                     <v-btn color="primary" variant="text" @click="$emit('view', album)">
                         Voir l'album
                     </v-btn>
-                    <v-btn icon="mdi-pencil" variant="text" @click="$emit('edit', album)"></v-btn>
+                    <v-btn icon="mdi-dots-horizontal" variant="text" @click="$emit('edit', album)"></v-btn>
                 </div>
             </v-card-item>
         </v-card>

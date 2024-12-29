@@ -1,7 +1,7 @@
 <template>
   <v-row>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full pb-3 md:p-4">
-      <v-card v-for="(album, i) in albums" :key="i" class="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full pb-3 md:p-4">
+      <v-card v-for="(album, i) in albums" :key="i" class="relative overflow-hidden bg-transparent backdrop-blur-3xl text-white
                  shadow-xl rounded-2xl transform transition-all duration-500 hover:scale-105
                  hover:shadow-lg hover:border-white/30 group" elevation="0">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-500/10 
@@ -20,13 +20,11 @@
             <h2 class="text-2xl font-semibold  mb-4">{{ album.name }}</h2>
 
             <div class="flex justify-between items-center">
-              <v-btn @click="openPicturesForAlbum(album)" class="bg-white/10 hover:bg-white/20 text-white/90">
-                Voir l'album
+              <v-btn @click="openPicturesForAlbum(album)" class="bg-white/10 hover:bg-white/20 ">
+                <span class="text-primary">Voir l'album</span>
               </v-btn>
 
-              <v-btn icon @click="deleteAlbum(album)" class="text-red-400/70 hover:text-red-400 transition-colors">
-                <v-icon>mdi-trash-can</v-icon>
-              </v-btn>
+
             </div>
           </div>
         </div>
@@ -70,15 +68,13 @@ export default {
 
   },
   methods: {
-    ...mapActions(useAlbumStore, ["setSelectedAlbum", "getPicturesForAlbum", "delete"]),
+    ...mapActions(useAlbumStore, ["setSelectedAlbum", "getPicturesForAlbum"]),
     openPicturesForAlbum(album) {
       this.getPicturesForAlbum(album);
       this.albumSelectedName = album.name
       this.dialog = true;
     },
-    deleteAlbum(album) {
-      this.delete(album);
-    }
+
   },
 };
 </script>

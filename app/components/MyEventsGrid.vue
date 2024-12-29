@@ -1,8 +1,7 @@
 <template>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <v-card v-for="event in events" :key="event.id" class="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 
-                       shadow-2xl rounded-2xl transform transition-all duration-500 hover:scale-105
-                       hover:shadow-lg hover:border-white/30 group">
+        <v-card v-for="event in events" :key="event.id" class="relative overflow-hidden bg-transparent backdrop-blur-3xl rounded-2xl  
+                shadow-2xl text-white ">
 
             <v-card-item class="relative z-10">
                 <h3 class="text-xl font-semibold mb-2">{{ event.name }}</h3>
@@ -15,7 +14,7 @@
                     <v-btn color="primary" variant="text" @click="$emit('view', event)">
                         Voir l'événement
                     </v-btn>
-                    <v-btn icon="mdi-pencil" variant="text" @click="$emit('edit', event)"></v-btn>
+                    <v-btn icon=" mdi-dots-horizontal" variant="text" @click="$emit('edit', event)"></v-btn>
                 </div>
             </v-card-item>
         </v-card>

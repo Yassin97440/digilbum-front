@@ -16,9 +16,7 @@
                         <!-- Logo et titre -->
                         <v-toolbar-title class="flex items-center">
                             <div class="relative group">
-                                <h1
-                                    class="text-3xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 
-                                             bg-clip-text text-transparent transform transition-transform duration-300 pb-1">
+                                <h1 class="text-3xl font-bold text-neutral-400 pb-1">
                                     Digilbum
                                 </h1>
                             </div>

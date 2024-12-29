@@ -1,10 +1,10 @@
 <template>
-    <div class="max-w-2xl mx-auto p-6">
-        <v-card class="bg-transparent border border-stone-700 shadow-lg rounded-xl">
-            <v-card-item class="p-8">
+    <div class="max-w-2xl mx-auto md:p-6">
+        <v-card class="bg-transparent border border-zinc-400 shadow-lg rounded-xl">
+            <v-card-item class="p-4 md:p-8 text-white">
                 <div class="space-y-6">
                     <!-- Zone de drop -->
-                    <div class="border-2 border-dashed border-gray-500 rounded-lg p-8 text-center"
+                    <div class="border-2 border-dashed border-zinc-500 rounded-lg p-8 text-center"
                         :class="{ 'border-primary': isDragging }" @dragenter.prevent="isDragging = true"
                         @dragleave.prevent="isDragging = false" @dragover.prevent @drop.prevent="handleDrop">
                         <v-icon size="48" class="mb-4">mdi-cloud-upload</v-icon>

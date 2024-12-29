@@ -1,11 +1,11 @@
 <template>
-    <div class="max-w-2xl mx-auto p-6">
-        <v-card class="bg-white/5 border border-stone-700 shadow-lg rounded-xl">
-            <v-card-item class="p-8">
-                <h2 class="text-2xl font-bold mb-6">Récapitulatif</h2>
+    <div class="max-w-2xl mx-auto p-2 md:p-6">
+        <v-card class="bg-white/5 border border-zinc-400 shadow-lg rounded-xl">
+            <v-card-item class="p-4 md:p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">Récapitulatif</h2>
 
                 <!-- Type -->
-                <div class="mb-6">
+                <div class="mb-3">
                     <h3 class="text-lgg font-semibold mb-2">Type</h3>
                     <p class="text-sm">
                         {{ type === 'album' ? 'Album Simple' : 'Événement' }}
@@ -19,6 +19,7 @@
 
                         <!-- Event informations -->
                         <div v-if="type !== 'album'">
+                            <v-divider class="my-2 md:my-4 text-zinc-900 border-opacity-100">Evenement</v-divider>
                             <p class="text-medium">
                                 <span class="font-medium">Nom:</span>
                                 {{ eventInfo.name }}
@@ -37,6 +38,7 @@
                             </p>
                         </div>
 
+                        <v-divider class="my-2 md:my-4 text-zinc-900 border-opacity-100">Album</v-divider>
                         <!-- Album informations -->
                         <p class="text-sm">
                             <span class="font-medium">Nom:</span>
@@ -63,6 +65,8 @@
                     </div>
                 </div>
 
+                <v-divider class="my-2 md:my-4 text-zinc-900 border-opacity-100"></v-divider>
+
                 <!-- Photos -->
                 <div class="mb-6">
                     <h3 class="text-lgg font-semibold mb-2">Photos</h3>
@@ -73,7 +77,8 @@
 
                 <!-- Bouton de confirmation -->
                 <div class="flex justify-center mt-8">
-                    <v-btn color="primary rounded-lg" size="large" @click="$emit('confirm')" :loading="loading">
+                    <v-btn class="bg-zinc-400 rounded-lg mb-1 text-white" size="large" @click="$emit('confirm')"
+                        :loading="loading">
                         Confirmer la création
                     </v-btn>
                 </div>

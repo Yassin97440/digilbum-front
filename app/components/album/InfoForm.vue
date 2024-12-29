@@ -2,10 +2,10 @@
     <CommonBaseInfoForm :labels="{ name: 'Nom de l\'album' }" placeholder="Ex: Vacances d'été 2024"
         @info-changed="onAlbumInfoChanged" />
 
-    <!-- Nouvelle section pour le partage -->
-    <div class="max-w-2xl mx-auto p-6">
-        <v-card class="bg-white/5 border border-stone-700 shadow-lg rounded-xl">
-            <v-card-item class="p-8">
+    <!-- section pour le partage -->
+    <div class="max-w-2xl mx-auto p-2 md:p-6">
+        <v-card class="bg-white/5 border border-zinc-400 shadow-lg rounded-xl">
+            <v-card-item class="p-4 md:p-8 text-white">
                 <div class="space-y-6">
                     <h3 class="text-lg font-semibold mb-4">Paramètres de partage</h3>
 

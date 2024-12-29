@@ -2,18 +2,18 @@
     <v-container class="">
         <v-stepper class="bg-transparent backdrop-blur-3xl rounded-2xl"
             :items="['Type', 'Informations', 'Photos', 'Validation']" v-model="currentStep" next-text="Suivant"
-            prev-text="Précédent">
+            prev-text="Précédent" mobile>
 
             <!-- Étape 1: Choix du type -->
             <template v-slot:item.1>
-                <div class="flex flex-col items-center space-y-6 p-8">
+                <div class="flex flex-col items-center space-y-6 p-8 text-white">
                     <h2 class="text-2xl font-bold text-center mb-4 ">
                         Que souhaitez-vous créer ?</h2>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl ">
                         <v-card @click="selectType('album')" :class="{ 'border-2 border-cyan-900': type === 'album' }"
                             class="p-6 cursor-pointer bg-yellow-600/30 hover:bg-yellow-600/80 transition-all rounded-xl">
-                            <div class="text-center">
+                            <div class="text-center text-white">
                                 <v-icon size="48" color="">mdi-image-album</v-icon>
                                 <h3 class="text-xl mt-4">Album Simple</h3>
                                 <p class="text-sm opacity-70 mt-2">Créez un album photo unique</p>
@@ -22,7 +22,7 @@
 
                         <v-card @click="selectType('event')" :class="{ 'border-2 border-cyan-900': type === 'event' }"
                             class="p-6 cursor-pointer bg-yellow-600/30 hover:bg-yellow-600/80 transition-all rounded-xl">
-                            <div class="text-center">
+                            <div class="text-center text-white">
                                 <v-icon size="48" color="">mdi-calendar-star</v-icon>
                                 <h3 class="text-xl mt-4">Événement</h3>
                                 <p class="text-sm opacity-70 mt-2">Créez un événement avec plusieurs albums</p>

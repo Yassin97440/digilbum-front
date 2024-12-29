@@ -1,10 +1,7 @@
 <template>
     <div class="min-h-screen w-full flex flex-col px-6 py-8">
         <!-- Titre de la section -->
-        <h1
-            class="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 bg-clip-text text-transparent">
-            Mes Albums
-        </h1>
+
 
         <!-- Tabs customisés -->
         <v-tabs v-model="tab"
@@ -28,26 +25,22 @@
 
                     <v-window-item value="two">
                         <v-container fluid class="text-center ">
-                            <<v-card>
-                                <<v-btn @click="eventStore.fetchForUser()" color="info">test get event </v-btn>
-        </v-card>
-        <!-- <div class="flex flex-col items-center justify-center h-64">
-                                <v-icon size="large" class="mb-4 ">mdi-clock-time-four-outline</v-icon>
-                                <p class="text-xl">Albums ajoutés récemment - Bientôt disponible</p>
-                            </div> -->
-        </v-container>
-        </v-window-item>
+                            <v-card>
+                                <v-btn @click="eventStore.fetchForUser()" color="info">test get event </v-btn>
+                            </v-card>
+                        </v-container>
+                    </v-window-item>
 
-        <v-window-item value="three">
-            <v-container fluid class="text-center">
-                <div class="flex flex-col items-center justify-center h-64">
-                    <v-icon size="large" class="mb-4">mdi-heart-outline</v-icon>
-                    <p class="text-xl">Vos albums favoris - Bientôt disponible</p>
-                </div>
-            </v-container>
-        </v-window-item>
-        </v-window>
-        </v-card-text>
+                    <v-window-item value="three">
+                        <v-container fluid class="text-center">
+                            <div class="flex flex-col items-center justify-center h-64">
+                                <v-icon size="large" class="mb-4">mdi-heart-outline</v-icon>
+                                <p class="text-xl">Vos albums favoris - Bientôt disponible</p>
+                            </div>
+                        </v-container>
+                    </v-window-item>
+                </v-window>
+            </v-card-text>
         </v-card>
     </div>
 </template>

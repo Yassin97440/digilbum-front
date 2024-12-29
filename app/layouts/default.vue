@@ -18,7 +18,7 @@
                             <div class="relative group">
                                 <h1
                                     class="text-3xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 
-                                             bg-clip-text text-transparent transform transition-transform duration-300">
+                                             bg-clip-text text-transparent transform transition-transform duration-300 pb-1">
                                     Digilbum
                                 </h1>
                             </div>
@@ -27,7 +27,7 @@
                         <v-spacer></v-spacer>
 
                         <!-- Navigation Items -->
-                        <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
                             <v-btn v-for="item in items" :key="item.to" :to="item.to" :icon="item.icon"
                                 class="bg-white/5 hover:bg-white/10 transition-colors duration-300" elevation="0">
                             </v-btn>
@@ -158,7 +158,7 @@ export default {
                     to: "/NewAlbum",
                 },
                 {
-                    icon: "mdi-panorama-variant-outline",
+                    icon: "mdi-panorama",
                     title: "Visionner un album",
                     to: "/showAlbums",
                 },

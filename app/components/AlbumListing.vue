@@ -1,8 +1,8 @@
 <template>
   <v-row>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full pb-3 md:p-4">
       <v-card v-for="(album, i) in albums" :key="i" class="relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 
-                 shadow-2xl rounded-2xl transform transition-all duration-500 hover:scale-105
+                 shadow-xl rounded-2xl transform transition-all duration-500 hover:scale-105
                  hover:shadow-lg hover:border-white/30 group" elevation="0">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-500/10 
                       group-hover:opacity-75 transition-opacity duration-500"></div>

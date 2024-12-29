@@ -1,18 +1,20 @@
 <template>
   <div class="min-h-screen w-full px-6 py-8">
     <h1
-      class="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-orange-400 via-pink-500 to-blue-600 bg-clip-text text-transparent">
+      class="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-zinc-600  via-red-500/50 to-gray-600 bg-clip-text text-transparent">
       Mes Groupes
     </h1>
 
-    <div class="flex justify-end mb-6">
-      <v-btn color="primary" class="mr-4" @click="openJoinGroupDialog">
-        <v-icon left>mdi-account-group-outline</v-icon>
-        Rejoindre un groupe
+    <div class="flex justify-items-center mb-6 max-w-min	">
+      <v-btn class="mr-4 w-1/2 rounded-lg bg-zinc-400 text-white" @click="openJoinGroupDialog">
+        <v-icon>mdi-account-group-outline</v-icon>
+        <span class="hidden md:inline ml-2">Rejoindre un groupe</span>
+        <span class="inline md:hidden ml-2">Rejoindre</span>
       </v-btn>
-      <v-btn color="primary" @click="createGroup">
-        <v-icon left>mdi-plus</v-icon>
-        Créer un groupe
+      <v-btn class="w-1/2 rounded-lg bg-zinc-400 text-white" @click="createGroup">
+        <v-icon>mdi-plus</v-icon>
+        <span class="hidden md:inline ml-2">Créer un groupe</span>
+        <span class="inline md:hidden ml-2">Créer</span>
       </v-btn>
     </div>
 
@@ -102,15 +104,15 @@ const openJoinGroupDialog = () => {
 }
 
 const joinGroup = async () => {
-  try{
-    const  res =  await groupStore.addMember(joinGroupCode.value)
+  try {
+    const res = await groupStore.addMember(joinGroupCode.value)
     joinGroupDialog.value = false
     useNotify(toast, "success", "Ajou té au groupe", "Tu as bien été ajouté au groupe! Tu peux visiter les albums du groupe", 5000)
   } catch (err) {
     errorJoinGroup.value = true
     useNotify(toast, "error", "Erreur", "Une erreur s'est produite lors de votre ajout au groupe", 5000)
   }
-  
+
 }
 
 const getGroupByJoinCode = async () => {

@@ -13,8 +13,8 @@
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-blue-600/20 mix-blend-overlay">
                         </div>
-                        <img class="w-full h-full blur-md object-cover transform scale-105 animate-subtle-zoom"
-                            src="~/assets/bg-sunshine2000.jpg" alt="Background" />
+                        <img class="w-full h-full  object-cover transform scale-105 animate-subtle-zoom"
+                            src="~/assets/bg.webp" alt="Background" />
                     </div>
 
                     <!-- Éléments décoratifs -->
@@ -28,7 +28,7 @@
                     </div>
 
                     <!-- App Bar avec effet glassmorphism -->
-                    <v-app-bar color="transparent" class="border-b border-white/10 backdrop-blur-md bg-white/5"
+                    <v-app-bar color="transparent" class="border-b border-white/10 backdrop-blur-3xl bg-white/5"
                         elevation="0" prominent>
                         <div class="w-full max-w-7xl mx-auto px-4 flex items-center justify-between">
                             <!-- Logo et titre -->

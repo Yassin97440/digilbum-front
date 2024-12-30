@@ -10,7 +10,10 @@ export const useGroupStore = defineStore('groupStore', {
   }),
   actions: {
     async create(newGroupData) {
-      const res = await useAuthFetch("group", "POST", newGroupData)
+      if (newGroupData.groupType === "Famille") newGroupData.groupType = "Familly";
+      if (newGroupData.groupType === "Amis") newGroupData.groupType = "Friends";
+      if (newGroupData.groupType === "Entreprise") newGroupData.groupType = "Company";
+      const res = await useAuthFetch("group/", "POST", newGroupData)
       console.log("res for create : ", res)
       this.groups.push(res)
     },

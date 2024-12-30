@@ -1,31 +1,25 @@
 <template>
 
+    <v-card class="bg-transparent backdrop-blur-md border border-zinc-400 rounded-xl text-white">
+        <v-card-title>
+            <h1>Créer un groupe</h1>
+        </v-card-title>
+        <v-card-item>
+            <v-text-field v-model="groupName" label="Nom de votre Groupe" variant="outlined" density="comfortable"
+                required maxlength="15" prepend-icon="mdi-account-group"
+                :rules="[v => v.length >= 3 && v.length <= 15 || 'Le nom du groupe doit contenir entre 3 et 15 caractères']"></v-text-field>
 
-    <div class="flex justify-center ">
-
-        <v-card class="  rounded-lg min-w-80">
-
-            <v-container>
-                <v-row class=" p-0">
-                    <v-text-field :v-model="groupName" variant="solo-filled" label="Nom de votre Groupe" rounded
-                        outlined clearable required></v-text-field>
-                </v-row>
-                <v-row class="p-0">
-                    <v-combobox v-model="groupType" label="Quelle type de groupe voulez-vous créer?"
-                        :items="['Famille', 'Amis', 'Entreprise',]" variant="solo-filled"></v-combobox>
-                </v-row>
-
-
-            </v-container>
-        </v-card>
-    </div>
-
+            <v-combobox v-model="groupType" label="Quelle type de groupe voulez-vous créer?"
+                :items="['Famille', 'Amis', 'Entreprise',]" prepend-icon="mdi-shape" variant="outlined"
+                density="comfortable"></v-combobox>
+        </v-card-item>
+        <v-card-actions>
+            <v-btn color="primary" @click="createGroup">Créer</v-btn>
+        </v-card-actions>
+    </v-card>
 </template>
 
 <script>
-import { useAuthStore } from "~~/stores/AuthStore";
-
-import { mapActions } from "pinia";
 
 export default {
     data: () => ({
@@ -39,10 +33,9 @@ export default {
 
     },
     methods: {
-        valideDoublePassword() {
-            return this.passwording
-        },
-
+        createGroup() {
+            this.$emit('create-group', { groupName: this.groupName, groupType: this.groupType })
+        }
     },
 };
 </script>

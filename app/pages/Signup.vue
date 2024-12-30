@@ -36,8 +36,7 @@ const userDataChanged = (newUserData) => {
 
 <template>
   <div class="min-h-screen w-full flex items-center justify-center px-4 py-6 mt-5">
-    <v-card
-      class="w-full max-w-2xl relative bg-transparent backdrop-blur-3xl border border-zinc-400 shadow-2xl overflow-hidden rounded-2xl">
+    <v-card class="w-full max-w-2xl relative bg-transparent backdrop-blur-3xl shadow-2xl overflow-hidden rounded-2xl">
       <v-card-item class="p-8 text-white">
         <div class="text-center mb-5 relative">
           <h1 class="pb-3 text-6xl font-bold  bg-gradient-to-r from-orange-400/100 via-gray-400/90 to-slate-400/90 bg-clip-text text-transparent
@@ -50,8 +49,7 @@ const userDataChanged = (newUserData) => {
         </div>
 
         <v-stepper v-model="currentStep" :items="['Informations', 'Groupe', 'Validation']"
-          class="bg-transparent border-2 border-zinc-400 rounded-lg text-white" next-text="Suivant"
-          prev-text="Précédent">
+          class="bg-transparent border border-zinc-400 rounded-lg text-white" next-text="Suivant" prev-text="Précédent">
 
           <template v-slot:item.1>
             <SignupNewUserFormulaire @user-data-changed="userDataChanged" v-model:newUser="newUser"

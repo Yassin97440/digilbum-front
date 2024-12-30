@@ -6,7 +6,7 @@
                 <!-- Background avec overlay -->
                 <div class=" fixed inset-0 w-full h-full">
                     <img class="w-full h-full  object-cover transform scale-105 animate-subtle-zoom"
-                        src="~/assets/bg.webp" alt="Background" />
+                        src="~/assets/bg.jpeg" alt="Background" />
                 </div>
 
                 <!-- Déplacer l'App Bar à l'intérieur du main pour qu'il soit au-dessus du background -->

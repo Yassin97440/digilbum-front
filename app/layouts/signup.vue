@@ -12,7 +12,7 @@
                             class="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-blue-600/20 mix-blend-overlay">
                         </div>
                         <img class="w-full h-full  object-cover transform scale-105 animate-subtle-zoom"
-                            src="~/assets/bg.webp" alt="Background" />
+                            src="~/assets/bg.jpeg" alt="Background" />
                     </div>
 
                     <!-- Éléments décoratifs -->

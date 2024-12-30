@@ -75,8 +75,6 @@
     <v-dialog v-model="createGroupDialog" max-width="500" class="w-[95vw] md:w-[400px]">
       <SignupNewGroupForm @createGroup="createGroup" />
     </v-dialog>
-    <Toast />
-
   </div>
 </template>
 
@@ -107,7 +105,7 @@ const joinGroup = async () => {
   try {
     const res = await groupStore.addMember(joinGroupCode.value)
     joinGroupDialog.value = false
-    useNotify(toast, "success", "Ajou té au groupe", "Tu as bien été ajouté au groupe! Tu peux visiter les albums du groupe", 5000)
+    useNotify(toast, "success", "Ajouté au groupe", "Tu as bien été ajouté au groupe! Tu peux visiter les albums du groupe", 5000)
   } catch (err) {
     errorJoinGroup.value = true
     useNotify(toast, "error", "Erreur", "Une erreur s'est produite lors de votre ajout au groupe", 5000)

@@ -48,6 +48,14 @@ export const useEventStore = defineStore("eventStore", {
 
         async getEventDetails(eventId) {
             return await useAuthFetch(`event/${eventId}`, 'GET');
-        }
+        },
+
+        async update(event) {
+            const res = await useAuthFetch(`event/`, "PUT", event)
+        },
+
+        async delete(event) {
+            const res = await useAuthFetch(`event/delete?eventId=${event.id}`, "POST",)
+        },
     }
 });

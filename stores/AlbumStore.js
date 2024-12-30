@@ -58,6 +58,11 @@ export const useAlbumStore = defineStore("AlbumStore", {
             console.log("response for fetchForSharedGroups : ", response)
             return response
         },
+
+        async fetchAlbumsForEvent(eventId) {
+            const response = await useAuthFetch(`album/forEvent/${eventId}`, 'GET')
+            return response
+        },
         async delete(album) {
             const res = await useAuthFetch(`album/deleteOne?albumId=${album.id}`, "POST",)
         },

@@ -48,9 +48,22 @@ export const useAlbumStore = defineStore("AlbumStore", {
             );
             this.selectedAlbumPictures = newPicResponse
         },
+        async getAlbumById(albumId) {
+            const album = await useAuthFetch(`album/${albumId}`, "GET")
+            return album
+        },
 
+        async fetchForSharedGroups(albumId) {
+            const response = await useAuthFetch(`album-sharing/groups?albumId=${albumId}`, 'GET')
+            console.log("response for fetchForSharedGroups : ", response)
+            return response
+        },
         async delete(album) {
             const res = await useAuthFetch(`album/deleteOne?albumId=${album.id}`, "POST",)
+        },
+        async updateData(data) {
+            const res = await useAuthFetch(`album/`, "PUT", data)
+            return res
         }
     }
 

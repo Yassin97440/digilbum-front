@@ -20,7 +20,20 @@
                     <v-btn color="primary" variant="text" @click="$emit('view', album)">
                         Voir l'album
                     </v-btn>
-                    <v-btn icon="mdi-dots-horizontal" variant="text" @click="$emit('edit', album)"></v-btn>
+                    <v-btn icon="mdi-dots-horizontal" variant="text" @click="$emit('edit', album)">
+                        <v-icon>mdi-dots-horizontal</v-icon>
+                        <v-menu activator="parent">
+                            <v-list
+                                class="bg-transparent backdrop-blur-3xl border border-zinc-400 text-white rounded-xl">
+
+                                <v-list-item v-for="item in itemsListAction" :key="item.title"
+                                    @click="item.action(album)">
+                                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                </v-list-item>
+
+                            </v-list>
+                        </v-menu>
+                    </v-btn>
                 </div>
             </v-card-item>
         </v-card>
@@ -28,6 +41,7 @@
 </template>
 
 <script setup>
+import { useAlbumStore } from '~~/stores/AlbumStore'
 const props = defineProps({
     albums: {
         type: Array,
@@ -35,7 +49,30 @@ const props = defineProps({
     }
 })
 
+const toast = useToast()
+
 const emit = defineEmits(['view', 'edit'])
+const albumStore = useAlbumStore()
+const deleteAlbum = (album) => {
+    console.log("delete album", album)
+    albumStore.delete(album)
+    useNotify(toast, "success", "Album supprimé", "L'album a été supprimé avec succès", 5000)
+}
+const itemsListAction = [
+    {
+        title: 'Supprimer',
+        icon: 'mdi-delete',
+        action: deleteAlbum
+    },
+    {
+        title: 'Modifier',
+        icon: 'mdi-pencil',
+        action: (album) => navigateTo(`/album/${album.id}`)
+    }
+
+]
+
+
 
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString('fr-FR', {

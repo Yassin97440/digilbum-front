@@ -11,7 +11,7 @@
         <span class="hidden md:inline ml-2">Rejoindre un groupe</span>
         <span class="inline md:hidden ml-2">Rejoindre</span>
       </v-btn>
-      <v-btn class="w-1/2 rounded-lg bg-zinc-400 text-white" @click="createGroup">
+      <v-btn class="w-1/2 rounded-lg bg-zinc-400 text-white" @click="openCreateGroupDialog">
         <v-icon>mdi-plus</v-icon>
         <span class="hidden md:inline ml-2">Créer un groupe</span>
         <span class="inline md:hidden ml-2">Créer</span>
@@ -31,7 +31,7 @@
     </div>
 
     <v-dialog v-model="joinGroupDialog" max-width="500" class="w-[95vw] md:w-[400px]">
-      <v-card>
+      <v-card class="bg-transparent backdrop-blur-md border border-zinc-400 rounded-lg text-white">
         <v-card-title>
           <h1>Rejoindre un groupe</h1>
         </v-card-title>
@@ -72,12 +72,9 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="createGroupDialog" width="auto">
-      <SignupNewGroupForm />
-      0
+    <v-dialog v-model="createGroupDialog" max-width="500" class="w-[95vw] md:w-[400px]">
+      <SignupNewGroupForm @createGroup="createGroup" />
     </v-dialog>
-    <Toast />
-
   </div>
 </template>
 
@@ -87,6 +84,7 @@ definePageMeta({
   middleware: ["auth"]
 })
 const groupStore = useGroupStore()
+const { myGroups, loading, error } = useMyGroups()
 
 const joinGroupDialog = ref(false)
 const createGroupDialog = ref(false)
@@ -107,7 +105,7 @@ const joinGroup = async () => {
   try {
     const res = await groupStore.addMember(joinGroupCode.value)
     joinGroupDialog.value = false
-    useNotify(toast, "success", "Ajou té au groupe", "Tu as bien été ajouté au groupe! Tu peux visiter les albums du groupe", 5000)
+    useNotify(toast, "success", "Ajouté au groupe", "Tu as bien été ajouté au groupe! Tu peux visiter les albums du groupe", 5000)
   } catch (err) {
     errorJoinGroup.value = true
     useNotify(toast, "error", "Erreur", "Une erreur s'est produite lors de votre ajout au groupe", 5000)
@@ -121,11 +119,22 @@ const getGroupByJoinCode = async () => {
     Object.assign(groupData, group)
   }
 }
-const createGroup = () => {
+const openCreateGroupDialog = () => {
   createGroupDialog.value = true
   console.log("createGroup")
 }
-const { myGroups, loading, error } = useMyGroups()
+
+const createGroup = async (group) => {
+  try {
+    console.log("group : ", group)
+    await groupStore.create(group)
+    createGroupDialog.value = false
+    useNotify(toast, "success", "Groupe créé", "Tu as bien créé un groupe! Tu peux visiter les albums du groupe", 5000)
+  } catch (err) {
+    errorJoinGroup.value = true
+    useNotify(toast, "error", "Erreur", "Une erreur s'est produite lors de la création du groupe", 5000)
+  }
+}
 </script>
 
 <style></style>

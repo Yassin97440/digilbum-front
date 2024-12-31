@@ -34,12 +34,16 @@ export const AlbumService = {
         }
     },
 
-    async createAlbumWithPictures(data, toast) {
+    async createAlbumWithPictures(data, sharedGroups, toast) {
         try {
             const newAlbum = await this.createNewAlbum(data.album)
             useNotify(toast, 'success', 'Album créé', 'Album créé avec succès', 5000)
             const uploadedPictures = await this.uploadPictures(data.pictures, newAlbum.id)
             useNotify(toast, 'success', 'Images téléchargées', 'Images téléchargées avec succès', 5000)
+            if (sharedGroups && sharedGroups.length > 0) {
+                await AlbumService.shareAlbum(newAlbum.id, sharedGroups, toast)
+                useNotify(toast, 'success', 'Album partagé', 'Album partagé avec succès', 5000)
+            }
             return {
                 album: newAlbum,
                 pictures: uploadedPictures

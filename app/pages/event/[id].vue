@@ -71,20 +71,20 @@ const saveEventInfo = async () => {
     })
     await fetchEvent()
     isEditingInfo.value = false
-    useNotify(toast, {
-      severity: "success",
-      summary: "Succès",
-      detail: "Les informations ont été mises à jour",
-      life: 3000
-    })
+    useNotify(toast,
+      "success",
+      "Succès",
+      "Les informations ont été mises à jour",
+      3000
+    )
   } catch (err) {
     console.error(err)
-    useNotify(toast, {
-      severity: "error",
-      summary: "Erreur lors de la sauvegarde",
-      detail: err.message,
-      life: 5000
-    })
+    useNotify(toast,
+      "error",
+      "Erreur lors de la sauvegarde",
+      err.message,
+      5000
+    )
   }
 }
 
@@ -98,7 +98,7 @@ onMounted(async () => {
   <div class="min-h-screen w-full px-6 py-8">
     <div class="max-w-4xl mx-auto">
       <!-- Section Informations -->
-      <v-card class="bg-transparent backdrop-blur-3xl rounded-2xl border border-zinc-400 p-6 mb-8 relative">
+      <v-card class="bg-transparent backdrop-blur-3xl rounded-2xl border border-zinc-400 p-6 mb-8 relative text-white">
         <v-btn v-if="!isEditingInfo" icon="mdi-pencil" size="small" class="absolute top-2 right-2"
           @click="startEditing" />
 
@@ -156,7 +156,7 @@ onMounted(async () => {
         <div v-else>
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl text-white font-semibold">Albums ({{ albums.length }})</h2>
-            <v-btn color="primary" prepend-icon="mdi-plus" to="/album/new">
+            <v-btn class="bg-orange-500 text-white" prepend-icon="mdi-plus" to="/NewAlbum">
               Nouvel album
             </v-btn>
           </div>

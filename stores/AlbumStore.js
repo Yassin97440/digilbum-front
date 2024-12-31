@@ -17,10 +17,8 @@ export const useAlbumStore = defineStore("AlbumStore", {
         async postNewAlbums(data, sharedGroups, toast) {
             try {
                 this.loading = true
-                const result = await AlbumService.createAlbumWithPictures(data, toast)
-                if (sharedGroups && sharedGroups.length > 0) {
-                    const shareAlbumResponse = await AlbumService.shareAlbum(result.album.id, sharedGroups, toast)
-                }
+                const result = await AlbumService.createAlbumWithPictures(data, sharedGroups, toast)
+
 
                 navigateTo('/showAlbums');
             } catch (error) {

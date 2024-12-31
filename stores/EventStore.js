@@ -14,18 +14,16 @@ export const useEventStore = defineStore("eventStore", {
 
         async createEventWithAlbums(data, toast) {
             try {
-                console.log("🚀 ~ createEventWithAlbums ~ data:", data);
                 const newEvent = {
                     name: data.event.name,
                     startedAt: data.event.startedAt,
                     endedAt: data.event.endedAt,
                     description: data.event.description
                 };
-                // Création de l'événement
+
                 const eventResponse = await useAuthFetch('event/', 'POST', newEvent);
                 useNotify(toast, 'success', 'Événement créé', 'Événement créé avec succès', 5000)
 
-                // Création de l'album associé
                 if (data.pictures && data.pictures.length > 0) {
                     const albumData = {
                         album: {
@@ -36,7 +34,7 @@ export const useEventStore = defineStore("eventStore", {
                         },
                         pictures: data.pictures
                     };
-                    await AlbumService.createAlbumWithPictures(albumData, toast);
+                    await AlbumService.createAlbumWithPictures(albumData, data.sharedGroups, toast);
                 }
                 navigateTo('/showAlbums');
             } catch (error) {

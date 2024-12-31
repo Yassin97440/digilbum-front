@@ -105,7 +105,8 @@ const handleSubmit = async () => {
             await eventStore.createEventWithAlbums({
                 event: eventInfo.value,
                 album: albumInfo.value,
-                pictures: photos.value
+                pictures: photos.value,
+                sharedGroups: sharingOptions.value,
             },
                 toast
             );

@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: ["master"]
-  pull_request:
-    branches: ["master"]
   workflow_dispatch:
 
 jobs:
@@ -12,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses:
-          actions/checkout@v4
-          
+      - uses: actions/checkout@v4
+
       - name: "Create env file"
         run: |
           touch .env

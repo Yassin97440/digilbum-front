@@ -52,4 +52,6 @@ jobs:
           script: |
             cd ~/app/front
             docker load < digilbum-front.tar.gz
-            docker run -d -p 3000:3000 digilbum-front:${{ github.run_number }}
+            docker stop digilbum-front || true
+            docker rm digilbum-front || true
+            docker run -d -p 3000:3000 --name digilbum-front digilbum-front:${{ github.run_number }}

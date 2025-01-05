@@ -117,4 +117,20 @@ const handleSubmit = async () => {
     }
 }
 
+const rules = {
+    title: [v => !!v || 'Le titre est requis'],
+    description: [], // Optionnel
+    date: [], // Optionnel
+}
+
+const form = ref(null)
+
+const validateForm = () => {
+    const isValid = form.value.validate()
+    if (isValid) {
+        // Logique de soumission
+    }
+    return isValid
+}
+
 </script>

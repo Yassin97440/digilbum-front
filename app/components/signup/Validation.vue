@@ -1,7 +1,7 @@
 <template>
     <div class="space-y-8 max-w-md ">
         <v-card
-            class=" bg-transparent backdrop-blur-3xl border border-zinc-400 rounded-xl p-2 space-y-6 text-white mb-3">
+            class=" bg-transparent backdrop-blur-3xl border border-zinc-400 rounded-xl p-2 space-y-6 text-white mb-3 items-center justify-center ">
             <div class="text-center space-y-4">
                 <h2
                     class="text-2xl font-semibold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">

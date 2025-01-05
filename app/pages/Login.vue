@@ -1,9 +1,31 @@
 <script setup>
+import { useAuthStore } from '~~/stores/AuthStore'
+
 definePageMeta({
     middleware: ["auth"],
     layout: "signup",
-    // or middleware: 'auth'
 })
+
+const email = ref("")
+const password = ref("")
+const visible = ref(false)
+const authStore = useAuthStore
+
+const rules = {
+    email: [
+        v => !!v || 'L\'email est requis',
+        v => /.+@.+\..+/.test(v) || 'L\'email doit être valide'
+    ],
+    password: [
+        v => !!v || 'Le mot de passe est requis',
+        v => v.length >= 8 || 'Le mot de passe doit contenir au moins 8 caractères'
+    ]
+}
+
+
+const logine = () => {
+    authStore.login({ email: email.value, password: password.value })
+}
 </script>
 <template>
     <div class="h-screen flex items-center justify-center overflow-hidden px-4">
@@ -26,9 +48,9 @@ definePageMeta({
                             Identifiant
                         </label>
                         <div class="relative group">
-                            <v-text-field v-model="email" placeholder="Adresse email" variant="outlined"
-                                density="comfortable" class="pl-3 rounded-xl transition-all duration-300"
-                                prepend-icon="mdi-email-outline">
+                            <v-text-field v-model="email" :rules="rules.email" placeholder="Adresse email"
+                                variant="outlined" density="comfortable"
+                                class="pl-3 rounded-xl transition-all duration-300" prepend-icon="mdi-email-outline">
                             </v-text-field>
                         </div>
                     </div>
@@ -38,8 +60,9 @@ definePageMeta({
                             Mot de passe
                         </label>
                         <div class="relative group">
-                            <v-text-field v-model="password" :type="visible ? 'text' : 'password'"
-                                placeholder="Mot de passe" variant="outlined" density="comfortable" class="pl-3
+                            <v-text-field v-model="password" :rules="rules.password"
+                                :type="visible ? 'text' : 'password'" placeholder="Mot de passe" variant="outlined"
+                                density="comfortable" class="pl-3
                                      rounded-xl " prepend-icon="mdi-lock-outline"
                                 :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                                 @click:append-inner="visible = !visible">
@@ -65,27 +88,3 @@ definePageMeta({
         </v-card>
     </div>
 </template>
-<script>
-import { useAuthStore } from "~~/stores/AuthStore";
-
-import { mapActions } from "pinia";
-export default {
-
-    data: () => ({
-        email: "",
-        password: "",
-        show1: false,
-        rules: {
-            required: (value) => !!value || "Required.",
-            min: (v) => v.length >= 8 || "Min 8 characters",
-            emailMatch: () => `The email and password you entered don't match`,
-        },
-    }),
-    methods: {
-        ...mapActions(useAuthStore, ["login"]),
-        logine() {
-            this.login({ email: this.email, password: this.password })
-        }
-    }
-}
-</script>

@@ -11,7 +11,7 @@ import { useGroupStore } from "../stores/GroupStore"
 // État réactif
 const currentStep = ref(1)
 const dataGroup = reactive({})
-const newUser = reactive({})
+const newUser = ref({})
 
 // Stores
 const authStore = useAuthStore()
@@ -29,8 +29,8 @@ const groupDataChanged = async (newDataGroup) => {
 }
 
 const userDataChanged = (newUserData) => {
-  console.log("🚀 ~ userDataChanged ~ newUserData:", newUserData)
-  Object.assign(newUser, newUserData)
+  console.log("🚀 ~ userDataChanged ~ newUserData:", newUserData.value)
+  newUser.value = newUserData.value
 }
 </script>
 

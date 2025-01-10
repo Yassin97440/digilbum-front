@@ -11,7 +11,7 @@ import { useGroupStore } from "../stores/GroupStore"
 // État réactif
 const currentStep = ref(1)
 const dataGroup = reactive({})
-const newUser = reactive({})
+const newUser = ref({})
 
 // Stores
 const authStore = useAuthStore()
@@ -29,8 +29,8 @@ const groupDataChanged = async (newDataGroup) => {
 }
 
 const userDataChanged = (newUserData) => {
-  console.log("🚀 ~ userDataChanged ~ newUserData:", newUserData)
-  Object.assign(newUser, newUserData)
+  console.log("🚀 ~ userDataChanged ~ newUserData:", newUserData.value)
+  newUser.value = newUserData.value
 }
 </script>
 
@@ -63,8 +63,11 @@ const userDataChanged = (newUserData) => {
           </template>
 
           <template v-slot:item.3>
-            <SignupValidation :new-user="newUser" :data-group="dataGroup" class="max-w-md">
-            </SignupValidation>
+            <div class="flex justify-center">
+
+              <SignupValidation :new-user="newUser" :data-group="dataGroup" class="max-w-md">
+              </SignupValidation>
+            </div>
           </template>
 
         </v-stepper>

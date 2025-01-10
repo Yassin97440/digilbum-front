@@ -63,8 +63,11 @@ const userDataChanged = (newUserData) => {
           </template>
 
           <template v-slot:item.3>
-            <SignupValidation :new-user="newUser" :data-group="dataGroup" class="max-w-md">
-            </SignupValidation>
+            <div class="flex justify-center">
+
+              <SignupValidation :new-user="newUser" :data-group="dataGroup" class="max-w-md">
+              </SignupValidation>
+            </div>
           </template>
 
         </v-stepper>

@@ -9,7 +9,7 @@ definePageMeta({
 const email = ref("")
 const password = ref("")
 const visible = ref(false)
-const authStore = useAuthStore
+const authStore = useAuthStore()
 
 const rules = {
     email: [

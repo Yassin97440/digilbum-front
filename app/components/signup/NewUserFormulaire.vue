@@ -44,18 +44,35 @@
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import { useAuthStore } from '~~/stores/AuthStore'
+
 const props = defineProps({
   newUser: {
     type: Object,
     required: true
   }
 })
+
+const authStore = useAuthStore()
+
+const checkEmailExists = async (email) => {
+  try {
+    const exists = await authStore.checkEmailExists(email)
+    return !exists || 'Cet email est déjà utilisé'
+  } catch (error) {
+    console.error('Erreur lors de la vérification de l\'email:', error)
+    return 'Erreur lors de la vérification de l\'email'
+  }
+}
+
 const rules = {
   firstName: [v => !!v || 'Le prénom est requis'],
   lastName: [v => !!v || 'Le nom est requis'],
   email: [
     v => !!v || 'L\'email est requis',
-    v => /.+@.+\..+/.test(v) || 'L\'email doit être valide'
+    v => /.+@.+\..+/.test(v) || 'L\'email doit être valide',
+    checkEmailExists
   ],
   password: [
     v => !!v || 'Le mot de passe est requis',
@@ -68,14 +85,13 @@ const rules = {
   ]
 }
 
-
 const show1 = ref(false)
 
 const form = ref(null)
 const emit = defineEmits(['user-data-changed'])
 
+
 watch(props.newUser, (newVal) => {
-  console.log("newVal : ", newVal)
   dataChanged(newVal);
 })
 

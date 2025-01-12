@@ -62,10 +62,9 @@
 
             <!-- Bouton de confirmation -->
             <div class="flex justify-center py-3">
-                <v-btn @click="register" class="px-8 py-2  bg-gradient-to-r from-orange-400 via-gray-400 to-slate-400 
-                text-white font-medium rounded-xl transform hover:scale-105 transition-all duration-300">
+                <AtomsButtonBg @click="register" class="">
                     Confirmer l'inscription
-                </v-btn>
+                </AtomsButtonBg>
             </div>
         </v-card>
     </div>

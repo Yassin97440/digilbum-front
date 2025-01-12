@@ -70,11 +70,9 @@ const logine = () => {
                         </div>
                     </div>
 
-                    <v-btn block class="mt-6 bg-gradient-to-r from-orange-400 via-gray-400 to-slate-400 font-medium py-3 text-lg
-                               rounded-xl transform hover:scale-102 transition-all duration-300 hover:shadow-lg"
-                        elevation="3" @click="logine">
+                    <AtomsButtonBg block @click="logine">
                         Connexion
-                    </v-btn>
+                    </AtomsButtonBg>
 
                     <div class="text-center mt-6">
                         <NuxtLink to="/Signup" class="inline-flex items-center text-base text-blue-500/80 hover:text-blue-500 transition-colors

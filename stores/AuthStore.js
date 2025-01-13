@@ -88,7 +88,22 @@ export const useAuthStore = defineStore("authStore", {
       return navigateTo('/Login')
 
     },
-
-
+    async checkEmailExists(email) {
+      try {
+        const SERVER_HOST = config.public.apiBaseUrl;
+        const response = await $fetch(`${SERVER_HOST}/user/isEmailExist`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: email
+        })
+        console.log("response : ", response)
+        return response
+      } catch (error) {
+        console.error('Erreur lors de la vérification de l\'email:', error)
+        throw error
+      }
+    }
   },
 });

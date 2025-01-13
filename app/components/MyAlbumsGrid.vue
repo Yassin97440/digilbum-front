@@ -1,12 +1,14 @@
 <template>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <v-card v-for="album in albums" :key="album.id" class="relative overflow-hidden bg-transparent backdrop-blur-3xl text-white
-                       shadow-2xl rounded-2xl transform transition-all duration-500 hover:scale-105
-                       hover:shadow-lg hover:border-white/30 group">
+        <v-card v-for="album in albums" :key="album.id" 
+        class="relative overflow-hidden bg-transparent backdrop-blur-3xl text-white
+               rounded-2xl transform transition-all duration-500 hover:scale-105
+            group">
 
             <div class="relative aspect-[4/3] overflow-hidden">
-                <img :src="album.coverImagePath" class="w-full h-full object-cover transform transition-transform duration-700
-                            group-hover:scale-110" :alt="album.name" />
+                <img :src="album.coverImagePath" 
+                class="w-full h-full object-cover transform transition-transform duration-700
+                        group-hover:scale-110" :alt="album.name" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             </div>
 
@@ -17,9 +19,9 @@
                 </p>
 
                 <div class="mt-4 flex justify-between items-center">
-                    <v-btn color="primary" variant="text" @click="$emit('view', album)">
+                    <AtomsButton color="primary" variant="text" @click="$emit('view', album)">
                         Voir l'album
-                    </v-btn>
+                    </AtomsButton>
                     <v-btn icon="mdi-dots-horizontal" variant="text" @click="$emit('edit', album)">
                         <v-icon>mdi-dots-horizontal</v-icon>
                         <v-menu activator="parent">
@@ -54,7 +56,6 @@ const toast = useToast()
 const emit = defineEmits(['view', 'edit'])
 const albumStore = useAlbumStore()
 const deleteAlbum = (album) => {
-    console.log("delete album", album)
     albumStore.delete(album)
     useNotify(toast, "success", "Album supprimé", "L'album a été supprimé avec succès", 5000)
 }

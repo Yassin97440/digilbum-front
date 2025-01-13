@@ -1,7 +1,9 @@
 <template>
-  <div>
-    
-  </div>
+
+    <v-btn color="primary" variant="text">
+        <slot></slot>
+    </v-btn>
+
 </template>
 
 <script lang="ts" setup>

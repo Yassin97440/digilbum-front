@@ -1,19 +1,22 @@
 <template>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <v-card v-for="event in events" :key="event.id" class="relative overflow-hidden bg-transparent backdrop-blur-3xl rounded-2xl  
-                shadow-2xl text-white ">
+        <CommonCard v-for="event in events" :key="event.id" hoverEffect >
 
-            <v-card-item class="relative z-10">
-                <h3 class="text-xl font-semibold mb-2">{{ event.name }}</h3>
-                <p class="text-sm opacity-70">
+            <template #title>
+                {{ event.name }}
+            </template>
+
+            <p class="text-sm opacity-70 text-wrap">
                     {{ formatDate(event.startedAt) }} - {{ formatDate(event.endedAt) }}
                 </p>
                 <p class="text-sm mt-2">{{ event.description }}</p>
 
+            <template #actions>
+
                 <div class="mt-4 flex justify-between items-center">
-                    <v-btn color="primary" variant="text" @click="$emit('view', event)">
+                    <AtomsButton >
                         Voir l'événement
-                    </v-btn>
+                    </AtomsButton>
                     <v-btn variant="text" @click="">
                         <v-icon>mdi-dots-horizontal</v-icon>
                         <v-menu activator="parent">
@@ -29,8 +32,9 @@
                         </v-menu>
                     </v-btn>
                 </div>
-            </v-card-item>
-        </v-card>
+            </template>
+
+        </CommonCard>
     </div>
 </template>
 

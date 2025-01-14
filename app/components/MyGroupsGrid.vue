@@ -24,24 +24,23 @@ const getGroupTypeLabel = (type) => {
     </div>
 
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <v-card v-for="group in groups" :key="group.id" class="bg-transparent backdrop-blur-3xl text-white rounded-xl">
-            <v-card-title class="text-xl font-bold">{{ group.groupName }}</v-card-title>
+        <CommonCard v-for="group in groups" :key="group.id" :item="group" actionTitle="Voir le groupe">
+            <template #title>
+                {{ group.groupName }}
+            </template>
 
-            <v-card-text>
-                <p class="mb-2">{{ group.description }}</p>
                 <p class="text-sm">
                     Type: <span class="font-medium">{{ getGroupTypeLabel(group.groupType) }}</span>
                 </p>
-            </v-card-text>
 
-            <v-card-actions>
+            <template #actions>
                 <v-btn :to="`/groups/${group.id}`" color="primary" variant="text">
                     Voir le groupe
                 </v-btn>
                 <v-btn v-if="group.isAdmin" :to="`/groups/${group.id}/manage`" color="secondary" variant="text">
                     Gérer
                 </v-btn>
-            </v-card-actions>
-        </v-card>
+            </template>
+        </CommonCard>
     </div>
 </template>

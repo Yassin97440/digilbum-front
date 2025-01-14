@@ -136,7 +136,6 @@ html,
 
 </script>
 <script>
-import decodeToken from "../tools/token/decodeToken";
 import { useAuthStore } from "../stores/AuthStore";
 import { mapActions } from "pinia";
 export default {

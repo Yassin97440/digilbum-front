@@ -24,6 +24,7 @@ export default async function decodeToken() {
         });
 
         return payload;
+
     } catch (error) {
         console.error("Erreur de décodage du token:", error);
         return null;

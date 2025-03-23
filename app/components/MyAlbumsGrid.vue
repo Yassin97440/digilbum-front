@@ -29,7 +29,7 @@
                                 class="bg-transparent backdrop-blur-3xl border border-zinc-400 text-white rounded-xl">
 
                                 <v-list-item v-for="item in itemsListAction" :key="item.title"
-                                    @click="item.action(album)">
+                                    v-if="can(item.action, item.resource, album)" @click="item.action(album)">
                                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                                 </v-list-item>
 
@@ -52,6 +52,7 @@ const props = defineProps({
 })
 
 const toast = useToast()
+const { can } = usePermissions()
 
 const emit = defineEmits(['view', 'edit'])
 const albumStore = useAlbumStore()
@@ -61,11 +62,15 @@ const deleteAlbum = (album) => {
 }
 const itemsListAction = [
     {
+        action: 'delete',
+        resource: 'album',
         title: 'Supprimer',
         icon: 'mdi-delete',
         action: deleteAlbum
     },
     {
+        action: 'edit',
+        resource: 'album',
         title: 'Modifier',
         icon: 'mdi-pencil',
         action: (album) => navigateTo(`/album/${album.id}`)

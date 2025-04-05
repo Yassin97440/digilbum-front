@@ -4,12 +4,10 @@ import { permissionManager } from '~/utils/permissionManager';
 export function setupPermissions() {
   // Permission pour les albums
   permissionManager.definePermission('create', 'album', (user) => !!user.id);
-
   permissionManager.definePermission('update', 'album', (user, resource) => {
     if (!user || !resource) return false;
     return user.id === resource.userId;
   });
-
   permissionManager.definePermission('delete', 'album', (user, resource) => {
     if (!user || !resource) return false;
     return user.id === resource.userId;
@@ -17,7 +15,6 @@ export function setupPermissions() {
 
   // Permission pour les événements
   permissionManager.definePermission('create', 'event', (user) => !!user.id);
-
   permissionManager.definePermission('manage', 'event', (user, resource) => {
     if (!user || !resource) return false;
     return user.id === resource.userId;

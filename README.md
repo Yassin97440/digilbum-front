@@ -83,12 +83,15 @@ npm run build
 ## 🤖 Développement propulsé par IA
 
 Depuis novembre 2024, j'ai intégré l'IA dans mon workflow de développement :
-- Utilisation de **ChatGPT** et **Cursor (ClaudAI)**
+- **Cursor (ClaudAI)** pour rester à la page et expérimenter de nouveaux outils
 - Gains significatifs en productivité, particulièrement pour :
   - Le design d'interface
   - La génération de modules fonctionnels
   - Le respect des conventions de code
-  - L'optimisation des performances
+  - L'optimisation des performances (à voir)
+Ce que je peux conclure de l'utilisation de l'IA jusqu'ici est que il y a pas mal de points d'améliorations à différents niveaux. 
+Que ça soit aux niveaux outils mais aussi utilisateur (écriture de prompt, mise en place de rules avec Cursor)
+Le seul point où je n'ai rien à redire c'est au niveau de la conception du design et de l'UI. Etant un point faible pour moi, c'est un gain de temps, enérgie et surtout de qualité.
 
 ## 📄 Licence
 

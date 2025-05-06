@@ -40,7 +40,7 @@ export default defineNuxtConfig({
             theme: 'none'
         },
         components: {
-            exclude: ['Form', 'FormField', 'FormGroup', 'Validators']
+            exclude: ['Form', 'FormField', 'FormGroup', 'Validators',  'Editor', 'Chart']
         }
     },
 

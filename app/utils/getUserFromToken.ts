@@ -9,7 +9,7 @@ export default async (): Promise<User | null> => {
   const user: User = {
     id: payloadUser.id as number,
     email: payloadUser.email as string,
-    name: payloadUser.name as string,
+    name: `${payloadUser.firstname} ${payloadUser.lastname}` as string,
     permissions: payloadUser.permissions as string[]
   };
 

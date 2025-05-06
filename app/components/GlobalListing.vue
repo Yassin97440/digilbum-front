@@ -26,7 +26,7 @@
                     <v-window-item value="two">
                         <v-container fluid class="text-center ">
                             <v-card>
-                                <v-btn @click="eventStore.fetchForUser()" color="info">test get event </v-btn>
+                                <v-btn @click="getUser()" color="info">test get event </v-btn>
                             </v-card>
                         </v-container>
                     </v-window-item>
@@ -60,6 +60,13 @@ import { useEventStore } from '../stores/EventStore';
 const eventStore = useEventStore();
 
 eventStore.fetchForUser();
+
+const getUser = async () => {
+    const user = await getUserFromToken();
+    console.info(user);
+    return user;
+}
+
 
 // State
 const tab = ref('one')

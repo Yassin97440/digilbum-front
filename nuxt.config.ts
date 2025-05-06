@@ -38,6 +38,9 @@ export default defineNuxtConfig({
     primevue: {
         options: {
             theme: 'none'
+        },
+        components: {
+            exclude: ['Form', 'FormField', 'FormGroup', 'Validators']
         }
     },
 

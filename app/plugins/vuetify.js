@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createVuetify } from 'vuetify'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import { VSnackbarQueue } from 'vuetify/labs/VSnackbarQueue'
 
 export default defineNuxtPlugin(nuxtApp => {
     const vuetify = createVuetify({
@@ -19,9 +18,7 @@ export default defineNuxtPlugin(nuxtApp => {
                 mdi,
             },
         },
-        components: {
-            VSnackbarQueue,
-        },
+
     })
     nuxtApp.vueApp.use(vuetify)
 })

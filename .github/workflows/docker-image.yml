@@ -54,4 +54,4 @@ jobs:
             docker load < digilbum-front.tar.gz
             docker stop digilbum-front || true
             docker rm digilbum-front || true
-            docker run -d -p 3000:3000 --name digilbum-front digilbum-front:${{ github.run_number }} --network=https-net
+            docker run -d -p 3000:3000 --name digilbum-front digilbum-front:${{ github.run_number }} --network https-net
